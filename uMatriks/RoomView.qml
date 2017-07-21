@@ -44,6 +44,7 @@ Flickable {
     function setRoom(room) {
         currentRoom = room
         chat.setRoom(room)
+        roomViewItem.header.title = room.name
     }
 
     function setConnection(conn) {

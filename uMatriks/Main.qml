@@ -170,7 +170,7 @@ MainView {
             visible: false
 
             header: PageHeader {
-                title: i18n.tr("room") //Here we need to show the roomLabel
+                title: i18n.tr("Room") //Here we need to show the roomLabel
                 StyleHints {
                     foregroundColor: UbuntuColors.jet
                     backgroundColor: UbuntuColors.silk

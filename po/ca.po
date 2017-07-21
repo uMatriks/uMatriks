@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-20 01:43+0000\n"
+"POT-Creation-Date: 2017-07-21 10:28+0000\n"
 "PO-Revision-Date: 2017-07-16 04:22+0200\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: \n"
@@ -45,8 +45,8 @@ msgid "Menu"
 msgstr "Menú"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
-msgid "room"
-msgstr "habitació"
+msgid "Room"
+msgstr ""
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:124
 msgid "Leave"
@@ -78,3 +78,6 @@ msgstr "chattyman"
 #: /home/larreamikel/Code/Touch/build-uMatriks-UbuntuSDK_for_desktop_GCC_amd64_ubuntu_sdk_15_04-Debug/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
 msgstr "uMatriks"
+
+#~ msgid "room"
+#~ msgstr "habitació"

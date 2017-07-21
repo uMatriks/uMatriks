@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-21 01:05+0000\n"
+"POT-Creation-Date: 2017-07-21 10:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -44,7 +44,7 @@ msgid "Menu"
 msgstr ""
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
-msgid "room"
+msgid "Room"
 msgstr ""
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:124

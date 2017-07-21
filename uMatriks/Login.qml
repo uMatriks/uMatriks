@@ -113,7 +113,7 @@ Page {
 
         Button{
             id: loginButton
-            anchors.centerIn: loginPage.horizontalCenter
+            anchors.horizontalCenter: parent.horizontalCenter
             text:"Login"
             onClicked: login()
 
