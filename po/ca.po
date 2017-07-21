@@ -1,0 +1,80 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-07-20 01:43+0000\n"
+"PO-Revision-Date: 2017-07-16 04:22+0200\n"
+"Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:21
+msgid "About..."
+msgstr "Quant a "
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:33
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:23
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:185
+msgid "Back"
+msgstr "Enrere"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:102
+msgid "Share Debug Logs"
+msgstr "Comparteix el registre d'errades"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:11
+msgid "Login..."
+msgstr "Inicia la sessió"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:112
+msgid "[ uMatriks ]"
+msgstr "[ uMatriks ]"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:125
+msgid "Menu"
+msgstr "Menú"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
+msgid "room"
+msgstr "habitació"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:124
+msgid "Leave"
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20
+msgid ""
+"Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
+"that allows you to use the Matrix network."
+msgstr ""
+"Us donem la benvinguda a l'uMatriks!<br/>            <br/>            "
+"L'uMatriks és una aplicació que us permet usar la xarxa Matrix."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
+msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
+msgstr ""
+"Per usar l'uMatriks, heu de iniciar la sessió amb el vostre <i>usuari</i> de "
+"Matrix."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:42
+msgid "Matrix ID:"
+msgstr "ID de Matrix:"
+
+#. TRANSLATORS: Example nickname
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
+msgid "chattyman"
+msgstr "chattyman"
+
+#: /home/larreamikel/Code/Touch/build-uMatriks-UbuntuSDK_for_desktop_GCC_amd64_ubuntu_sdk_15_04-Debug/uMatriks/uMatriks.desktop.h:1
+msgid "uMatriks"
+msgstr "uMatriks"

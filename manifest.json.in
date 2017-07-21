@@ -1,0 +1,16 @@
+{
+    "name": "umatriks.larreamikel",
+    "description": "description of uMatriks",
+    "architecture": "@CLICK_ARCH@",
+    "title": "uMatriks",
+    "hooks": {
+        "uMatriks": {
+            "apparmor": "uMatriks/uMatriks.apparmor",
+            "desktop":  "uMatriks/uMatriks.desktop"
+        }
+    },
+    "version": "0.1",
+    "maintainer": "Mikel Larrea <developer@larreamikel.com>",
+    "framework" : "ubuntu-sdk-15.04.6"
+}
+
