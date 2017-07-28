@@ -83,7 +83,7 @@ Rectangle {
                 ListItemLayout{
                     id:roomListLayout
                     title.text: display
-                    subtitle.text: "subtitle"
+//                    subtitle.text: "subtitle"
 
 
                     Rectangle {
@@ -107,13 +107,13 @@ Rectangle {
 
                     }
 
-                    Label{
-                        id: lastMessage
-                        SlotsLayout.position: SlotsLayout.Trailing
+//                    Label{
+//                        id: lastMessage
+//                        SlotsLayout.position: SlotsLayout.Trailing
 
-                        text:"Last message "
-                        fontSize: "small"
-                    }
+//                        text:"Last message "
+//                        fontSize: "small"
+//                    }
 
                 }
 

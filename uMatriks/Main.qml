@@ -13,13 +13,14 @@ MainView {
     objectName: "mainView"
 
     // Note! applicationName needs to match the "name" field of the click manifest
-    applicationName: "uMatriks.larreamikel"
+    applicationName: "umatriks.larreamikel"
 
     // automatically anchor items to keyboard that are anchored to the bottom
     anchorToKeyboard: true
 
     width: units.gu(50)
     height: units.gu(90)
+
 
     property bool initialised: false
     signal joinRoom(string name)
@@ -41,7 +42,6 @@ MainView {
     function resync() {
         if(!initialised) {
             login.visible = false
-//                    mainView.visible = true
             pageMain.visible = true
             roomListItem.init()
             initialised = true
@@ -160,7 +160,6 @@ MainView {
                 }
             }
 
-
         }
 
 
@@ -170,7 +169,8 @@ MainView {
             visible: false
 
             header: PageHeader {
-                title: i18n.tr("Room") //Here we need to show the roomLabel
+                title: i18n.tr("Room")
+
                 StyleHints {
                     foregroundColor: UbuntuColors.jet
                     backgroundColor: UbuntuColors.silk

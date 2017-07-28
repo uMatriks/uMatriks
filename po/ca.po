@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-21 10:28+0000\n"
+"POT-Creation-Date: 2017-07-28 01:03+0000\n"
 "PO-Revision-Date: 2017-07-16 04:22+0200\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: \n"
@@ -44,7 +44,7 @@ msgstr "[ uMatriks ]"
 msgid "Menu"
 msgstr "Menú"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:172
 msgid "Room"
 msgstr ""
 
