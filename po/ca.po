@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-07-28 01:03+0000\n"
+"POT-Creation-Date: 2017-07-29 00:48+0000\n"
 "PO-Revision-Date: 2017-07-16 04:22+0200\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: \n"
@@ -48,8 +48,16 @@ msgstr "Menú"
 msgid "Room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:124
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:125
 msgid "Leave"
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:224
+msgid "Room Topic"
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:235
+msgid "Close"
 msgstr ""
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20

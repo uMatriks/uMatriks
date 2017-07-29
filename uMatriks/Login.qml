@@ -51,7 +51,7 @@ Page {
         id:loginColumn
         width: parent.width / 2
         anchors.centerIn: parent
-        opacity: 0
+//        opacity: 0
         spacing: 18
 
         Item {
@@ -119,12 +119,12 @@ Page {
 
         }
 
-        NumberAnimation on opacity {
-            id: fadeIn
-            to: 1.0
-            duration: 3000
-        }
+//        NumberAnimation on opacity {
+//            id: fadeIn
+//            to: 1.0
+//            duration: 2000
+//        }
 
-        Component.onCompleted: fadeIn.start()
+//        Component.onCompleted: fadeIn.start()
     }
 }

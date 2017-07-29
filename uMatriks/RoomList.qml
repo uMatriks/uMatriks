@@ -3,6 +3,7 @@ import Ubuntu.Components 1.3
 //import Qt.labs.settings 1.0
 import Matrix 1.0
 import 'jschat.js' as JsChat
+import Ubuntu.Components.Popups 1.3
 
 
 
@@ -123,7 +124,7 @@ Rectangle {
                             iconName: "system-log-out" //change icon
                             text: i18n.tr("Leave")
                             onTriggered: {
-                                var current = currentRoom(index)
+                                var current = rooms.roomAt(index)
                                 if (current !== null){
                                     leaveRoom(current)
                                     refresh()
@@ -133,14 +134,14 @@ Rectangle {
                                 }
 
                             }
-                        },
+                        }/*,
                         Action {
                             iconName: "delete"
                             onTriggered: {
                             // the value will be undefined
                             console.log("Room deleted");
                             }
-                        }
+                        }*/
                     ]
                 }
                 trailingActions: ListItemActions {
@@ -152,7 +153,10 @@ Rectangle {
                             iconName: "info" //change icon
                             onTriggered: {
                             // the value will be undefined
-                            console.log("Show room info");
+                            console.log("Show room info: " + rooms.roomAt(index).topic );
+                            var popup = PopupUtils.open(roomTopicDialog, roomListItem);
+                            popup.description = rooms.roomAt(index).topic
+
                             }
                         }
                     ]
@@ -208,4 +212,33 @@ Rectangle {
             onAccepted: { joinRoom(text); text = "" }
         }
     }
+
+
+    Component {
+        id: roomTopicDialog
+        Dialog {
+            id: dialogInternal
+
+            property string description
+
+            title: "<b>%1</b>".arg(i18n.tr("Room Topic"))
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                linkColor: "Blue"
+                text: dialogInternal.description
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Button {
+                text: i18n.tr("Close")
+//                color: podbird.appTheme.positiveActionButton
+                onClicked: {
+                    PopupUtils.close(dialogInternal)
+                }
+            }
+        }
+    }
+
 }
