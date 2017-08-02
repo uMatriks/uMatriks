@@ -107,14 +107,26 @@ Rectangle {
                         }
 
                     }
+//                    Column{
+//                        Label{
+//                            id: lastMessage
+//                            SlotsLayout.position: SlotsLayout.Trailing
 
-//                    Label{
-//                        id: lastMessage
-//                        SlotsLayout.position: SlotsLayout.Trailing
+//                            text:"Last message "
+//                            fontSize: "small"
+//                        }
 
-//                        text:"Last message "
-//                        fontSize: "small"
+//                        Label{
+//                            id: lastMessageTime
+//                            SlotsLayout.position: SlotsLayout.Trailing
+
+//                            text: "xx:xx"
+//                            fontSize: "small"
+//                        }
+
 //                    }
+
+
 
                 }
 
@@ -233,7 +245,6 @@ Rectangle {
 
             Button {
                 text: i18n.tr("Close")
-//                color: podbird.appTheme.positiveActionButton
                 onClicked: {
                     PopupUtils.close(dialogInternal)
                 }
