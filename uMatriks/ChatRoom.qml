@@ -93,6 +93,35 @@ Rectangle {
 //                font.pointSize: Theme.textSize
                 font.pointSize: units.gu(1.5)
                 onLinkActivated: Qt.openUrlExternally(link)
+                function checkForImgLink()
+                {
+                    contentlabel.height = contentlabel.height + units.gu(3);
+                    if(text.search("http") != -1 && (text.search(".png") != -1 || text.search(".jpg") != -1 || text.search(".gif") != -1))
+                    {
+                        var start = text.search("http");
+                        var end;
+                        var media;
+                        if(text.search(".gif") != -1)
+                        {
+                            end = text.search(".gif");
+                            media = Qt.createQmlObject('import QtQuick 2.4; AnimatedImage {}', contentlabel);
+                        }
+                        else
+                        {
+                            end = text.search(".png") != -1 ? text.search(".png") : text.search(".jpg");
+                            media = Qt.createQmlObject('import QtQuick 2.4; Image {}', contentlabel);
+                        }
+                        var url = text.slice(start, end + 4);
+                        console.log(url);
+                        media.source = url;
+                        media.y = contentlabel.height;
+                        media.height = units.gu(30);
+                        media.width = contentlabel.width;
+                        media.fillMode = Image.PreserveAspectFit;
+                        contentlabel.height = contentlabel.height + units.gu(33);
+                    }
+                }
+                Component.onCompleted: checkForImgLink();
             }
         }
 
