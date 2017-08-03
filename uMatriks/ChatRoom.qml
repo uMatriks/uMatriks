@@ -95,30 +95,32 @@ Rectangle {
                 onLinkActivated: Qt.openUrlExternally(link)
                 function checkForImgLink()
                 {
-                    if(text.search("http") != -1 && (text.search(".png") != -1 || text.search(".jpg") != -1))
+                    contentlabel.height = contentlabel.height + units.gu(3);
+                    if(text.search("http") != -1 && (text.search(".png") != -1 || text.search(".jpg") != -1 || text.search(".gif") != -1))
                     {
                         var start = text.search("http");
+
+                        var end;
+                        var media;
+                        if(text.search(".gif") != -1)
+                        {
+                            end = text.search(".gif");
+                            media = Qt.createQmlObject('import QtQuick 2.4; Image {}', contentlabel);
+                        }
+                        else
+                        {
+                            end = text.search(".png") != -1 ? text.search(".png") : text.search(".jpg");
+                            media = Qt.createQmlObject('import QtQuick 2.4; AnimatedImage {}', contentlabel);
+                        }
+
                         var end = text.search(".png") != -1 ? text.search(".png") : text.search(".jpg");
                         var url = text.slice(start, end + 4);
-                        var image = Qt.createQmlObject('import QtQuick 2.4; Image {}', contentlabel);
-                        image.source = url;
-                        image.y = contentlabel.height + units.gu(3);
-                        image.height = units.gu(30);
-                        image.fillMode = Image.PreserveAspectFit;
-                        contentlabel.height = contentlabel.height + units.gu(36);
-                    }
-                    if(text.search("http") != -1 && text.search(".gif") != -1)
-                    {
-                        var start = text.search("http");
-                        var end = text.search(".gif");
-                        var url = text.slice(start, end + 4);
-                        var animation = Qt.createQmlObject('import QtQuick 2.4; AnimatedImage {}', contentlabel);
-                        animation.source = url;
-                        animation.y = contentlabel.height + units.gu(3);
-                        animation.height = units.gu(30);
-                        animation.width = contentlabel.width;
-                        animation.fillMode = Image.PreserveAspectFit;
-                        contentlabel.height = contentlabel.height + units.gu(36);
+                        media.source = url;
+                        media.y = contentlabel.height;
+                        media.height = units.gu(30);
+                        media.width = contentlabel.width;
+                        media.fillMode = Image.PreserveAspectFit;
+                        contentlabel.height = contentlabel.height + units.gu(33);
                     }
                 }
                 Component.onCompleted: checkForImgLink();
