@@ -99,22 +99,20 @@ Rectangle {
                     if(text.search("http") != -1 && (text.search(".png") != -1 || text.search(".jpg") != -1 || text.search(".gif") != -1))
                     {
                         var start = text.search("http");
-
                         var end;
                         var media;
                         if(text.search(".gif") != -1)
                         {
                             end = text.search(".gif");
-                            media = Qt.createQmlObject('import QtQuick 2.4; Image {}', contentlabel);
+                            media = Qt.createQmlObject('import QtQuick 2.4; AnimatedImage {}', contentlabel);
                         }
                         else
                         {
                             end = text.search(".png") != -1 ? text.search(".png") : text.search(".jpg");
-                            media = Qt.createQmlObject('import QtQuick 2.4; AnimatedImage {}', contentlabel);
+                            media = Qt.createQmlObject('import QtQuick 2.4; Image {}', contentlabel);
                         }
-
-                        var end = text.search(".png") != -1 ? text.search(".png") : text.search(".jpg");
                         var url = text.slice(start, end + 4);
+                        console.log(url);
                         media.source = url;
                         media.y = contentlabel.height;
                         media.height = units.gu(30);
