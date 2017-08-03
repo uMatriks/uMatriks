@@ -107,6 +107,19 @@ Rectangle {
                         image.fillMode = Image.PreserveAspectFit;
                         contentlabel.height = contentlabel.height + units.gu(36);
                     }
+                    if(text.search("http") != -1 && text.search(".gif") != -1)
+                    {
+                        var start = text.search("http");
+                        var end = text.search(".gif");
+                        var url = text.slice(start, end + 4);
+                        var animation = Qt.createQmlObject('import QtQuick 2.4; AnimatedImage {}', contentlabel);
+                        animation.source = url;
+                        animation.y = contentlabel.height + units.gu(3);
+                        animation.height = units.gu(30);
+                        animation.width = contentlabel.width;
+                        animation.fillMode = Image.PreserveAspectFit;
+                        contentlabel.height = contentlabel.height + units.gu(36);
+                    }
                 }
                 Component.onCompleted: checkForImgLink();
             }
