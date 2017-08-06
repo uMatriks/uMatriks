@@ -10,5 +10,6 @@
         <file>RoomView.qml</file>
         <file>Theme.qml</file>
         <file>umatriks.svg</file>
+        <file>components/ChatBubble.qml</file>
     </qresource>
 </RCC>
