@@ -21,6 +21,8 @@
 #include <algorithm>
 #include <QtCore/QRegularExpression>
 #include <QtCore/QDebug>
+#include <QPixmap>
+#include <QBuffer>
 
 #include "lib/connection.h"
 #include "lib/room.h"
@@ -104,8 +106,8 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
 
     QMatrixClient::RoomEvent *event = (m_currentRoom->messageEvents().end() - index.row() - 1)->event();
     // FIXME: Rewind to the name that was at the time of this event
-    QString senderName = m_currentRoom->roomMembername(event->senderId());
 
+    QString senderName = m_currentRoom->roomMembername(event->senderId());
 
     if( role == Qt::DisplayRole )
     {
@@ -138,6 +140,8 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             QMatrixClient::RoomAliasesEvent* e = static_cast<QMatrixClient::RoomAliasesEvent*>(event);
             return QString("Current aliases: %1").arg(e->aliases().join(", "));
         }
+        if (event->type() == QMatrixClient::EventType::Typing)
+            qDebug() << "Typing";
         return "Unknown Event";
     }
 
@@ -150,7 +154,19 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
     {
         if( event->type() == QMatrixClient::EventType::RoomMessage )
             return "message";
-        return "other";
+        if( event->type() == QMatrixClient::EventType::RoomName )
+            return "roomName";
+        if( event->type() == QMatrixClient::EventType::RoomAliases )
+            return "roomAliases";
+        if( event->type() == QMatrixClient::EventType::RoomCanonicalAlias )
+            return "roomCanonicalAlias";
+        if( event->type() == QMatrixClient::EventType::RoomTopic )
+            return "roomTopic";
+        if( event->type() == QMatrixClient::EventType::Typing )
+            return "typing";
+        if( event->type() == QMatrixClient::EventType::Receipt )
+            return "receipt";
+        return "unknown";
     }
 
     if( role == TimeRole )
@@ -174,18 +190,72 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
         return QVariant();
     }
 
+    if (role == UserIdRole)
+    {
+        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        {
+            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            qDebug() << QString(e->senderId());
+            return QString(e->senderId());
+        }
+        return QVariant();
+    }
+
+
+    if (role == MsgTypeRole)
+    {
+        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        {
+            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            switch (e->msgtype()) {
+            case QMatrixClient::RoomMessageEvent::MsgType::Image:
+                return "image";
+                break;
+            default:
+                break;
+            }
+        }
+        return QVariant();
+    }
+
+
+    if (role == AvatarRole)
+    {
+        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        {
+            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            for (int i = 0; i < m_currentRoom->users().size(); i++){
+                 if (e->senderId() ==  m_currentRoom->users()[i]->id()){
+                     QPixmap p = m_currentRoom->users()[i]->avatar(500,500);
+                     QByteArray bArr;
+                     QBuffer buff(&bArr);
+                     p.save(&buff, "JPEG");
+
+                     QString image("data:image/jpg;base64,");
+                     image.append(QString::fromLatin1(bArr.toBase64().data()));
+                     return image;
+                 }
+            }
+        }
+       return QVariant();
+    }
+
     if( role == ContentRole )
     {
         if( event->type() == QMatrixClient::EventType::RoomMessage )
         {
             QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
-            QString body = e->plainBody();
-            body.replace("<", "&lt;").replace(">", "&gt;");
-
-            QRegularExpression reLinks("(https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*))");
-            body.replace(reLinks, "<a href=\"\\1\">\\1</a>");
-
-            return body;
+            switch (e->msgtype()) {
+            case QMatrixClient::RoomMessageEvent::MsgType::Image:
+            {
+                const QMatrixClient::MessageEventContent::ImageContent* img = static_cast<const QMatrixClient::MessageEventContent::ImageContent*>(e->content());
+                return QUrl("image://mtx/" + img->url.host() + img->url.path());
+                break;
+            }
+            default:
+                return e->plainBody();
+                break;
+            }
         }
         if( event->type() == QMatrixClient::EventType::RoomMember )
         {
@@ -209,13 +279,11 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             QMatrixClient::RoomAliasesEvent* e = static_cast<QMatrixClient::RoomAliasesEvent*>(event);
             return QString("Current aliases: %1").arg(e->aliases().join(", "));
         }
-        return "Unknown Event";
+        if( event->type() == QMatrixClient::EventType::Unknown )
+        {
+            return "Unknown Event: ";  // + e->typeString() + "(" + e->content();
+        }
     }
-//     if( event->type() == QMatrixClient::EventType::Unknown )
-//     {
-//         QMatrixClient::UnknownEvent* e = static_cast<QMatrixClient::UnknownEvent*>(event);
-//         return "Unknown Event: " + e->typeString() + "(" + e->content();
-//     }
     return QVariant();
 }
 
@@ -227,5 +295,8 @@ QHash<int, QByteArray> MessageEventModel::roleNames() const
     roles[DateRole] = "date";
     roles[AuthorRole] = "author";
     roles[ContentRole] = "content";
+    roles[UserIdRole] = "userId";
+    roles[AvatarRole] = "avatar";
+    roles[MsgTypeRole] = "msgType";
     return roles;
 }

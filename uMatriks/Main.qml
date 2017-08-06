@@ -109,6 +109,7 @@ MainView {
 
             header: PageHeader{
                 id:pageHeader
+
                 title: i18n.tr("[ uMatriks ]")
                             StyleHints {
                                 foregroundColor: UbuntuColors.jet
@@ -213,7 +214,6 @@ MainView {
     Login {
         id: login
         anchors.fill: parent
-//            visible: false
         Component.onCompleted: {
             var user = settings.user
             var token = settings.token
