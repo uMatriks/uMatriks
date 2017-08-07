@@ -11,6 +11,7 @@
 #include "jobs/leaveroomjob.h"
 #include "models/messageeventmodel.h"
 #include "models/roomlistmodel.h"
+#include "models/imageprovider.h"
 #include "settings.h"
 using namespace QMatrixClient;
 
@@ -34,8 +35,6 @@ int main(int argc, char *argv[])
     }
 
     QQmlApplicationEngine engine;
-//    engine.addImportPath("./lib/arm-linux-gnueabihf/QtQuick/Controls");
-//    engine.addImportPath("./lib/arm-linux-gnueabihf/QtQuick/Dialogs");
     view.connect(&engine, SIGNAL(quit()), &app, SLOT(quit()));
     new QQmlFileSelector(view.engine(), &view);
 
@@ -45,6 +44,11 @@ int main(int argc, char *argv[])
     qmlRegisterType<LeaveRoomJob>();qRegisterMetaType<LeaveRoomJob*> ("LeaveRoomJob*");
     qmlRegisterType<Room>();        qRegisterMetaType<Room*>    ("Room*");
     qmlRegisterType<User>();        qRegisterMetaType<User*>    ("User*");
+
+    Connection* conn = new Connection();
+    ImageProvider* img = new ImageProvider(conn);
+    view.engine()->rootContext()->setContextProperty("connection", conn);
+    view.engine()->addImageProvider("mtx", img);
 
     qmlRegisterType<Connection>        ("Matrix", 1, 0, "Connection");
     qmlRegisterType<MessageEventModel> ("Matrix", 1, 0, "MessageEventModel");

@@ -27,7 +27,6 @@ MainView {
     signal joinedRoom(string room)
     signal leaveRoom(var room)
 
-    Connection { id: connection }
     Settings   {
         id: settings
 

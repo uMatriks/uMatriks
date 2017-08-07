@@ -9,7 +9,9 @@ include(lib/libqmatrixclient.pri)
 
 SOURCES += main.cpp \
     models/roomlistmodel.cpp \
-    models/messageeventmodel.cpp
+    models/messageeventmodel.cpp \
+    models/imageprovider.cpp #\
+#    models/avatarprovider.cpp
 
 RESOURCES += uMatriks.qrc
 
@@ -57,4 +59,6 @@ DISTFILES += \
 
 HEADERS += \
     models/roomlistmodel.h \
-    models/messageeventmodel.h
+    models/messageeventmodel.h \
+    models/imageprovider.h \
+    models/avatarprovider.h
