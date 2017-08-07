@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 20:56+0000\n"
+"POT-Creation-Date: 2017-08-06 09:08+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:33
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:23
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:185
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:186
 msgid "Back"
 msgstr ""
 
@@ -35,15 +35,15 @@ msgstr ""
 msgid "Login..."
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:112
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:113
 msgid "[ uMatriks ]"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:125
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:126
 msgid "Menu"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:172
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
 msgid "Room"
 msgstr ""
 
