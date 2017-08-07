@@ -81,7 +81,7 @@ msgstr "Matrix ID:"
 #. TRANSLATORS: Example nickname
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
-msgstr "Passwort"
+msgstr "benutzername"
 
 #: /home/larreamikel/Code/Touch/build-uMatriks-UbuntuSDK_for_desktop_GCC_amd64_ubuntu_sdk_15_04-Debug/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
