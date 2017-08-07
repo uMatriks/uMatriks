@@ -3,7 +3,7 @@ import Ubuntu.Components 1.3
 import Matrix 1.0
 import "components"
 //import Qt.labs.settings 1.0
-import 'jschat.js' as JsChat
+//import 'jschat.js' as JsChat
 
 
 Rectangle {
@@ -49,7 +49,6 @@ Rectangle {
         delegate: ChatBubble {
             id: chatBubble
             width: parent.width
-            connection: currentConnection
             room: currentRoom
         }
 
