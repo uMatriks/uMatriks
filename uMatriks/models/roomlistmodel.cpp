@@ -22,8 +22,8 @@
 #include <QtGui/QColor>
 #include <QtCore/QDebug>
 
-#include "lib/connection.h"
-#include "lib/room.h"
+#include "libqmatrixclient/connection.h"
+#include "libqmatrixclient/room.h"
 
 const int RoomEventStateRole = Qt::UserRole + 1;
 
