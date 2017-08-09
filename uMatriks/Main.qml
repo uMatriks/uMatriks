@@ -120,29 +120,23 @@ MainView {
                     actions: [
                        Action {
                             id: actionLogin
-                            iconName: "navigation-menu"
+                            iconName: "system-log-out"
                             shortcut: "Ctrl+M"
-                            text: i18n.tr("Menu")
+                            text: i18n.tr("Log out")
                             onTriggered: {
-//                                Qt.inputMethod.hide();
                                 pageMain.visible = false;
                                 mainPageStack.push(Qt.resolvedUrl("Login.qml"))
                             }
-                       }
-                    ]
-                }
-                trailingActionBar {
-                    numberOfSlots: 1
-                    actions: [
+                       },
                         Action {
-                                id: aboutAction
-                                iconName: "info"
-                                text: i18n.tr('About')
-                                onTriggered: {
-                                    pageMain.visible = false;
-                                    mainPageStack.push(Qt.resolvedUrl("About.qml"))
-                                }
-                            }
+                             id: actionInfo
+                             iconName: "info"
+                             text: i18n.tr("About")
+                             onTriggered: {
+                                 pageMain.visible = false;
+                                 mainPageStack.push(Qt.resolvedUrl("About.qml"))
+                             }
+                        }
                     ]
                 }
             }
