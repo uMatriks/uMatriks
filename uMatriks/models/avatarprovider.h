@@ -1,5 +1,5 @@
 #include <QQuickImageProvider>
-#include "lib/connection.h"
+#include "libqmatrixclient/connection.h"
 
 #ifndef AVATARPROVIDER_H
 #define AVATARPROVIDER_H

@@ -1,7 +1,7 @@
 #include "imageprovider.h"
 
-#include "lib/connection.h"
-#include "lib/jobs/mediathumbnailjob.h"
+#include "libqmatrixclient/connection.h"
+#include "libqmatrixclient/jobs/mediathumbnailjob.h"
 
 #include <QtCore/QDebug>
 

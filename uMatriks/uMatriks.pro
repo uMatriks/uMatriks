@@ -5,7 +5,7 @@ load(ubuntu-click)
 
 QT += qml quick
 
-include(lib/libqmatrixclient.pri)
+include(libqmatrixclient/libqmatrixclient.pri)
 
 SOURCES += main.cpp \
     models/roomlistmodel.cpp \

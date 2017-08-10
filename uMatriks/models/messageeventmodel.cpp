@@ -24,14 +24,14 @@
 #include <QPixmap>
 #include <QBuffer>
 
-#include "lib/connection.h"
-#include "lib/room.h"
-#include "lib/user.h"
-#include "lib/events/event.h"
-#include "lib/events/roommessageevent.h"
-#include "lib/events/roommemberevent.h"
-#include "lib/events/roomaliasesevent.h"
-#include "lib/events/unknownevent.h"
+#include "libqmatrixclient/connection.h"
+#include "libqmatrixclient/room.h"
+#include "libqmatrixclient/user.h"
+#include "libqmatrixclient/events/event.h"
+#include "libqmatrixclient/events/roommessageevent.h"
+#include "libqmatrixclient/events/roommemberevent.h"
+#include "libqmatrixclient/events/roomaliasesevent.h"
+#include "libqmatrixclient/events/unknownevent.h"
 
 MessageEventModel::MessageEventModel(QObject* parent)
     : QAbstractListModel(parent)
