@@ -37,6 +37,8 @@ Page {
     property variant mainPage
 
     function login(pretend) {
+        if (userNameField.text == "" && passwordField.text == "")
+            return
         loadingMode(true)
         if(!pretend) uMatriks.login(userNameField.text, passwordField.text)
 
