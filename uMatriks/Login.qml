@@ -37,15 +37,20 @@ Page {
     property variant mainPage
 
     function login(pretend) {
-        label.text = qsTr("Please wait...")
+        loadingMode(true)
         if(!pretend) uMatriks.login(userNameField.text, passwordField.text)
-        userNameField.enabled = false
-        passwordField.enabled = false
-        userNameField.opacity = 0
-        passwordField.opacity = 0
-        userNameLabel.opacity = 0
-        passwordLabel.opacity = 0
-        loginButton.opacity = 0
+
+    }
+
+    function loadingMode(state){
+        label.visible = !state;
+        loading.visible = state;
+        loading.running = state;
+        userNameField.visible = !state
+        passwordField.visible = !state
+        userNameLabel.visible = !state
+        passwordLabel.visible = !state
+        loginButton.visible = !state
     }
 
     Column {
@@ -88,6 +93,13 @@ Page {
             color: "#888"
         }
 
+        ActivityIndicator {
+             id: loading
+             z:2
+             visible: false
+             running: false
+             anchors.horizontalCenter: parent.horizontalCenter
+         }
         Label{
             id:userNameLabel
             text:"User Name or Matrix ID:"
