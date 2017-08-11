@@ -52,6 +52,12 @@ MainView {
         connection.connectWithToken(connection.userId(), connection.token())
     }
 
+    function logout() {
+        connection.logout();
+        settings.user = "";
+        settings.token = "";
+    }
+
 
     function login(user, pass, connect) {
         if(!connect) connect = connection.connectToServer
@@ -124,6 +130,7 @@ MainView {
                             shortcut: "Ctrl+M"
                             text: i18n.tr("Log out")
                             onTriggered: {
+                                logout();
                                 pageMain.visible = false;
                                 mainPageStack.push(Qt.resolvedUrl("Login.qml"))
                             }
