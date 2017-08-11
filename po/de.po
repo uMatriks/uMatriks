@@ -1,0 +1,88 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-06 09:08+0000\n"
+"PO-Revision-Date: 2017-08-07 21:12+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.3\n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: de\n"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:21
+msgid "About..."
+msgstr "Über"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:33
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:23
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:186
+msgid "Back"
+msgstr "Zurück"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:102
+msgid "Share Debug Logs"
+msgstr "Debug Logs teilen"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:11
+msgid "Login..."
+msgstr "Anmelden..."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:113
+msgid "[ uMatriks ]"
+msgstr "[ uMatriks ]"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:126
+msgid "Menu"
+msgstr "Menü"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
+msgid "Room"
+msgstr "Raum"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:137
+msgid "Leave"
+msgstr "Verlassen"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:236
+msgid "Room Topic"
+msgstr "Raum Thema"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:247
+msgid "Close"
+msgstr "Schließen"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20
+msgid ""
+"Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
+"that allows you to use the Matrix network."
+msgstr ""
+"Willkommen bei uMatriks!<br/>            <br/>            uMatriks ist ein "
+"Programm, mit dem Du das Matrix-Netzwerk nutzen kannst."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
+msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
+msgstr ""
+"Um uMatriks nutzen zu können, musst Du Dich mit Deinem <i>Benutzenamen</i> "
+"anmelden."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:42
+msgid "Matrix ID:"
+msgstr "Matrix ID:"
+
+#. TRANSLATORS: Example nickname
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
+msgid "chattyman"
+msgstr "benutzername"
+
+#: /home/larreamikel/Code/Touch/build-uMatriks-UbuntuSDK_for_desktop_GCC_amd64_ubuntu_sdk_15_04-Debug/uMatriks/uMatriks.desktop.h:1
+msgid "uMatriks"
+msgstr "uMatriks"
