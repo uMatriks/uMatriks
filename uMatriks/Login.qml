@@ -15,6 +15,7 @@ Page {
             dividerColor: UbuntuColors.warmGrey
         }
         leadingActionBar {
+            visible: mainPageStack.depth != 0
             numberOfSlots: 1
             actions: [
                 Action {
