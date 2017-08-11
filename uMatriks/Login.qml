@@ -1,11 +1,28 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Matrix 1.0
 
 
 Page {
     id: loginPage
     width: parent.width
     anchors.centerIn: parent
+
+    Connections {
+        target: connection
+        onLoginError: {
+            if (error.indexOf("Forbidden") !== -1) {
+                console.log("Wrong password")
+                loadingMode(false)
+                errorLabel.text = i18n.tr("Wrong username or password, please try again")
+                errorLabel.visible = true
+                return;
+            }
+            console.log("unknown login error", error);
+            errorLabel.visible = true
+            return;
+        }
+    }
 
     header: PageHeader {
         title: i18n.tr("Login...")
@@ -102,6 +119,15 @@ Page {
              running: false
              anchors.horizontalCenter: parent.horizontalCenter
          }
+
+        Label{
+            id:errorLabel
+            visible: false
+            color: UbuntuColors.red
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: i18n.tr("Failed to login, please try again")
+        }
+
         Label{
             id:userNameLabel
             text:"User Name or Matrix ID:"
