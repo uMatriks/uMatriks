@@ -1,11 +1,28 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Matrix 1.0
 
 
 Page {
     id: loginPage
     width: parent.width
     anchors.centerIn: parent
+
+    Connections {
+        target: connection
+        onLoginError: {
+            if (error.indexOf("Forbidden") !== -1) {
+                console.log("Wrong password")
+                loadingMode(false)
+                errorLabel.text = i18n.tr("Wrong username or password, please try again")
+                errorLabel.visible = true
+                return;
+            }
+            console.log("unknown login error", error);
+            errorLabel.visible = true
+            return;
+        }
+    }
 
     header: PageHeader {
         title: i18n.tr("Login...")
@@ -15,6 +32,7 @@ Page {
             dividerColor: UbuntuColors.warmGrey
         }
         leadingActionBar {
+            visible: mainPageStack.depth != 0
             numberOfSlots: 1
             actions: [
                 Action {
@@ -36,15 +54,22 @@ Page {
     property variant mainPage
 
     function login(pretend) {
-        label.text = qsTr("Please wait...")
+        if (userNameField.text == "" && passwordField.text == "")
+            return
+        loadingMode(true)
         if(!pretend) uMatriks.login(userNameField.text, passwordField.text)
-        userNameField.enabled = false
-        passwordField.enabled = false
-        userNameField.opacity = 0
-        passwordField.opacity = 0
-        userNameLabel.opacity = 0
-        passwordLabel.opacity = 0
-        loginButton.opacity = 0
+
+    }
+
+    function loadingMode(state){
+        label.visible = !state;
+        loading.visible = state;
+        loading.running = state;
+        userNameField.visible = !state
+        passwordField.visible = !state
+        userNameLabel.visible = !state
+        passwordLabel.visible = !state
+        loginButton.visible = !state
     }
 
     Column {
@@ -85,6 +110,22 @@ Page {
             font.pixelSize: phantomLabel.font.pixelSize * 5/2
             text: qsTr("[ uMatriks ]")
             color: "#888"
+        }
+
+        ActivityIndicator {
+             id: loading
+             z:2
+             visible: false
+             running: false
+             anchors.horizontalCenter: parent.horizontalCenter
+         }
+
+        Label{
+            id:errorLabel
+            visible: false
+            color: UbuntuColors.red
+            anchors.horizontalCenter: parent.horizontalCenter
+            text: i18n.tr("Failed to login, please try again")
         }
 
         Label{
