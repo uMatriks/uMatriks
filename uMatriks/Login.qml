@@ -12,8 +12,15 @@ Page {
         target: connection
         onLoginError: {
             if (error.indexOf("Forbidden") !== -1) {
+                if(uMatriks.loggedOut)
+                {
+                    mainPageStack.pop(pageMain)
+                    mainPageStack.push(loginPage)
+                }
+                passwordField.text = ""
                 console.log("Wrong password")
                 loadingMode(false)
+                errorLabel.color = UbuntuColors.red
                 errorLabel.text = i18n.tr("Wrong username or password, please try again")
                 errorLabel.visible = true
                 return;
@@ -32,20 +39,24 @@ Page {
             dividerColor: UbuntuColors.warmGrey
         }
         leadingActionBar {
-            visible: mainPageStack.depth != 0
-            numberOfSlots: 1
-            actions: [
-                Action {
-                    id: actionLogin
-                    iconName: "back"
-                    text: i18n.tr("Back")
-                    shortcut: "Ctrl+B"
-                    onTriggered: {
-                        onClicked: mainPageStack.pop(loginPage)
-                        pageMain.visible = true;
-                    }
-                }
-            ]
+            visible: false //mainPageStack.depth != 0
+//            numberOfSlots: 1
+//            actions: [
+//                Action {
+//                    id: actionLogin
+//                    iconName: "back"
+//                    text: i18n.tr("Back")
+//                    shortcut: "Ctrl+B"
+//                    onTriggered: {
+//                        onClicked:
+//                        if(settings.user !== '' && settings.token !== '')
+//                        {
+//                            mainPageStack.pop(loginPage)
+//                            pageMain.visible = true;
+//                        }
+//                    }
+//                }
+//            ]
         }
 
     }
@@ -70,13 +81,16 @@ Page {
         userNameLabel.visible = !state
         passwordLabel.visible = !state
         loginButton.visible = !state
+        errorLabel.color = UbuntuColors.green
+        errorLabel.text = i18n.tr("Login...")
+        errorLabel.visible = true
     }
 
     Column {
         id:loginColumn
         width: parent.width / 2
         anchors.centerIn: parent
-//        opacity: 0
+        //        opacity: 0
         spacing: 18
 
         Item {
@@ -94,12 +108,12 @@ Page {
                 antialiasing: true
                 source: "qrc:/logo.png"
 
-//                RotationAnimation on rotation {
-//                    loops: Animation.Infinite
-//                    from: 0
-//                    to: 360
-//                    duration: 60000
-//                }
+                //                RotationAnimation on rotation {
+                //                    loops: Animation.Infinite
+                //                    from: 0
+                //                    to: 360
+                //                    duration: 60000
+                //                }
             }
         }
 
@@ -113,12 +127,12 @@ Page {
         }
 
         ActivityIndicator {
-             id: loading
-             z:2
-             visible: false
-             running: false
-             anchors.horizontalCenter: parent.horizontalCenter
-         }
+            id: loading
+            z:2
+            visible: false
+            running: false
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
 
         Label{
             id:errorLabel
@@ -135,6 +149,7 @@ Page {
 
         TextField {
             id: userNameField
+            inputMethodHints: Qt.ImhNoAutoUppercase
             width: parent.width
             placeholderText: qsTr(settings.user)
         }
@@ -149,7 +164,7 @@ Page {
             echoMode: TextInput.Password
             width: parent.width
             placeholderText: qsTr("Password")
-//            onAccepted: login()
+            //            onAccepted: login()
         }
 
         Button{
@@ -160,12 +175,12 @@ Page {
 
         }
 
-//        NumberAnimation on opacity {
-//            id: fadeIn
-//            to: 1.0
-//            duration: 2000
-//        }
+        //        NumberAnimation on opacity {
+        //            id: fadeIn
+        //            to: 1.0
+        //            duration: 2000
+        //        }
 
-//        Component.onCompleted: fadeIn.start()
+        //        Component.onCompleted: fadeIn.start()
     }
 }

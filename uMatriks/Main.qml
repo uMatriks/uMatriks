@@ -23,6 +23,7 @@ MainView {
 
 
     property bool initialised: false
+    property bool loggedOut: false
     signal joinRoom(string name)
     signal joinedRoom(string room)
     signal leaveRoom(var room)
@@ -54,6 +55,7 @@ MainView {
 
     function logout() {
         connection.logout();
+        loggedOut = true;
         settings.user = "";
         settings.token = "";
     }
@@ -82,9 +84,19 @@ MainView {
         var userParts = user.split(':')
         if(userParts.length === 1 || userParts[1] === "matrix.org") {
             connect(user, pass)
+            if(loggedOut)
+            {
+                mainPageStack.pop()
+                mainPageStack.push(pageMain)
+            }
         } else {
             connection.resolved.connect(function() {
                 connect(user, pass)
+                if(loggedOut)
+                {
+                    mainPageStack.pop()
+                    mainPageStack.push(pageMain)
+                }
             })
             connection.resolveError.connect(function() {
                 console.log("Couldn't resolve server!")
@@ -220,6 +232,7 @@ MainView {
             if(user && token) {
                 login.login(true)
                 uMatriks.login(user, token, connection.connectWithToken)
+                login.loadingMode(true)
             }
         }
     }
