@@ -42,7 +42,7 @@ Rectangle {
         anchors.fill: parent
         flickableDirection: Flickable.VerticalFlick
         verticalLayoutDirection: ListView.BottomToTop
-        spacing: units.gu(2)
+        spacing: units.gu(1)
         model: MessageEventModel { id: messageModel }
 
 
