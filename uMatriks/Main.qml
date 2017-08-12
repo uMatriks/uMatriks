@@ -27,7 +27,6 @@ MainView {
     signal joinedRoom(string room)
     signal leaveRoom(var room)
 
-    Connection { id: connection }
     Settings   {
         id: settings
 
@@ -51,6 +50,12 @@ MainView {
 
     function reconnect() {
         connection.connectWithToken(connection.userId(), connection.token())
+    }
+
+    function logout() {
+        connection.logout();
+        settings.user = "";
+        settings.token = "";
     }
 
 
@@ -109,6 +114,7 @@ MainView {
 
             header: PageHeader{
                 id:pageHeader
+
                 title: i18n.tr("[ uMatriks ]")
                             StyleHints {
                                 foregroundColor: UbuntuColors.jet
@@ -120,29 +126,24 @@ MainView {
                     actions: [
                        Action {
                             id: actionLogin
-                            iconName: "navigation-menu"
+                            iconName: "system-log-out"
                             shortcut: "Ctrl+M"
-                            text: i18n.tr("Menu")
+                            text: i18n.tr("Log out")
                             onTriggered: {
-//                                Qt.inputMethod.hide();
+                                logout();
                                 pageMain.visible = false;
                                 mainPageStack.push(Qt.resolvedUrl("Login.qml"))
                             }
-                       }
-                    ]
-                }
-                trailingActionBar {
-                    numberOfSlots: 1
-                    actions: [
+                       },
                         Action {
-                                id: aboutAction
-                                iconName: "info"
-                                text: i18n.tr('About')
-                                onTriggered: {
-                                    pageMain.visible = false;
-                                    mainPageStack.push(Qt.resolvedUrl("About.qml"))
-                                }
-                            }
+                             id: actionInfo
+                             iconName: "info"
+                             text: i18n.tr("About")
+                             onTriggered: {
+                                 pageMain.visible = false;
+                                 mainPageStack.push(Qt.resolvedUrl("About.qml"))
+                             }
+                        }
                     ]
                 }
             }
@@ -213,7 +214,6 @@ MainView {
     Login {
         id: login
         anchors.fill: parent
-//            visible: false
         Component.onCompleted: {
             var user = settings.user
             var token = settings.token

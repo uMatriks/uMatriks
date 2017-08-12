@@ -100,25 +100,42 @@ Flickable {
 
     ChatRoom {
         id: chat
-        anchors.bottom: textEntry.top
+        anchors.bottom: textRect.top
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.top: parent.top
+        anchors.margins: {
+            bottom: 20
+        }
     }
 
 
-    TextField {
-        id: textEntry
+    Rectangle {
+        id: textRect
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: parent.bottom
-        focus: true
+        color: "white"
 
-        placeholderText: qsTr("Say something...")
-        onAccepted: sendLine(text)
+        TextField {
+            id: textEntry
+            focus: true
+            anchors.right: parent.right
+            anchors.left: parent.left
+            anchors.bottom: parent.bottom
+            anchors.margins: 10
 
-        Keys.onBacktabPressed: onKeyPressed(event, true)
-        Keys.onPressed: onKeyPressed(event, false)
+
+            placeholderText: qsTr("Say something...")
+            onAccepted: sendLine(text)
+
+            Keys.onBacktabPressed: onKeyPressed(event, true)
+            Keys.onPressed: onKeyPressed(event, false)
+
+            Component.onCompleted: {
+                textRect.height = height + (anchors.margins * 2);
+            }
+        }
     }
 }
 

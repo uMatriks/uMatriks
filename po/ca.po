@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-02 20:56+0000\n"
+"POT-Creation-Date: 2017-08-06 09:08+0000\n"
 "PO-Revision-Date: 2017-07-16 04:22+0200\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: \n"
@@ -24,7 +24,7 @@ msgstr "Quant a "
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:33
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:23
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:185
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:186
 msgid "Back"
 msgstr "Enrere"
 
@@ -36,15 +36,15 @@ msgstr "Comparteix el registre d'errades"
 msgid "Login..."
 msgstr "Inicia la sessió"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:112
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:113
 msgid "[ uMatriks ]"
 msgstr "[ uMatriks ]"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:125
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:126
 msgid "Menu"
 msgstr "Menú"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:172
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
 msgid "Room"
 msgstr ""
 
