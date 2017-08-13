@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import QtGraphicalEffects 1.0
 import Matrix 1.0
 //import '../jschat.js' as JsChat
 
@@ -15,13 +16,28 @@ Item {
         height: units.gu(6)
         anchors.top: chatBubble.top
         width: height
-        radius: 10
-        anchors.margins: 20
+        radius: height/2
+//        anchors.margins: 20
+        anchors.margins: units.gu(0.5)
         clip: true
+        border.color: "black"
+
 
         Image {
             id: avatarImg
             anchors.fill: parent
+            visible: false
+        }
+
+        OpacityMask {
+            anchors.fill: avatarImg
+            source: avatarImg
+            maskSource: Rectangle {
+                width: avatarImg.width
+                height: avatarImg.height
+                radius: height/2
+                visible: false
+            }
         }
     }
 
@@ -29,12 +45,14 @@ Item {
         id: rect
         anchors.top: chatBubble.top
         anchors.margins: {
-            right: 20
-            left: 20
+//            right: 20
+//            left: 20
+            right: units.gu(1)
+            left: units.gu(1)
         }
         border.color: "grey"
         border.width: 1
-        radius: 10
+        radius: 8
 
         Text {
             id: contentlabel
@@ -43,9 +61,12 @@ Item {
             font.pointSize: units.gu(1.5)
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.margins: 15
-            color: "white"
-            linkColor: "black"
+            anchors.margins: units.gu(1)
+
+//            color: "white"
+//            linkColor: "black"
+            color: "black"
+            linkColor: "blue"
             textFormat: Text.RichText
             onLinkActivated: Qt.openUrlExternally(link)
         }
@@ -85,6 +106,7 @@ Item {
                 font.pointSize: units.gu(0.9)
             }
             Text {
+                id: dashlabel
                 text: " - "
                 font.pointSize: units.gu(0.9)
             }
@@ -166,11 +188,17 @@ Item {
             if (userId === connection.userId()) {
                 avatarIcon.anchors.right = chatBubble.right
                 rect.anchors.right = avatarIcon.left
-                rect.color = "#2ecc71"
+//                rect.color = "#2ecc71"
+                rect.color = "#9E7D96"
+                contentlabel.color = "white"
+                timelabel.color = UbuntuColors.lightGrey
+                authorlabel.color = UbuntuColors.lightGrey
+                dashlabel.color = UbuntuColors.lightGrey
+
             } else {
                 avatarIcon.anchors.left = chatBubble.left
                 rect.anchors.left = avatarIcon.right
-                rect.color = "#bdc3c7"
+//                rect.color = "#bdc3c7"
             }
 
             if (msgType === "m.image") {

@@ -65,7 +65,16 @@ Page {
         Repeater {
             model: ListModel {
                 ListElement {
-                    text: "Author: Mikel Larrea.\n Source Code: https://github.com/LarreaMikel/uMatriks \n\n "
+                    text: "Author: Mikel Larrea.\n Source Code: https://github.com/LarreaMikel/uMatriks \n "
+                }
+                ListElement {
+                    text: "Joan CiberSheep.\n https://github.com/cibersheep \n "
+                }
+                ListElement {
+                    text: "Bjarne Roß.\n https://github.com/nfsprodriver \n "
+                }
+                ListElement {
+                    text: "Marius Gripsgard.\n https://github.com/mariogrip \n\n "
                 }
                 ListElement {
                     text: "This program uses libqmatrixclient\n Copyright (C) 2015-2017 Felix Rohrbach kde@fxrh.de and others \n #quaternion:matrix.org"
