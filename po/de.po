@@ -23,7 +23,7 @@ msgstr "Debug Logs teilen"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:24
 msgid "Wrong username or password, please try again"
-msgstr "Falscher Nutzname oder Passwort, bitte versuch's nochmal"
+msgstr "Falscher Nutzername oder falsches Passwort, bitte versuch's nochmal"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:35
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:85
