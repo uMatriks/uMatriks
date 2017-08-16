@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-12 23:54+0000\n"
+"POT-Creation-Date: 2017-08-16 04:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,79 +17,113 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:21
+#: /home/bjarne/uMatriks/uMatriks/About.qml:21
 msgid "About..."
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:33
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:198
+#: /home/bjarne/uMatriks/uMatriks/About.qml:33
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:208
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:255
 msgid "Back"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:111
+#: /home/bjarne/uMatriks/uMatriks/About.qml:111
 msgid "Share Debug Logs"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:24
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:24
 msgid "Wrong username or password, please try again"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:35
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:85
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:35
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:85
 msgid "Login..."
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:142
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:142
 msgid "Failed to login, please try again"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:130
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:147
+msgid "User Name or Matrix ID:"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:159
+msgid "Password:"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:173
+msgid "Login"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:140
 msgid "[ uMatriks ]"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:143
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:153
 msgid "Log out"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:153
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:163
 msgid "About"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:185
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:195
 msgid "Room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:137
-msgid "Leave"
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:242
+msgid "Members"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:237
-msgid "Room Topic"
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:295
+msgid "Failed to add direct chat with "
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:248
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:297
+msgid " because this is not implented yet. This was just a test button."
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:336
+msgid "Warning!"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:347
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:312
 msgid "Close"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:228
+msgid "Leave"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:262
+msgid "Members of "
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:301
+msgid "Room Topic"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:20
 msgid ""
 "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
 "that allows you to use the Matrix network."
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:42
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
 msgstr ""
 
 #. TRANSLATORS: Example nickname
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/build-uMatriks-Meizu_Pro5_GCC_armhf_ubuntu_sdk_15_04_builder_armhf-Release/uMatriks/uMatriks.desktop.h:1
+#: /home/bjarne/build-uMatriks-Desktop-Release/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
 msgstr ""

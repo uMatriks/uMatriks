@@ -144,7 +144,7 @@ Page {
 
         Label{
             id:userNameLabel
-            text:"User Name or Matrix ID:"
+            text: i18n.tr("User Name or Matrix ID:")
         }
 
         TextField {
@@ -156,7 +156,7 @@ Page {
 
         Label{
             id:passwordLabel
-            text:"Password:"
+            text:i18n.tr("Password:")
         }
 
         TextField {
@@ -170,7 +170,7 @@ Page {
         Button{
             id: loginButton
             anchors.horizontalCenter: parent.horizontalCenter
-            text:"Login"
+            text: i18n.tr("Login")
             onClicked: login()
 
         }

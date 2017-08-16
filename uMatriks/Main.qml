@@ -2,6 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Qt.labs.settings 1.0
 import Matrix 1.0
+import Ubuntu.Components.Popups 1.3
 
 /*!
     \brief MainView with a Label and Button elements.
@@ -19,11 +20,12 @@ MainView {
     anchorToKeyboard: true
 
     width: units.gu(50)
-    height: units.gu(90)
+    height: units.gu(80)
 
 
     property bool initialised: false
     property bool loggedOut: false
+    property int activeRoomIndex: -1
     signal joinRoom(string name)
     signal joinedRoom(string room)
     signal leaveRoom(var room)
@@ -199,7 +201,8 @@ MainView {
                             shortcut: "Ctrl+B"
                             onTriggered: {
                                 onClicked: mainPageStack.pop(roomViewItem)
-                                pageMain.visible = true;
+                                activeRoomIndex = -1
+                                pageMain.visible = true
                             }
                         }
                     ]
@@ -220,6 +223,84 @@ MainView {
 //            }
         }
 
+        Page {
+            id: memberListItem
+            anchors.fill: parent
+            visible: false
+
+            property var members
+
+            header: PageHeader {
+                title: i18n.tr("Members")
+
+                StyleHints {
+                    foregroundColor: UbuntuColors.jet
+                    backgroundColor: UbuntuColors.silk
+                    dividerColor: UbuntuColors.warmGrey
+                }
+                leadingActionBar {
+                    numberOfSlots: 1
+                    actions: [
+                        Action {
+                            //id: actionSettings
+                            iconName: "back"
+                            text: i18n.tr("Back")
+                            shortcut: "Ctrl+B"
+                            onTriggered: {
+                                onClicked: mainPageStack.pop(memberListItem)
+                                activeRoomIndex = -1
+                                pageMain.visible = true
+                            }
+                        }
+                    ]
+                }
+
+            }
+
+
+            Column {
+                id: memberListColumn
+                anchors.fill: parent
+
+                ListView {
+                    id: membersListView
+                    model: memberListItem.members
+                    width: parent.width
+                    height: parent.height
+
+                    delegate: ListItem {
+                        height: memberListLayout.height + (divider.visible ? divider.height : 0)
+                        ListItemLayout {
+                            id: memberListLayout
+                            title.text: modelData
+                        }
+
+                        trailingActions: ListItemActions {
+                            actions: [
+                                Action {
+                                    iconName: "add" //change icon
+                                    onTriggered: {
+                                        // console.log("Add Room with: " + modelData);
+                                        var userId = (modelData.search(":matrix.org") === -1) ? ("@" + modelData + ":matrix.org") : modelData;
+                                        // joinRoom(userId);
+                                        var popup = PopupUtils.open(warning, memberListItem);
+                                        popup.description = i18n.tr("Failed to add direct chat with ")
+                                        popup.description += userId
+                                        popup.description += i18n.tr(" because this is not implented yet. This was just a test button.")
+                                    }
+                                }
+                            ]
+                        }
+
+                        onClicked: {
+                            var userId = (modelData.search(":matrix.org") === -1) ? ("@" + modelData + ":matrix.org") : modelData
+                            console.log(userId)
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 
@@ -233,6 +314,32 @@ MainView {
                 login.login(true)
                 uMatriks.login(user, token, connection.connectWithToken)
                 login.loadingMode(true)
+            }
+        }
+    }
+
+    Component {
+        id: warning
+        Dialog {
+            id: dialogInternal
+
+            property string description
+
+            title: "<b>%1</b>".arg(i18n.tr("Warning!"))
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                linkColor: "Blue"
+                text: dialogInternal.description
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Button {
+                text: i18n.tr("Close")
+                onClicked: {
+                    PopupUtils.close(dialogInternal)
+                }
             }
         }
     }

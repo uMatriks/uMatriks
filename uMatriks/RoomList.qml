@@ -8,29 +8,105 @@ import Ubuntu.Components.Popups 1.3
 
 
 Rectangle {
-//    color: Theme.roomListBg
+    //    color: Theme.roomListBg
 
     signal enterRoom(var room)
     signal joinRoom(string name)
-//    signal leaveRoom(var room)
+    //    signal leaveRoom(var room)
 
     property bool initialised: false
     property bool roomsUpdating: false
+    property bool globalTrigger: false
+
+    function checkForLink(string)
+    {
+        if (string.search("https://") !== -1 || string.search("http://") !== -1)
+        {
+            var words = string.split(" ");
+            var i;
+            for (i = 0; i < words.length; i++) {
+                if((words[i].search("https://") !== -1 || words[i].search("http://") !== -1) && words[i].search('href=') === -1)
+                {
+                    var newContent = string.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
+                    console.log(newContent);
+                    string = newContent;
+                }
+            }
+            return string;
+
+        }
+    }
 
     RoomListModel {
         id: rooms
 
         onDataChanged: {
             // may have received a message but if focused, mark as read
-            var room = currentRoom()
-            if (room != null) room.markAllMessagesAsRead()
-
+            console.log("Event...")
+            if(initialised) {
+                globalTrigger = true
+                for (var i = 0; i < rooms.rowCount(); i++) {
+                    roomListView.currentIndex = i
+                    roomListView.currentItem.refreshUnread()
+                }
+            }
         }
 
     }
 
     function setConnection(conn) {
         rooms.setConnection(conn)
+    }
+
+    function getUnread(index) {
+        return rooms.roomAt(index).hasUnreadMessages()
+    }
+
+    function getNumber(index) {
+        return rooms.roomAt(index).notificationCount()
+    }
+
+    function scan() {
+        function Timer() {
+            return Qt.createQmlObject("import QtQuick 2.4; Timer {}", rooms);
+        }
+        var currentIndex = 0
+        for (var i = 0; i < rooms.rowCount(); i++) {
+            roomListView.currentIndex = i
+            roomListView.currentItem.refreshUnread()
+        }
+        var counter = 0
+        var speedTrigger = false
+        var timer = new Timer();
+        timer.interval = 300;
+        timer.repeat = true;
+        timer.triggered.connect(function()
+        {
+            var savedPos = roomListView.contentY
+            roomListView.currentIndex = currentIndex
+            roomListView.currentItem.refreshUnread()
+            roomListView.contentY = savedPos
+            if (uMatriks.activeRoomIndex !== -1) rooms.roomAt(uMatriks.activeRoomIndex).markAllMessagesAsRead()
+            if (currentIndex !== (rooms.rowCount() - 1)) currentIndex++
+            else currentIndex = 0
+            //            if (globalTrigger)
+            //            {
+            //                globalTrigger = false
+            //                speedTrigger = true
+            //            }
+            //            if(speedTrigger === true)
+            //            {
+            //                timer.interval = 1000 / rooms.rowCount()
+            //                if (counter < 15 * rooms.rowCount()) counter++
+            //                else {
+            //                    counter = 0
+            //                    speedTrigger = false
+            //                    timer.interval = 3000 / rooms.rowCount()
+            //                }
+            //            }
+        })
+
+        timer.start();
     }
 
     function init() {
@@ -41,18 +117,16 @@ Rectangle {
             if (rooms.roomAt(i).canonicalAlias === defaultRoom) {
                 roomListView.currentIndex = i
                 enterRoom(rooms.roomAt(i))
-//                pageMain.visible = false;
-//                mainPageStack.push(roomViewItem)
-//                found = true
             }
         }
         if (!found) joinRoom(defaultRoom)
+        scan()
     }
 
     function refresh() {
         if(roomListView.visible)
             roomListView.forceLayout()
-//        roomsUpdating = false
+        //        roomsUpdating = false
     }
 
     function changeRoom(dir) {
@@ -69,6 +143,8 @@ Rectangle {
     }
 
     Column {
+        id: roomListColumn
+        visible: true
         anchors.fill: parent
 
         ListView {
@@ -76,20 +152,33 @@ Rectangle {
             model: rooms
             width: parent.width
             height: parent.height - textEntry.height
-//            spacing: 5
 
             delegate: ListItem{
+                id: helpId
                 height: roomListLayout.height + (divider.visible ? divider.height : 0)
+                property bool unread: false
+                property int number: 0
+                function refreshUnread ()
+                {
+                    //console.log("Running..." + index)
+                    var i = index
+                    if(getUnread(i) !== unread || getNumber(i) !== number)
+                    {
+                        unread = getUnread(i)
+                        number = getNumber(i)
+                        console.log(display + unread + number)
+                    }
+                }
 
                 ListItemLayout{
                     id:roomListLayout
                     title.text: display
-//                    subtitle.text: "subtitle"
+                    //                    subtitle.text: "subtitle"
 
 
                     Rectangle {
                         SlotsLayout.position: SlotsLayout.Leading
-//                        color: "grey"
+                        //                        color: "grey"
                         height: units.gu(5)
                         width: height
                         border.width: parent.activeFocus ? 1 : 2
@@ -102,31 +191,33 @@ Rectangle {
                             }
                             font.bold: true
                             font.pointSize: units.gu(2)
-                            text: qsTr(roomListLayout.title.text[0]+roomListLayout.title.text[1])
+                            text: roomListLayout.title.text[0]+roomListLayout.title.text[1]
 
                         }
 
                     }
-//                    Column{
-//                        Label{
-//                            id: lastMessage
-//                            SlotsLayout.position: SlotsLayout.Trailing
-
-//                            text:"Last message "
-//                            fontSize: "small"
-//                        }
-
-//                        Label{
-//                            id: lastMessageTime
-//                            SlotsLayout.position: SlotsLayout.Trailing
-
-//                            text: "xx:xx"
-//                            fontSize: "small"
-//                        }
-
-//                    }
 
 
+                    Rectangle {
+                        SlotsLayout.position: SlotsLayout.Trailing
+                        //                        color: "grey"
+                        height: units.gu(3)
+                        width: height
+                        border.width: parent.activeFocus ? 0.5 : 1
+                        border.color: "black"
+                        color: UbuntuColors.red
+                        visible: helpId.unread
+                        radius: width * 0.5
+                        Text {
+                            anchors{
+                                horizontalCenter: parent.horizontalCenter
+                                verticalCenter: parent.verticalCenter
+                            }
+                            font.pointSize: units.gu(1.5)
+                            text: helpId.number
+                        }
+
+                    }
 
                 }
 
@@ -146,28 +237,32 @@ Rectangle {
                                 }
 
                             }
-                        }/*,
-                        Action {
-                            iconName: "delete"
-                            onTriggered: {
-                            // the value will be undefined
-                            console.log("Room deleted");
-                            }
-                        }*/
+                        }
                     ]
                 }
                 trailingActions: ListItemActions {
                     actions: [
-//                        Action {
-//                            iconName: "system-log-out" //change icon
-//                        },
                         Action {
                             iconName: "info" //change icon
                             onTriggered: {
-                            // the value will be undefined
-                            console.log("Show room info: " + rooms.roomAt(index).topic );
-                            var popup = PopupUtils.open(roomTopicDialog, roomListItem);
-                            popup.description = rooms.roomAt(index).topic
+                                // the value will be undefined
+                                console.log("Show room info: " + rooms.roomAt(index).topic );
+                                var popup = PopupUtils.open(roomTopicDialog, roomListItem);
+                                popup.description = checkForLink(rooms.roomAt(index).topic);
+
+                            }
+                        },
+                        Action {
+                            iconName: "account" //change icon
+                            onTriggered: {
+                                // the value will be undefined
+                                console.log("Show member list: " + rooms.roomAt(index).displayName);
+                                memberListItem.members = rooms.roomAt(index).memberNames()
+                                pageMain.visible = false
+                                memberListItem.header.title = i18n.tr("Members of ")
+                                memberListItem.header.title += rooms.roomAt(index).displayName
+                                pageMain.visible = false;
+                                mainPageStack.push(memberListItem)
 
                             }
                         }
@@ -175,46 +270,16 @@ Rectangle {
                 }
                 onClicked: {
                     console.log("Room clicked. Entering: " + display + " room.")
+                    uMatriks.activeRoomIndex = index
                     roomListView.currentIndex = index
                     enterRoom(rooms.roomAt(index))
                     pageMain.visible = false;
                     mainPageStack.push(roomViewItem)
 
                 }
-
-
             }
 
-            highlight: Rectangle {
-                height: 20
-                radius: 2
-//                color: Theme.roomListSelectedBg
-//                color: "#9c27b0"
-                color: "#9E7D96"
-            }
-            highlightMoveDuration: 0
-
-            onCountChanged: if(initialised) {
-                roomListView.currentIndex = count-1
-                enterRoom(rooms.roomAt(count-1))
-// Commenting this two lines the first page to load will be the roomlist.
-//                pageMain.visible = false;
-//                mainPageStack.push(roomViewItem)
-            }
-
-
-            PullToRefresh{
-                refreshing: roomsUpdating
-                onRefresh: {
-//                    roomsUpdating = true
-//                    refresh()
-                    console.log("room updated");
-
-                }
-            }
-
-
-
+            highlightFollowsCurrentItem: false
 
         }
 
@@ -225,7 +290,6 @@ Rectangle {
             onAccepted: { joinRoom(text); text = "" }
         }
     }
-
 
     Component {
         id: roomTopicDialog
@@ -252,5 +316,4 @@ Rectangle {
             }
         }
     }
-
 }

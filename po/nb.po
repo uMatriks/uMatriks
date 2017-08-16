@@ -1,36 +1,35 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# AUTHOR marius@ubports.com, 2017.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2017-08-16 02:21+0200\n"
-"PO-Revision-Date: 2017-07-16 04:22+0200\n"
-"Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
-"Language-Team: \n"
-"Language: ca\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Marius Gripsgard <marius@ubports.com>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=UTF8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7.1\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:21
 msgid "About..."
-msgstr "Quant a "
+msgstr "Om..."
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:33
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:200
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:247
 msgid "Back"
-msgstr "Enrere"
+msgstr "Tilbake"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:111
 msgid "Share Debug Logs"
-msgstr "Comparteix el registre d'errades"
+msgstr "Del Utvikler Logger"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:24
 msgid "Wrong username or password, please try again"
@@ -39,7 +38,7 @@ msgstr ""
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:35
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:85
 msgid "Login..."
-msgstr "Inicia la sessió"
+msgstr "Logg p..."
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:142
 msgid "Failed to login, please try again"
@@ -56,11 +55,11 @@ msgstr ""
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:155
 #, fuzzy
 msgid "About"
-msgstr "Quant a "
+msgstr "Om..."
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:187
 msgid "Room"
-msgstr ""
+msgstr "Rom"
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:234
 msgid "Members"
@@ -81,11 +80,11 @@ msgstr ""
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:339
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:312
 msgid "Close"
-msgstr ""
+msgstr "Lukk"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:228
 msgid "Leave"
-msgstr ""
+msgstr "Forlate"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:262
 msgid "Members of "
@@ -93,37 +92,32 @@ msgstr ""
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:301
 msgid "Room Topic"
-msgstr ""
+msgstr "Rom Emne"
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:20
 msgid ""
 "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
 "that allows you to use the Matrix network."
 msgstr ""
-"Us donem la benvinguda a l'uMatriks!<br/>            <br/>            "
-"L'uMatriks és una aplicació que us permet usar la xarxa Matrix."
+"Velcommen til uMatriks!<br/>            <br/>            uMatriks er ett "
+"program som gjr at du kan bruke Matrix nettverket"
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
-msgstr ""
-"Per usar l'uMatriks, heu de iniciar la sessió amb el vostre <i>usuari</i> de "
-"Matrix."
+msgstr "For  bruke uMatriks, m du logge p med din Matrix <i>bruker</i>."
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
-msgstr "ID de Matrix:"
+msgstr "Matrix ID:"
 
 #. TRANSLATORS: Example nickname
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
-msgstr "chattyman"
+msgstr "brukernavn"
 
 #: /home/bjarne/build-uMatriks-Desktop-Release/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
 msgstr "uMatriks"
 
 #~ msgid "Menu"
-#~ msgstr "Menú"
-
-#~ msgid "room"
-#~ msgstr "habitació"
+#~ msgstr "Meny"
