@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-08-06 09:08+0000\n"
+"POT-Creation-Date: 2017-08-12 23:54+0000\n"
 "PO-Revision-Date: 2017-07-16 04:22+0200\n"
 "Last-Translator: Joan CiberSheep <cibersheep@gmail.com>\n"
 "Language-Team: \n"
@@ -23,28 +23,41 @@ msgid "About..."
 msgstr "Quant a "
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:33
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:23
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:186
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:198
 msgid "Back"
 msgstr "Enrere"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:102
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:111
 msgid "Share Debug Logs"
 msgstr "Comparteix el registre d'errades"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:11
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:24
+msgid "Wrong username or password, please try again"
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:35
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:85
 msgid "Login..."
 msgstr "Inicia la sessió"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:113
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:142
+msgid "Failed to login, please try again"
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:130
 msgid "[ uMatriks ]"
 msgstr "[ uMatriks ]"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:126
-msgid "Menu"
-msgstr "Menú"
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:143
+msgid "Log out"
+msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:173
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:153
+#, fuzzy
+msgid "About"
+msgstr "Quant a "
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:185
 msgid "Room"
 msgstr ""
 
@@ -52,11 +65,11 @@ msgstr ""
 msgid "Leave"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:236
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:237
 msgid "Room Topic"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:247
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:248
 msgid "Close"
 msgstr ""
 
@@ -83,9 +96,12 @@ msgstr "ID de Matrix:"
 msgid "chattyman"
 msgstr "chattyman"
 
-#: /home/larreamikel/Code/Touch/build-uMatriks-UbuntuSDK_for_desktop_GCC_amd64_ubuntu_sdk_15_04-Debug/uMatriks/uMatriks.desktop.h:1
+#: /home/larreamikel/Code/Touch/build-uMatriks-Meizu_Pro5_GCC_armhf_ubuntu_sdk_15_04_builder_armhf-Release/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
 msgstr "uMatriks"
+
+#~ msgid "Menu"
+#~ msgstr "Menú"
 
 #~ msgid "room"
 #~ msgstr "habitació"
