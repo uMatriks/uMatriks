@@ -21,6 +21,7 @@ Item {
         anchors.margins: units.gu(0.5)
         clip: true
         border.color: uMatriks.theme.palette.normal.overlayText
+        color: uMatriks.theme.palette.normal.background
 
 
         Image {
@@ -30,14 +31,30 @@ Item {
         }
 
         OpacityMask {
+            id: avatarMask
             anchors.fill: avatarImg
             source: avatarImg
+            visible: false
             maskSource: Rectangle {
                 width: avatarImg.width
                 height: avatarImg.height
                 radius: height/2
                 visible: false
             }
+        }
+
+        Text {
+            id: avatarText
+            visible: false
+            anchors{
+                horizontalCenter: parent.horizontalCenter
+                verticalCenter: parent.verticalCenter
+            }
+            font.bold: true
+            font.pointSize: units.gu(2)
+            text: authorlabel.text[0]+authorlabel.text[1]
+            color: uMatriks.theme.palette.normal.backgroundText
+
         }
     }
 
@@ -186,7 +203,13 @@ Item {
         if (eventType == "message"){
 
             if (avatar) {
-                avatarImg.source = avatar;
+                avatarImg.source = avatar
+                avatarMask.visible = true
+            } else {
+                avatarImg.visible = false
+                avatarMask.visible = false
+                avatarText.visible = true
+
             }
 
             if (userId === connection.userId()) {
