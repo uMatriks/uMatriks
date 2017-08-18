@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes 1.3
 //import Qt.labs.settings 1.0
 import Matrix 1.0
 import 'jschat.js' as JsChat
@@ -10,6 +11,7 @@ import Ubuntu.Components.Popups 1.3
 Rectangle {
     //    color: Theme.roomListBg
 
+
     signal enterRoom(var room)
     signal joinRoom(string name)
     //    signal leaveRoom(var room)
@@ -17,25 +19,6 @@ Rectangle {
     property bool initialised: false
     property bool roomsUpdating: false
     property bool globalTrigger: false
-
-    function checkForLink(string)
-    {
-        if (string.search("https://") !== -1 || string.search("http://") !== -1)
-        {
-            var words = string.split(" ");
-            var i;
-            for (i = 0; i < words.length; i++) {
-                if((words[i].search("https://") !== -1 || words[i].search("http://") !== -1) && words[i].search('href=') === -1)
-                {
-                    var newContent = string.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
-                    console.log(newContent);
-                    string = newContent;
-                }
-            }
-            return string;
-
-        }
-    }
 
     RoomListModel {
         id: rooms
@@ -155,6 +138,11 @@ Rectangle {
 
             delegate: ListItem{
                 id: helpId
+
+                theme: ThemeSettings {
+                    name: uMatriks.theme.name
+                }
+
                 height: roomListLayout.height + (divider.visible ? divider.height : 0)
                 property bool unread: false
                 property int number: 0
@@ -173,6 +161,7 @@ Rectangle {
                 ListItemLayout{
                     id:roomListLayout
                     title.text: display
+                    title.color: uMatriks.theme.palette.normal.backgroundText
                     //                    subtitle.text: "subtitle"
 
 
@@ -182,7 +171,8 @@ Rectangle {
                         height: units.gu(5)
                         width: height
                         border.width: parent.activeFocus ? 1 : 2
-                        border.color: "black"
+                        border.color: uMatriks.theme.palette.normal.backgroundText
+                        color: uMatriks.theme.palette.normal.background
                         radius: width * 0.5
                         Text {
                             anchors{
@@ -192,6 +182,7 @@ Rectangle {
                             font.bold: true
                             font.pointSize: units.gu(2)
                             text: roomListLayout.title.text[0]+roomListLayout.title.text[1]
+                            color: uMatriks.theme.palette.normal.backgroundText
 
                         }
 
@@ -248,7 +239,7 @@ Rectangle {
                                 // the value will be undefined
                                 console.log("Show room info: " + rooms.roomAt(index).topic );
                                 var popup = PopupUtils.open(roomTopicDialog, roomListItem);
-                                popup.description = checkForLink(rooms.roomAt(index).topic);
+                                popup.description = uMatriks.checkForLink(rooms.roomAt(index).topic);
 
                             }
                         },

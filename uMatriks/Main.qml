@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes 1.3
 import Qt.labs.settings 1.0
 import Matrix 1.0
 import Ubuntu.Components.Popups 1.3
@@ -19,6 +20,10 @@ MainView {
     // automatically anchor items to keyboard that are anchored to the bottom
     anchorToKeyboard: true
 
+    theme: ThemeSettings {
+        name: settings.theme ? "Ubuntu.Components.Themes.SuruDark" : "Ubuntu.Components.Themes.Ambiance"
+    }
+
     width: units.gu(50)
     height: units.gu(80)
 
@@ -35,9 +40,29 @@ MainView {
 
         property string user: ""
         property string token: ""
+        property bool theme: false
 
         property alias winWidth: pageMain.width
         property alias winHeight: pageMain.height
+    }
+
+    function checkForLink(string)
+    {
+        if (string.search("https://") !== -1 || string.search("http://") !== -1)
+        {
+            var words = string.split(" ");
+            var i;
+            for (i = 0; i < words.length; i++) {
+                if((words[i].search("https://") !== -1 || words[i].search("http://") !== -1) && words[i].search('href=') === -1)
+                {
+                    var newContent = string.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
+                    console.log(newContent);
+                    string = newContent;
+                }
+            }
+            return string;
+
+        }
     }
 
 
@@ -130,11 +155,11 @@ MainView {
                 id:pageHeader
 
                 title: i18n.tr("[ uMatriks ]")
-                            StyleHints {
-                                foregroundColor: UbuntuColors.jet
-                                backgroundColor: UbuntuColors.silk
-                                dividerColor: UbuntuColors.warmGrey
-                }
+//                            StyleHints {
+//                                foregroundColor: UbuntuColors.jet
+//                                backgroundColor: UbuntuColors.silk
+//                                dividerColor: UbuntuColors.warmGrey
+//                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
@@ -160,6 +185,19 @@ MainView {
                         }
                     ]
                 }
+                trailingActionBar {
+                    numberOfSlots: 1
+                    actions: [
+                    Action {
+                            id: actionTheme
+                            iconName: settings.theme ? "torch-off" : "torch-on"
+                            onTriggered: {
+                                settings.theme = !settings.theme
+                            }
+                        }
+
+                    ]
+                }
             }
 
             RoomList {
@@ -167,6 +205,8 @@ MainView {
                 width: parent.width
                 height: parent.height - pageHeader.height
                 anchors.top: pageHeader.bottom
+
+                color: uMatriks.theme.palette.normal.background
 
                 Component.onCompleted: {
                     setConnection(connection)
@@ -186,11 +226,11 @@ MainView {
             header: PageHeader {
                 title: i18n.tr("Room")
 
-                StyleHints {
-                    foregroundColor: UbuntuColors.jet
-                    backgroundColor: UbuntuColors.silk
-                    dividerColor: UbuntuColors.warmGrey
-                }
+//                StyleHints {
+//                    foregroundColor: UbuntuColors.jet
+//                    backgroundColor: UbuntuColors.silk
+//                    dividerColor: UbuntuColors.warmGrey
+//                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
@@ -233,11 +273,11 @@ MainView {
             header: PageHeader {
                 title: i18n.tr("Members")
 
-                StyleHints {
-                    foregroundColor: UbuntuColors.jet
-                    backgroundColor: UbuntuColors.silk
-                    dividerColor: UbuntuColors.warmGrey
-                }
+//                StyleHints {
+//                    foregroundColor: UbuntuColors.jet
+//                    backgroundColor: UbuntuColors.silk
+//                    dividerColor: UbuntuColors.warmGrey
+//                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
@@ -273,6 +313,7 @@ MainView {
                         ListItemLayout {
                             id: memberListLayout
                             title.text: modelData
+                            title.color: uMatriks.theme.palette.normal.backgroundText
                         }
 
                         trailingActions: ListItemActions {

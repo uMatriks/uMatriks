@@ -1,5 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes 1.3
 import Qt.labs.settings 1.0
 import 'jschat.js' as JsChat
 
@@ -107,6 +108,8 @@ Flickable {
         anchors.margins: {
             bottom: 20
         }
+
+        color: uMatriks.theme.palette.normal.background
     }
 
 
@@ -115,7 +118,7 @@ Flickable {
         anchors.right: parent.right
         anchors.left: parent.left
         anchors.bottom: parent.bottom
-        color: "white"
+        color: uMatriks.theme.palette.normal.background
 
         TextField {
             id: textEntry

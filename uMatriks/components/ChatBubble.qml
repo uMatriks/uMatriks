@@ -20,7 +20,7 @@ Item {
 //        anchors.margins: 20
         anchors.margins: units.gu(0.5)
         clip: true
-        border.color: "black"
+        border.color: uMatriks.theme.palette.normal.overlayText
 
 
         Image {
@@ -50,9 +50,10 @@ Item {
             right: units.gu(1)
             left: units.gu(1)
         }
-        border.color: "grey"
+        border.color: uMatriks.theme.palette.normal.raisedSecondaryText
         border.width: 1
         radius: 8
+        color: uMatriks.theme.palette.normal.background
 
         Text {
             id: contentlabel
@@ -65,7 +66,7 @@ Item {
 
 //            color: "white"
 //            linkColor: "black"
-            color: "black"
+            color: uMatriks.theme.palette.normal.backgroundText
             linkColor: "blue"
             textFormat: Text.RichText
             onLinkActivated: Qt.openUrlExternally(link)
@@ -103,16 +104,19 @@ Item {
             Text {
                 id: timelabel
                 text: time.toLocaleDateString("dd:mm:yy") + ' ' + time.toLocaleTimeString("hh:mm:ss")
+                color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
             Text {
                 id: dashlabel
                 text: " - "
+                color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
             Text {
                 id: authorlabel
                 text: eventType == "message" ? author : "***"
+                color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
         }
@@ -210,9 +214,9 @@ Item {
         } else {
             innerRect.visible = false
             avatarIcon.visible = false
-            rect.color = "white"
+            rect.color = uMatriks.theme.palette.normal.background
             rect.border.width = 0
-            contentlabel.color = UbuntuColors.graphite;
+            contentlabel.color = uMatriks.theme.palette.normal.backgroundTertiaryText
             contentlabel.font.pointSize = units.gu(0.9)
             contentlabel.width = contentlabel.contentWidth
             contentlabel.height = contentlabel.contentHeight

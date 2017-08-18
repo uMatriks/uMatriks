@@ -33,11 +33,11 @@ Page {
 
     header: PageHeader {
         title: i18n.tr("Login...")
-        StyleHints {
-            foregroundColor: UbuntuColors.jet
-            backgroundColor: UbuntuColors.silk
-            dividerColor: UbuntuColors.warmGrey
-        }
+//        StyleHints {
+//            foregroundColor: UbuntuColors.jet
+//            backgroundColor: UbuntuColors.silk
+//            dividerColor: UbuntuColors.warmGrey
+//        }
         leadingActionBar {
             visible: false //mainPageStack.depth != 0
 //            numberOfSlots: 1
