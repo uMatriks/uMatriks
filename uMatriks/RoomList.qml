@@ -26,7 +26,7 @@ Rectangle {
         onDataChanged: {
             // may have received a message but if focused, mark as read
             console.log("Event...")
-            if(initialised) {
+            if(initialised && settings.devScan) {
                 globalTrigger = true
                 for (var i = 0; i < rooms.rowCount(); i++) {
                     roomListView.currentIndex = i
@@ -103,7 +103,7 @@ Rectangle {
             }
         }
         if (!found) joinRoom(defaultRoom)
-        scan()
+        if (settings.devScan) scan()
     }
 
     function refresh() {

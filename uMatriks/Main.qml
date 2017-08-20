@@ -41,6 +41,7 @@ MainView {
         property string user: ""
         property string token: ""
         property bool theme: false
+        property bool devScan: false
 
         property alias winWidth: pageMain.width
         property alias winHeight: pageMain.height
@@ -155,15 +156,15 @@ MainView {
                 id:pageHeader
 
                 title: i18n.tr("[ uMatriks ]")
-//                            StyleHints {
-//                                foregroundColor: UbuntuColors.jet
-//                                backgroundColor: UbuntuColors.silk
-//                                dividerColor: UbuntuColors.warmGrey
-//                }
+                //                            StyleHints {
+                //                                foregroundColor: UbuntuColors.jet
+                //                                backgroundColor: UbuntuColors.silk
+                //                                dividerColor: UbuntuColors.warmGrey
+                //                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
-                       Action {
+                        Action {
                             id: actionLogin
                             iconName: "system-log-out"
                             shortcut: "Ctrl+M"
@@ -173,26 +174,36 @@ MainView {
                                 pageMain.visible = false;
                                 mainPageStack.push(Qt.resolvedUrl("Login.qml"))
                             }
-                       },
+                        },
                         Action {
-                             id: actionInfo
-                             iconName: "info"
-                             text: i18n.tr("About")
-                             onTriggered: {
-                                 pageMain.visible = false;
-                                 mainPageStack.push(Qt.resolvedUrl("About.qml"))
-                             }
+                            id: actionInfo
+                            iconName: "info"
+                            text: i18n.tr("About")
+                            onTriggered: {
+                                pageMain.visible = false;
+                                mainPageStack.push(Qt.resolvedUrl("About.qml"))
+                            }
                         }
                     ]
                 }
                 trailingActionBar {
-                    numberOfSlots: 1
+                    numberOfSlots: 2
                     actions: [
-                    Action {
+                        Action {
                             id: actionTheme
                             iconName: settings.theme ? "torch-off" : "torch-on"
                             onTriggered: {
                                 settings.theme = !settings.theme
+                            }
+                        },
+                        Action {
+                            id: actionScan
+                            iconName: settings.devScan ? "transfer-progress" : "transfer-none"
+                            onTriggered: {
+                                settings.devScan = !settings.devScan
+                                var popup = PopupUtils.open(warning, pageMain);
+                                if (settings.devScan) popup.description = i18n.tr("This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect.")
+                                else popup.description = i18n.tr("Deactivated test function. Please restart the app so the changes take effect.")
                             }
                         }
 
@@ -226,11 +237,11 @@ MainView {
             header: PageHeader {
                 title: i18n.tr("Room")
 
-//                StyleHints {
-//                    foregroundColor: UbuntuColors.jet
-//                    backgroundColor: UbuntuColors.silk
-//                    dividerColor: UbuntuColors.warmGrey
-//                }
+                //                StyleHints {
+                //                    foregroundColor: UbuntuColors.jet
+                //                    backgroundColor: UbuntuColors.silk
+                //                    dividerColor: UbuntuColors.warmGrey
+                //                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
@@ -251,16 +262,16 @@ MainView {
             }
 
 
-                RoomView {
-                    id: roomView
-                    width: parent.width
-                    height: parent.height
-                    Component.onCompleted: {
-                        setConnection(connection)
-                        roomView.changeRoom.connect(roomListItem.changeRoom)
-                    }
+            RoomView {
+                id: roomView
+                width: parent.width
+                height: parent.height
+                Component.onCompleted: {
+                    setConnection(connection)
+                    roomView.changeRoom.connect(roomListItem.changeRoom)
                 }
-//            }
+            }
+            //            }
         }
 
         Page {
@@ -273,11 +284,11 @@ MainView {
             header: PageHeader {
                 title: i18n.tr("Members")
 
-//                StyleHints {
-//                    foregroundColor: UbuntuColors.jet
-//                    backgroundColor: UbuntuColors.silk
-//                    dividerColor: UbuntuColors.warmGrey
-//                }
+                //                StyleHints {
+                //                    foregroundColor: UbuntuColors.jet
+                //                    backgroundColor: UbuntuColors.silk
+                //                    dividerColor: UbuntuColors.warmGrey
+                //                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
