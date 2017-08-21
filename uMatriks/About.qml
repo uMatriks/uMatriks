@@ -5,25 +5,24 @@ import Ubuntu.Components.Themes 1.3
 Page {
     id: aboutPage
 
+    theme: ThemeSettings {
+        name: uMatriks.theme.name
+    }
+
+
     property int showDebug
 
-    theme: ThemeSettings {
-        name: "Ubuntu.Components.Themes.SuruDark"
-        palette: Palette {
-            normal.background: UbuntuColors.slate
-        }
-    }
     style: Rectangle {
         anchors.fill: parent
-        color: theme.palette.normal.background
+        color: uMatriks.theme.palette.normal.background
     }
     header: PageHeader {
         title: i18n.tr("About...")
-        StyleHints {
-            foregroundColor: UbuntuColors.jet
-            backgroundColor: UbuntuColors.silk
-            dividerColor: UbuntuColors.warmGrey
-        }
+//        StyleHints {
+//            foregroundColor: UbuntuColors.jet
+//            backgroundColor: UbuntuColors.silk
+//            dividerColor: UbuntuColors.warmGrey
+//        }
         leadingActionBar {
             numberOfSlots: 1
             actions: [
@@ -65,26 +64,26 @@ Page {
         Repeater {
             model: ListModel {
                 ListElement {
-                    text: "Author: Mikel Larrea.\n Source Code: https://github.com/LarreaMikel/uMatriks \n "
+                    text: "Author: Mikel Larrea.<br> Source Code: https://github.com/LarreaMikel/uMatriks <br> "
                 }
                 ListElement {
-                    text: "Joan CiberSheep.\n https://github.com/cibersheep \n "
+                    text: "Joan CiberSheep.<br> https://github.com/cibersheep <br> "
                 }
                 ListElement {
-                    text: "Bjarne Roß.\n https://github.com/nfsprodriver \n "
+                    text: "Bjarne Roß.<br> https://github.com/nfsprodriver <br> "
                 }
                 ListElement {
-                    text: "Marius Gripsgard.\n https://github.com/mariogrip \n\n "
+                    text: "Marius Gripsgard. <br> https://github.com/mariogrip <br><br> "
                 }
                 ListElement {
-                    text: "This program uses libqmatrixclient\n Copyright (C) 2015-2017 Felix Rohrbach kde@fxrh.de and others \n #quaternion:matrix.org"
+                    text: "This program uses libqmatrixclient<br> Copyright (C) 2015-2017 Felix Rohrbach kde@fxrh.de and others <br> #quaternion:matrix.org"
                 }
                 ListElement {
                     text: "https://github.com/QMatrixClient/libqmatrixclient"
 //                    text: i18n.tr("Source code available on %1").arg("<a href=\"https://github.com/QMatrixClient/libqmatrixclient\">link</a>")
                 }
                 ListElement {
-                    text: "\n \n and modifies code from Tensor \n #tensor:matrix.org"
+                    text: "<br> <br> and modifies code from Tensor <br> #tensor:matrix.org"
                 }
                 ListElement {
                     text: "https://github.com/Quiark/tensor"
@@ -101,7 +100,8 @@ Page {
                 width: parent.width
                 wrapMode: Text.Wrap
                 horizontalAlignment: Text.AlignHCenter
-                text: model.text
+                text: uMatriks.checkForLink(model.text)
+                onLinkActivated: Qt.openUrlExternally(link)
             }
         }
 

@@ -8,6 +8,9 @@ To have more information or to talk about this app, join the room:
 
 To know more about Matrix go to https://matrix.org/
 
+## Translate
+You can help translating the app visiting this link: https://poeditor.com/join/project/Og2UosRdlD
+
 ## Thanks
 
 The application makes use of the [libqmatrixclient](https://matrix.org/docs/projects/sdk/libqmatrixclient.html "libqmatrixclient") developed by Felix Rohrbach kde@fxrh.de and others. The source code can be found in https://github.com/QMatrixClient/libqmatrixclient

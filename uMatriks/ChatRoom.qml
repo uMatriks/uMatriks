@@ -18,7 +18,7 @@ Rectangle {
         currentRoom = room
         messageModel.changeRoom(room)
         room.markAllMessagesAsRead()
-        chatView.positionViewAtBeginning()
+        chatView.positionViewAtIndex(room.notificationCount() - 1, ListView.Beginning)
     }
 
     function setConnection(conn) {
