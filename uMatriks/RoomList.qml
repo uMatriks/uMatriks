@@ -161,6 +161,7 @@ Rectangle {
                 ListItemLayout{
                     id:roomListLayout
                     title.text: display
+                    title.font.bold: unread
                     title.color: uMatriks.theme.palette.normal.backgroundText
                     //                    subtitle.text: "subtitle"
 
