@@ -73,7 +73,10 @@ Page {
                     text: "Bjarne Roß.<br> https://github.com/nfsprodriver <br> "
                 }
                 ListElement {
-                    text: "Marius Gripsgard. <br> https://github.com/mariogrip <br><br> "
+                    text: "Marius Gripsgard. <br> https://github.com/mariogrip <br> "
+                }
+                ListElement {
+                    text: "Not in your language? Please help us translating the app by contributing on: <br> https://poeditor.com/join/project/Og2UosRdlD <br><br> "
                 }
                 ListElement {
                     text: "This program uses libqmatrixclient<br> Copyright (C) 2015-2017 Felix Rohrbach kde@fxrh.de and others <br> #quaternion:matrix.org"
