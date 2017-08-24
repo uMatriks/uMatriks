@@ -1,7 +1,9 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Themes 1.3
 import Qt.labs.settings 1.0
 import Matrix 1.0
+import Ubuntu.Components.Popups 1.3
 
 /*!
     \brief MainView with a Label and Button elements.
@@ -18,12 +20,17 @@ MainView {
     // automatically anchor items to keyboard that are anchored to the bottom
     anchorToKeyboard: true
 
+    theme: ThemeSettings {
+        name: settings.theme ? "Ubuntu.Components.Themes.SuruDark" : "Ubuntu.Components.Themes.Ambiance"
+    }
+
     width: units.gu(50)
-    height: units.gu(90)
+    height: units.gu(80)
 
 
     property bool initialised: false
     property bool loggedOut: false
+    property int activeRoomIndex: -1
     signal joinRoom(string name)
     signal joinedRoom(string room)
     signal leaveRoom(var room)
@@ -33,9 +40,30 @@ MainView {
 
         property string user: ""
         property string token: ""
+        property bool theme: false
+        property bool devScan: false
 
         property alias winWidth: pageMain.width
         property alias winHeight: pageMain.height
+    }
+
+    function checkForLink(string)
+    {
+        if (string.search("https://") !== -1 || string.search("http://") !== -1)
+        {
+            var words = string.split(" ");
+            var i;
+            for (i = 0; i < words.length; i++) {
+                if((words[i].search("https://") !== -1 || words[i].search("http://") !== -1) && words[i].search('href=') === -1)
+                {
+                    var newContent = string.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
+                    console.log(newContent);
+                    string = newContent;
+                }
+            }
+            return string;
+
+        }
     }
 
 
@@ -128,15 +156,15 @@ MainView {
                 id:pageHeader
 
                 title: i18n.tr("[ uMatriks ]")
-                            StyleHints {
-                                foregroundColor: UbuntuColors.jet
-                                backgroundColor: UbuntuColors.silk
-                                dividerColor: UbuntuColors.warmGrey
-                }
+                //                            StyleHints {
+                //                                foregroundColor: UbuntuColors.jet
+                //                                backgroundColor: UbuntuColors.silk
+                //                                dividerColor: UbuntuColors.warmGrey
+                //                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
-                       Action {
+                        Action {
                             id: actionLogin
                             iconName: "system-log-out"
                             shortcut: "Ctrl+M"
@@ -146,16 +174,39 @@ MainView {
                                 pageMain.visible = false;
                                 mainPageStack.push(Qt.resolvedUrl("Login.qml"))
                             }
-                       },
+                        },
                         Action {
-                             id: actionInfo
-                             iconName: "info"
-                             text: i18n.tr("About")
-                             onTriggered: {
-                                 pageMain.visible = false;
-                                 mainPageStack.push(Qt.resolvedUrl("About.qml"))
-                             }
+                            id: actionInfo
+                            iconName: "info"
+                            text: i18n.tr("About")
+                            onTriggered: {
+                                pageMain.visible = false;
+                                mainPageStack.push(Qt.resolvedUrl("About.qml"))
+                            }
                         }
+                    ]
+                }
+                trailingActionBar {
+                    numberOfSlots: 2
+                    actions: [
+                        Action {
+                            id: actionTheme
+                            iconName: settings.theme ? "torch-off" : "torch-on"
+                            onTriggered: {
+                                settings.theme = !settings.theme
+                            }
+                        },
+                        Action {
+                            id: actionScan
+                            iconName: settings.devScan ? "transfer-progress" : "transfer-none"
+                            onTriggered: {
+                                settings.devScan = !settings.devScan
+                                var popup = PopupUtils.open(warning, pageMain);
+                                if (settings.devScan) popup.description = i18n.tr("This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect.")
+                                else popup.description = i18n.tr("Deactivated test function. Please restart the app so the changes take effect.")
+                            }
+                        }
+
                     ]
                 }
             }
@@ -165,6 +216,8 @@ MainView {
                 width: parent.width
                 height: parent.height - pageHeader.height
                 anchors.top: pageHeader.bottom
+
+                color: uMatriks.theme.palette.normal.background
 
                 Component.onCompleted: {
                     setConnection(connection)
@@ -184,11 +237,11 @@ MainView {
             header: PageHeader {
                 title: i18n.tr("Room")
 
-                StyleHints {
-                    foregroundColor: UbuntuColors.jet
-                    backgroundColor: UbuntuColors.silk
-                    dividerColor: UbuntuColors.warmGrey
-                }
+                //                StyleHints {
+                //                    foregroundColor: UbuntuColors.jet
+                //                    backgroundColor: UbuntuColors.silk
+                //                    dividerColor: UbuntuColors.warmGrey
+                //                }
                 leadingActionBar {
                     numberOfSlots: 1
                     actions: [
@@ -199,7 +252,8 @@ MainView {
                             shortcut: "Ctrl+B"
                             onTriggered: {
                                 onClicked: mainPageStack.pop(roomViewItem)
-                                pageMain.visible = true;
+                                activeRoomIndex = -1
+                                pageMain.visible = true
                             }
                         }
                     ]
@@ -208,16 +262,95 @@ MainView {
             }
 
 
-                RoomView {
-                    id: roomView
+            RoomView {
+                id: roomView
+                width: parent.width
+                height: parent.height
+                Component.onCompleted: {
+                    setConnection(connection)
+                    roomView.changeRoom.connect(roomListItem.changeRoom)
+                }
+            }
+            //            }
+        }
+
+        Page {
+            id: memberListItem
+            anchors.fill: parent
+            visible: false
+
+            property var members
+
+            header: PageHeader {
+                title: i18n.tr("Members")
+
+                //                StyleHints {
+                //                    foregroundColor: UbuntuColors.jet
+                //                    backgroundColor: UbuntuColors.silk
+                //                    dividerColor: UbuntuColors.warmGrey
+                //                }
+                leadingActionBar {
+                    numberOfSlots: 1
+                    actions: [
+                        Action {
+                            //id: actionSettings
+                            iconName: "back"
+                            text: i18n.tr("Back")
+                            shortcut: "Ctrl+B"
+                            onTriggered: {
+                                onClicked: mainPageStack.pop(memberListItem)
+                                activeRoomIndex = -1
+                                pageMain.visible = true
+                            }
+                        }
+                    ]
+                }
+
+            }
+
+
+            Column {
+                id: memberListColumn
+                anchors.fill: parent
+
+                ListView {
+                    id: membersListView
+                    model: memberListItem.members
                     width: parent.width
                     height: parent.height
-                    Component.onCompleted: {
-                        setConnection(connection)
-                        roomView.changeRoom.connect(roomListItem.changeRoom)
+
+                    delegate: ListItem {
+                        height: memberListLayout.height + (divider.visible ? divider.height : 0)
+                        ListItemLayout {
+                            id: memberListLayout
+                            title.text: modelData
+                            title.color: uMatriks.theme.palette.normal.backgroundText
+                        }
+
+                        trailingActions: ListItemActions {
+                            actions: [
+                                Action {
+                                    iconName: "add" //change icon
+                                    onTriggered: {
+                                        // console.log("Add Room with: " + modelData);
+                                        var userId = (modelData.search(":matrix.org") === -1) ? ("@" + modelData + ":matrix.org") : modelData;
+                                        // joinRoom(userId);
+                                        var popup = PopupUtils.open(warning, memberListItem);
+                                        popup.description = i18n.tr("Failed to add direct chat with ")
+                                        popup.description += userId
+                                        popup.description += i18n.tr(" because this is not implented yet. This was just a test button.")
+                                    }
+                                }
+                            ]
+                        }
+
+                        onClicked: {
+                            var userId = (modelData.search(":matrix.org") === -1) ? ("@" + modelData + ":matrix.org") : modelData
+                            console.log(userId)
+                        }
                     }
                 }
-//            }
+            }
         }
 
     }
@@ -233,6 +366,32 @@ MainView {
                 login.login(true)
                 uMatriks.login(user, token, connection.connectWithToken)
                 login.loadingMode(true)
+            }
+        }
+    }
+
+    Component {
+        id: warning
+        Dialog {
+            id: dialogInternal
+
+            property string description
+
+            title: "<b>%1</b>".arg(i18n.tr("Warning!"))
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                linkColor: "Blue"
+                text: dialogInternal.description
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Button {
+                text: i18n.tr("Close")
+                onClicked: {
+                    PopupUtils.close(dialogInternal)
+                }
             }
         }
     }

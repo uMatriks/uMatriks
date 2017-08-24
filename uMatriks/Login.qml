@@ -33,11 +33,11 @@ Page {
 
     header: PageHeader {
         title: i18n.tr("Login...")
-        StyleHints {
-            foregroundColor: UbuntuColors.jet
-            backgroundColor: UbuntuColors.silk
-            dividerColor: UbuntuColors.warmGrey
-        }
+//        StyleHints {
+//            foregroundColor: UbuntuColors.jet
+//            backgroundColor: UbuntuColors.silk
+//            dividerColor: UbuntuColors.warmGrey
+//        }
         leadingActionBar {
             visible: false //mainPageStack.depth != 0
 //            numberOfSlots: 1
@@ -144,7 +144,7 @@ Page {
 
         Label{
             id:userNameLabel
-            text:"User Name or Matrix ID:"
+            text: i18n.tr("User Name or Matrix ID:")
         }
 
         TextField {
@@ -156,7 +156,7 @@ Page {
 
         Label{
             id:passwordLabel
-            text:"Password:"
+            text:i18n.tr("Password:")
         }
 
         TextField {
@@ -170,7 +170,7 @@ Page {
         Button{
             id: loginButton
             anchors.horizontalCenter: parent.horizontalCenter
-            text:"Login"
+            text: i18n.tr("Login")
             onClicked: login()
 
         }
