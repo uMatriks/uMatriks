@@ -43,7 +43,6 @@ msgid "Log out"
 msgstr "Tanca"
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:181
-#, fuzzy
 msgid "About"
 msgstr "Quant a"
 
@@ -119,9 +118,9 @@ msgstr "Membres de "
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:205
 msgid "This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect."
-msgstr ""
+msgstr "Això activarà una funcionalitat en proves que us permetrà veure la quantitat de missatges sense llegir per sala. Informau de cap error. Reinicieu l'aplicació per que els canvis tenguin efecte."
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:206
 msgid "Deactivated test function. Please restart the app so the changes take effect."
-msgstr ""
+msgstr "Funcionalitat desactivada. Reinicieu l'aplicació perquè els canvis tenguin efecte."
 
