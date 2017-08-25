@@ -321,6 +321,10 @@ MainView {
 
                     delegate: ListItem {
                         height: memberListLayout.height + (divider.visible ? divider.height : 0)
+                        theme: ThemeSettings {
+                            name: uMatriks.theme.name
+                        }
+
                         ListItemLayout {
                             id: memberListLayout
                             title.text: modelData
