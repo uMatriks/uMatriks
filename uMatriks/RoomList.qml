@@ -161,6 +161,7 @@ Rectangle {
                 ListItemLayout{
                     id:roomListLayout
                     title.text: display
+                    title.font.bold: unread
                     title.color: uMatriks.theme.palette.normal.backgroundText
                     //                    subtitle.text: "subtitle"
 
@@ -270,7 +271,17 @@ Rectangle {
                 }
             }
 
-            highlightFollowsCurrentItem: false
+            highlight: Rectangle {
+                visible: !settings.devScan
+                height: 20
+                radius: 2
+                //                color: Theme.roomListSelectedBg
+                //                color: "#9c27b0"
+                color: "#9E7D96"
+            }
+            highlightMoveDuration: 0
+
+            highlightFollowsCurrentItem: !settings.devScan
 
         }
 

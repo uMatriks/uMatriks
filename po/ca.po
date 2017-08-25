@@ -1,126 +1,145 @@
 msgid ""
 msgstr ""
+"Project-Id-Version: uMatriks\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-08-21 21:48+0000\n"
+"Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
-"Project-Id-Version: uMatriks\n"
-"Language: ca\n"
 
-#: /home/bjarne/uMatriks/uMatriks/About.qml:20
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:20
 msgid "About..."
 msgstr "Quant a "
 
-#: /home/bjarne/uMatriks/uMatriks/About.qml:32
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:251
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:298
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:32
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:251
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:298
 msgid "Back"
 msgstr "Enrere"
 
-#: /home/bjarne/uMatriks/uMatriks/About.qml:111
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:111
 msgid "Share Debug Logs"
 msgstr "Comparteix el registre d'errades"
 
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:24
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:24
 msgid "Wrong username or password, please try again"
 msgstr "El nom d'usuari o contrassenya és incorrecte. Torneu a provar-ho"
 
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:35
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:85
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:35
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:85
 msgid "Login..."
 msgstr "Inicia la sessió"
 
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:142
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:142
 msgid "Failed to login, please try again"
 msgstr "Ha fallat l'inici de sessió. Torneu a provar-ho"
 
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:158
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:147
+msgid "User Name or Matrix ID:"
+msgstr "Nom d'usuari o id de Matrix:"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:159
+msgid "Password:"
+msgstr "Conttassenya"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:173
+msgid "Login"
+msgstr "Inicia sessió"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:158
 msgid "[ uMatriks ]"
 msgstr "[ uMatriks ]"
 
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:171
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:171
 msgid "Log out"
 msgstr "Tanca"
 
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:181
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:181
 msgid "About"
 msgstr "Quant a"
 
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:238
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:205
+msgid ""
+"This will activate a test function, which lets you see the amount of unread "
+"messages for each room. Please report bugs. Restart the app so the changes "
+"take effect."
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:206
+msgid ""
+"Deactivated test function. Please restart the app so the changes take effect."
+msgstr ""
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:238
 msgid "Room"
 msgstr "Sala"
 
-#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:219
-msgid "Leave"
-msgstr "Surt"
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:285
+msgid "Members"
+msgstr "Membrrs"
 
-#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:292
-msgid "Room Topic"
-msgstr "Tema de la sala"
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:339
+msgid "Failed to add direct chat with "
+msgstr "No s'ha pogut establir un xat directe amb "
 
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:391
-#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:303
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:341
+msgid " because this is not implented yet. This was just a test button."
+msgstr " perquè no està implementat. Això és botó en proves."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:380
+msgid "Warning!"
+msgstr "Alertau"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:391
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:304
 msgid "Close"
 msgstr "Tanca"
 
-#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:20
-msgid "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program that allows you to use the Matrix network."
-msgstr "Us donem la benvinguda a l'uMatriks!<br/>            <br/>            L'uMatriks és una aplicació que us permet usar la xarxa Matrix."
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:220
+msgid "Leave"
+msgstr "Surt"
 
-#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:36
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:254
+msgid "Members of "
+msgstr "Membres de "
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:205
+msgid "This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect."
+msgstr "Això activarà una funcionalitat en proves que us permetrà veure la quantitat de missatges sense llegir per sala. Informau de cap error. Reinicieu l'aplicació per que els canvis tenguin efecte."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:206
+msgid "Deactivated test function. Please restart the app so the changes take effect."
+msgstr "Funcionalitat desactivada. Reinicieu l'aplicació perquè els canvis tenguin efecte."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:293
+msgid "Room Topic"
+msgstr "Tema de la sala"
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20
+msgid ""
+"Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
+"that allows you to use the Matrix network."
+msgstr ""
+"Us donem la benvinguda a l'uMatriks!<br/>            <br/>            "
+"L'uMatriks és una aplicació que us permet usar la xarxa Matrix."
+
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
-msgstr "Per usar l'uMatriks, heu de iniciar la sessió amb el vostre <i>usuari</i> de Matrix."
+msgstr ""
+"Per usar l'uMatriks, heu de iniciar la sessió amb el vostre <i>usuari</i> de "
+"Matrix."
 
-#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:42
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
 msgstr "ID de Matrix:"
 
 #. TRANSLATORS: Example nickname
-#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:51
+#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
 msgstr "chattyman"
 
-#: /home/bjarne/build-uMatriks-Desktop-Release/uMatriks/uMatriks.desktop.h:1
+#: /home/larreamikel/Code/Touch/build-uMatriks-UbuntuSDK_for_desktop_GCC_amd64_ubuntu_sdk_15_04-Debug/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
 msgstr "uMatriks"
-
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:147
-msgid "User Name or Matrix ID:"
-msgstr "Nom d'usuari o id de Matrix:"
-
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:159
-msgid "Password:"
-msgstr "Conttassenya"
-
-#: /home/bjarne/uMatriks/uMatriks/Login.qml:173
-msgid "Login"
-msgstr "Inicia sessió"
-
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:285
-msgid "Members"
-msgstr "Membrrs"
-
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:339
-msgid "Failed to add direct chat with "
-msgstr "No s'ha pogut establir un xat directe amb "
-
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:341
-msgid " because this is not implented yet. This was just a test button."
-msgstr " perquè no està implementat. Això és botó en proves."
-
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:380
-msgid "Warning!"
-msgstr "Alertau"
-
-#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:253
-msgid "Members of "
-msgstr "Membres de "
-
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:205
-msgid "This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect."
-msgstr "Això activarà una funcionalitat en proves que us permetrà veure la quantitat de missatges sense llegir per sala. Informau de cap error. Reinicieu l'aplicació per que els canvis tenguin efecte."
-
-#: /home/bjarne/uMatriks/uMatriks/Main.qml:206
-msgid "Deactivated test function. Please restart the app so the changes take effect."
-msgstr "Funcionalitat desactivada. Reinicieu l'aplicació perquè els canvis tenguin efecte."
-
