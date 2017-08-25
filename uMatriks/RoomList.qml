@@ -196,7 +196,7 @@ Rectangle {
                         width: height
                         border.width: parent.activeFocus ? 0.5 : 1
                         border.color: "black"
-                        color: UbuntuColors.red
+                        color: UbuntuColors.green
                         visible: helpId.unread
                         radius: width * 0.5
                         Text {
@@ -204,7 +204,7 @@ Rectangle {
                                 horizontalCenter: parent.horizontalCenter
                                 verticalCenter: parent.verticalCenter
                             }
-                            font.pointSize: units.gu(1.5)
+                            font.pointSize: helpId.number < 100 ? units.gu(1.5) : units.gu(1.1)
                             text: helpId.number
                         }
 
