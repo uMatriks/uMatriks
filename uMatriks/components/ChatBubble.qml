@@ -17,7 +17,7 @@ Item {
         anchors.top: chatBubble.top
         width: height
         radius: height/2
-//        anchors.margins: 20
+        //        anchors.margins: 20
         anchors.margins: units.gu(0.5)
         clip: true
         border.color: uMatriks.theme.palette.normal.overlayText
@@ -62,8 +62,8 @@ Item {
         id: rect
         anchors.top: chatBubble.top
         anchors.margins: {
-//            right: 20
-//            left: 20
+            //            right: 20
+            //            left: 20
             right: units.gu(1)
             left: units.gu(1)
         }
@@ -81,8 +81,8 @@ Item {
             anchors.top: parent.top
             anchors.margins: units.gu(1)
 
-//            color: "white"
-//            linkColor: "black"
+            //            color: "white"
+            //            linkColor: "black"
             color: uMatriks.theme.palette.normal.backgroundText
             linkColor: "blue"
             textFormat: Text.RichText
@@ -166,18 +166,7 @@ Item {
                         rect.height += contentImage.height;
                     }
                 }
-
-                var words = content.split(" ");
-                var i;
-                for (i = 0; i < words.length; i++) {
-                    if((words[i].indexOf("https://") !== -1 || words[i].indexOf("http://") !== -1) && words[i].indexOf('href=') === -1)
-                    {
-                        var newContent = content.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
-                        console.log(newContent);
-                        contentlabel.text = newContent;
-                    }
-                }
-
+                contentlabel.text = uMatriks.checkForLink(content);
             }
         }
 
@@ -215,7 +204,7 @@ Item {
             if (userId === connection.userId()) {
                 avatarIcon.anchors.right = chatBubble.right
                 rect.anchors.right = avatarIcon.left
-//                rect.color = "#2ecc71"
+                //                rect.color = "#2ecc71"
                 rect.color = "#9E7D96"
                 contentlabel.color = "white"
                 timelabel.color = UbuntuColors.lightGrey
@@ -225,7 +214,7 @@ Item {
             } else {
                 avatarIcon.anchors.left = chatBubble.left
                 rect.anchors.left = avatarIcon.right
-//                rect.color = "#bdc3c7"
+                //                rect.color = "#bdc3c7"
             }
 
             if (msgType === "m.image") {
