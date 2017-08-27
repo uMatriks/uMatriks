@@ -140,16 +140,16 @@ Item {
 
         function checkForLink()
         {
-            if (content.search("https://") !== -1 || content.search("http://") !== -1)
+            if (content.indexOf("https://") !== -1 || content.indexOf("http://") !== -1)
             {
-                if((content.search(".png") !== -1 || content.search(".jpg") !== -1 || content.search(".gif") !== -1))
+                if((content.indexOf(".png") !== -1 || content.indexOf(".jpg") !== -1 || content.indexOf(".gif") !== -1))
                 {
-                    var start = content.search("https://") !== -1 ? content.search("https://") : content.search("http://");
+                    var start = content.indexOf("https://") !== -1 ? content.indexOf("https://") : content.indexOf("http://");
                     var end;
                     var url;
-                    if(content.search(".gif") !== -1)
+                    if(content.indexOf(".gif") !== -1)
                     {
-                        end = content.search(".gif");
+                        end = content.indexOf(".gif");
                         url = content.slice(start, end + 4);
                         contentAnimatedImage.source = url;
                         contentAnimatedImage.visible = true;
@@ -158,7 +158,7 @@ Item {
                     }
                     else
                     {
-                        end = content.search(".png") !== -1 ? content.search(".png") : content.search(".jpg");
+                        end = content.indexOf(".png") !== -1 ? content.indexOf(".png") : content.indexOf(".jpg");
                         url = content.slice(start, end + 4);
                         contentImage.source = url;
                         contentImage.visible = true;
@@ -170,7 +170,7 @@ Item {
                 var words = content.split(" ");
                 var i;
                 for (i = 0; i < words.length; i++) {
-                    if((words[i].search("https://") !== -1 || words[i].search("http://") !== -1) && words[i].search('href=') === -1)
+                    if((words[i].indexOf("https://") !== -1 || words[i].indexOf("http://") !== -1) && words[i].indexOf('href=') === -1)
                     {
                         var newContent = content.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
                         console.log(newContent);
