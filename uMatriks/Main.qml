@@ -5,9 +5,6 @@ import Qt.labs.settings 1.0
 import Matrix 1.0
 import Ubuntu.Components.Popups 1.3
 
-/*!
-    \brief MainView with a Label and Button elements.
-*/
 
 MainView {
     id: uMatriks
@@ -25,14 +22,27 @@ MainView {
     }
 
     width: units.gu(50)
-    height: units.gu(80)
+    height: units.gu(75)
 
+    RoomList {
+        id: roomList
+    }
+
+    RoomView {
+        id: roomView
+    }
+
+    PageStack {
+        id: pageStack
+    }
+
+    MemberList {
+        id: memberList
+    }
 
     property bool initialised: false
     property bool loggedOut: false
     property int activeRoomIndex: -1
-    signal joinRoom(string name)
-    signal joinedRoom(string room)
     signal leaveRoom(var room)
 
     Settings   {
@@ -43,52 +53,15 @@ MainView {
         property bool theme: false
         property bool devScan: false
 
-        property alias winWidth: pageMain.width
-        property alias winHeight: pageMain.height
+        property alias winWidth: roomList.width
+        property alias winHeight: roomList.height
     }
-
-    function checkForLink(string)
-    {
-        if (string.indexOf("https://") !== -1 || string.indexOf("http://") !== -1)
-        {
-            var words = string.split(" ");
-            for (var i = 0; i < words.length; i++) {
-                if((words[i].indexOf("https://") !== -1 || words[i].indexOf("http://") !== -1) && words[i].indexOf('href=') === -1)
-                {
-                    function isFirst() {
-                        if(words[i].charAt(0) !== 'h')
-                        {
-                            words[i] = words[i].slice(1);
-                            isFirst();
-                        }
-                    }
-                    isFirst();
-                    var forbiddenEnd = ":/?#[]@!$&'()*+,;=<>\^`{|}%" + '"';
-                    function isLast() {
-                        for(var j = 0; j < forbiddenEnd.length; j++) {
-                            if(words[i].charAt(words[i].length - 1) === forbiddenEnd[j])
-                            {
-                                words[i] = words[i].slice(0, -1);
-                            }
-                        }
-                    }
-                    isLast();
-                    var newContent = string.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
-                    console.log(newContent);
-                    string = newContent;
-                }
-            }
-            return string;
-
-        }
-    }
-
 
     function resync() {
         if(!initialised) {
             login.visible = false
-            pageMain.visible = true
-            roomListItem.init()
+            roomList.init(connection)
+            pageStack.push(roomList)
             initialised = true
         }
         connection.sync(30000)
@@ -105,7 +78,6 @@ MainView {
         settings.token = "";
     }
 
-
     function login(user, pass, connect) {
         if(!connect) connect = connection.connectToServer
 
@@ -113,14 +85,10 @@ MainView {
         connection.connected.connect(function() {
             settings.user = connection.userId()
             settings.token = connection.token()
-            roomView.displayStatus("connected")
 
             connection.syncError.connect(reconnect)
-            connection.syncError.connect(function() { roomView.displayStatus("sync error")})
             connection.resolveError.connect(reconnect)
-            connection.resolveError.connect(function() { roomView.displayStatus("resolve error")})
             connection.syncDone.connect(resync)
-            connection.syncDone.connect(function() { roomView.displayStatus("synced") })
             connection.reconnected.connect(resync)
 
             connection.sync()
@@ -131,16 +99,16 @@ MainView {
             connect(user, pass)
             if(loggedOut)
             {
-                mainPageStack.pop()
-                mainPageStack.push(pageMain)
+                pageStack.pop()
+                pageStack.push(roomList)
             }
         } else {
             connection.resolved.connect(function() {
                 connect(user, pass)
                 if(loggedOut)
                 {
-                    mainPageStack.pop()
-                    mainPageStack.push(pageMain)
+                    pageStack.pop()
+                    pageStack.push(roomList)
                 }
             })
             connection.resolveError.connect(function() {
@@ -148,234 +116,8 @@ MainView {
             })
             connection.resolveServer(userParts[1])
         }
-        joinRoom.connect(connection.joinRoom)
-        joinedRoom.connect(connection.joinedRoom)
         leaveRoom.connect(connection.leaveRoom)
     }
-
-
-
-
-    PageStack {
-        id: mainPageStack
-        anchors.fill: parent
-        width: parent.width
-
-
-        Page{
-            id:pageMain
-            visible: false
-            anchors{
-                fill: parent
-            }
-
-            header: PageHeader{
-                id:pageHeader
-
-                title: i18n.tr("[ uMatriks ]")
-                //                            StyleHints {
-                //                                foregroundColor: UbuntuColors.jet
-                //                                backgroundColor: UbuntuColors.silk
-                //                                dividerColor: UbuntuColors.warmGrey
-                //                }
-                leadingActionBar {
-                    numberOfSlots: 1
-                    actions: [
-                        Action {
-                            id: actionLogin
-                            iconName: "system-log-out"
-                            shortcut: "Ctrl+M"
-                            text: i18n.tr("Log out")
-                            onTriggered: {
-                                logout();
-                                pageMain.visible = false;
-                                mainPageStack.push(Qt.resolvedUrl("Login.qml"))
-                            }
-                        },
-                        Action {
-                            id: actionInfo
-                            iconName: "info"
-                            text: i18n.tr("About")
-                            onTriggered: {
-                                pageMain.visible = false;
-                                mainPageStack.push(Qt.resolvedUrl("About.qml"))
-                            }
-                        }
-                    ]
-                }
-                trailingActionBar {
-                    numberOfSlots: 2
-                    actions: [
-                        Action {
-                            id: actionTheme
-                            iconName: settings.theme ? "torch-off" : "torch-on"
-                            onTriggered: {
-                                settings.theme = !settings.theme
-                            }
-                        },
-                        Action {
-                            id: actionScan
-                            iconName: settings.devScan ? "transfer-progress" : "transfer-none"
-                            onTriggered: {
-                                settings.devScan = !settings.devScan
-                                var popup = PopupUtils.open(warning, pageMain);
-                                if (settings.devScan) popup.description = i18n.tr("This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect.")
-                                else popup.description = i18n.tr("Deactivated test function. Please restart the app so the changes take effect.")
-                            }
-                        }
-
-                    ]
-                }
-            }
-
-            RoomList {
-                id: roomListItem
-                width: parent.width
-                height: parent.height - pageHeader.height
-                anchors.top: pageHeader.bottom
-
-                color: uMatriks.theme.palette.normal.background
-
-                Component.onCompleted: {
-                    setConnection(connection)
-                    enterRoom.connect(roomView.setRoom)
-                    joinRoom.connect(connection.joinRoom)
-                }
-            }
-
-        }
-
-
-        Page {
-            id: roomViewItem
-            anchors.fill: parent
-            visible: false
-
-            header: PageHeader {
-                title: i18n.tr("Room")
-
-                //                StyleHints {
-                //                    foregroundColor: UbuntuColors.jet
-                //                    backgroundColor: UbuntuColors.silk
-                //                    dividerColor: UbuntuColors.warmGrey
-                //                }
-                leadingActionBar {
-                    numberOfSlots: 1
-                    actions: [
-                        Action {
-                            id: actionSettings
-                            iconName: "back"
-                            text: i18n.tr("Back")
-                            shortcut: "Ctrl+B"
-                            onTriggered: {
-                                onClicked: mainPageStack.pop(roomViewItem)
-                                activeRoomIndex = -1
-                                pageMain.visible = true
-                            }
-                        }
-                    ]
-                }
-
-            }
-
-
-            RoomView {
-                id: roomView
-                width: parent.width
-                height: parent.height
-                Component.onCompleted: {
-                    setConnection(connection)
-                    roomView.changeRoom.connect(roomListItem.changeRoom)
-                }
-            }
-            //            }
-        }
-
-        Page {
-            id: memberListItem
-            anchors.fill: parent
-            visible: false
-
-            property var members
-
-            header: PageHeader {
-                title: i18n.tr("Members")
-
-                //                StyleHints {
-                //                    foregroundColor: UbuntuColors.jet
-                //                    backgroundColor: UbuntuColors.silk
-                //                    dividerColor: UbuntuColors.warmGrey
-                //                }
-                leadingActionBar {
-                    numberOfSlots: 1
-                    actions: [
-                        Action {
-                            //id: actionSettings
-                            iconName: "back"
-                            text: i18n.tr("Back")
-                            shortcut: "Ctrl+B"
-                            onTriggered: {
-                                onClicked: mainPageStack.pop(memberListItem)
-                                activeRoomIndex = -1
-                                pageMain.visible = true
-                            }
-                        }
-                    ]
-                }
-
-            }
-
-
-            Column {
-                id: memberListColumn
-                anchors.fill: parent
-
-                ListView {
-                    id: membersListView
-                    model: memberListItem.members
-                    width: parent.width
-                    height: parent.height
-
-                    delegate: ListItem {
-                        height: memberListLayout.height + (divider.visible ? divider.height : 0)
-                        theme: ThemeSettings {
-                            name: uMatriks.theme.name
-                        }
-
-                        ListItemLayout {
-                            id: memberListLayout
-                            title.text: modelData
-                            title.color: uMatriks.theme.palette.normal.backgroundText
-                        }
-
-                        trailingActions: ListItemActions {
-                            actions: [
-                                Action {
-                                    iconName: "add" //change icon
-                                    onTriggered: {
-                                        // console.log("Add Room with: " + modelData);
-                                        var userId = (modelData.search(":matrix.org") === -1) ? ("@" + modelData + ":matrix.org") : modelData;
-                                        // joinRoom(userId);
-                                        var popup = PopupUtils.open(warning, memberListItem);
-                                        popup.description = i18n.tr("Failed to add direct chat with ")
-                                        popup.description += userId
-                                        popup.description += i18n.tr(" because this is not implented yet. This was just a test button.")
-                                    }
-                                }
-                            ]
-                        }
-
-                        onClicked: {
-                            var userId = (modelData.search(":matrix.org") === -1) ? ("@" + modelData + ":matrix.org") : modelData
-                            console.log(userId)
-                        }
-                    }
-                }
-            }
-        }
-
-    }
-
 
     Login {
         id: login
@@ -390,31 +132,4 @@ MainView {
             }
         }
     }
-
-    Component {
-        id: warning
-        Dialog {
-            id: dialogInternal
-
-            property string description
-
-            title: "<b>%1</b>".arg(i18n.tr("Warning!"))
-
-            Label {
-                width: parent.width
-                wrapMode: Text.WordWrap
-                linkColor: "Blue"
-                text: dialogInternal.description
-                onLinkActivated: Qt.openUrlExternally(link)
-            }
-
-            Button {
-                text: i18n.tr("Close")
-                onClicked: {
-                    PopupUtils.close(dialogInternal)
-                }
-            }
-        }
-    }
-
 }

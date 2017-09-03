@@ -114,8 +114,6 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
         if( event->type() == QMatrixClient::EventType::RoomMessage )
         {
             QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
-//            QMatrixClient::User* user = m_connection->user(e->userId());
-//            return QString("%1 (%2): %3").arg(user->displayname()).arg(user->id()).arg(e->plainBody());
             return QString("%1: %2").arg(senderName, e->plainBody());
         }
         if( event->type() == QMatrixClient::EventType::RoomMember )
@@ -181,13 +179,7 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
 
     if( role == AuthorRole )
     {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
-        {
-            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
-            QMatrixClient::User *user = m_connection->user(e->senderId());
-            return user->displayname();
-        }
-        return QVariant();
+        return senderName;
     }
 
     if (role == UserIdRole)
