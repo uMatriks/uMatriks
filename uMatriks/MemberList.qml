@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Themes 1.3
+import Ubuntu.Components.Popups 1.3
 import Matrix 1.0
 
 
@@ -16,7 +17,7 @@ Page {
 
         anchors {
             fill: parent
-            topMargin: header.flickable ? 0 : header.height
+            //topMargin: header.flickable ? 0 : header.height
         }
 
         ListView {
