@@ -39,4 +39,5 @@ CMakeLists.txt.user*
 
 .git/
 /uMatriks/lib/build_dir/*
+uMatriks/uMatriks
 
