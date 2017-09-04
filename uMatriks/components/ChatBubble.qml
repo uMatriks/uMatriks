@@ -2,7 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import QtGraphicalEffects 1.0
 import Matrix 1.0
-//import '../jschat.js' as JsChat
+import '../utils.js' as Utils
 
 Item {
     id: chatBubble
@@ -166,10 +166,9 @@ Item {
                         rect.height += contentImage.height;
                     }
                 }
-                contentlabel.text = uMatriks.checkForLink(content);
+                contentlabel.text = Utils.checkForLink(content);
             }
         }
-
 
         Component.onCompleted: {
             if (eventType == "message"){

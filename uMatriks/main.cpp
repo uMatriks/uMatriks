@@ -25,6 +25,9 @@ int main(int argc, char *argv[])
 
     QSettings::setDefaultFormat(QSettings::IniFormat);
 
+    // debugging
+    QLoggingCategory::setFilterRules(QStringLiteral("libqmatrixclient.main.debug=true"));
+
     QQuickView view;
 
     if(qgetenv("QT_QUICK_CORE_PROFILE").toInt()) {
@@ -37,7 +40,6 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
     view.connect(&engine, SIGNAL(quit()), &app, SLOT(quit()));
     new QQmlFileSelector(view.engine(), &view);
-
 
     qmlRegisterType<SyncJob>();     qRegisterMetaType<SyncJob*> ("SyncJob*");
     qmlRegisterType<JoinRoomJob>(); qRegisterMetaType<JoinRoomJob*> ("JoinRoomJob*");
@@ -54,8 +56,6 @@ int main(int argc, char *argv[])
     qmlRegisterType<MessageEventModel> ("Matrix", 1, 0, "MessageEventModel");
     qmlRegisterType<RoomListModel>     ("Matrix", 1, 0, "RoomListModel");
 //    qmlRegisterType<Settings>          ("Matrix", 1, 0, "Settings");
-
-
 
     view.setSource(QUrl(QStringLiteral("qrc:///Main.qml")));
     view.setResizeMode(QQuickView::SizeRootObjectToView);

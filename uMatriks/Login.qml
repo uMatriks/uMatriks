@@ -14,8 +14,8 @@ Page {
             if (error.indexOf("Forbidden") !== -1) {
                 if(uMatriks.loggedOut)
                 {
-                    mainPageStack.pop(pageMain)
-                    mainPageStack.push(loginPage)
+                    pageStack.pop(pageMain)
+                    pageStack.push(loginPage)
                 }
                 passwordField.text = ""
                 console.log("Wrong password")
@@ -33,36 +33,13 @@ Page {
 
     header: PageHeader {
         title: i18n.tr("Login...")
-//        StyleHints {
-//            foregroundColor: UbuntuColors.jet
-//            backgroundColor: UbuntuColors.silk
-//            dividerColor: UbuntuColors.warmGrey
-//        }
         leadingActionBar {
-            visible: false //mainPageStack.depth != 0
-//            numberOfSlots: 1
-//            actions: [
-//                Action {
-//                    id: actionLogin
-//                    iconName: "back"
-//                    text: i18n.tr("Back")
-//                    shortcut: "Ctrl+B"
-//                    onTriggered: {
-//                        onClicked:
-//                        if(settings.user !== '' && settings.token !== '')
-//                        {
-//                            mainPageStack.pop(loginPage)
-//                            pageMain.visible = true;
-//                        }
-//                    }
-//                }
-//            ]
+            visible: false //pageStack.depth != 0
         }
 
     }
 
-    //color: "#eee"
-    property variant mainPage
+    property variant roomList
 
     function login(pretend) {
         if (userNameField.text == "" && passwordField.text == "")
@@ -106,14 +83,7 @@ Page {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
                 antialiasing: true
-                source: "qrc:/logo.png"
-
-                //                RotationAnimation on rotation {
-                //                    loops: Animation.Infinite
-                //                    from: 0
-                //                    to: 360
-                //                    duration: 60000
-                //                }
+                source: settings.theme ? "./logo-dark.png" : "./logo.png"
             }
         }
 
@@ -164,7 +134,6 @@ Page {
             echoMode: TextInput.Password
             width: parent.width
             placeholderText: qsTr("Password")
-            //            onAccepted: login()
         }
 
         Button{
@@ -174,13 +143,5 @@ Page {
             onClicked: login()
 
         }
-
-        //        NumberAnimation on opacity {
-        //            id: fadeIn
-        //            to: 1.0
-        //            duration: 2000
-        //        }
-
-        //        Component.onCompleted: fadeIn.start()
     }
 }

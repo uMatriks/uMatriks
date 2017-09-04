@@ -51,6 +51,7 @@ class RoomListModel: public QAbstractListModel
     private:
         QMatrixClient::Connection* m_connection;
         QList<QMatrixClient::Room*> m_rooms;
+        void removeRoom(QMatrixClient::Room* room);
 };
 
 #endif // ROOMLISTMODEL_H
