@@ -1,13 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>Main.qml</file>
+        <file>BasePage.qml</file>
         <file>About.qml</file>
         <file>ChatRoom.qml</file>
         <file>jschat.js</file>
+        <file>utils.js</file>
         <file>Login.qml</file>
         <file>logo.png</file>
         <file>RoomList.qml</file>
         <file>RoomView.qml</file>
+        <file>MemberList.qml</file>
+        <file>DialogJoinRoom.qml</file>
         <file>Theme.qml</file>
         <file>umatriks.svg</file>
         <file>components/ChatBubble.qml</file>
