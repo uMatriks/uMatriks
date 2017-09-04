@@ -132,4 +132,30 @@ MainView {
             }
         }
     }
+
+    Component {
+        id: warning
+        Dialog {
+            id: dialogInternal
+
+            property string description
+
+            title: "<b>%1</b>".arg(i18n.tr("Warning!"))
+
+            Label {
+                width: parent.width
+                wrapMode: Text.WordWrap
+                linkColor: "Blue"
+                text: dialogInternal.description
+                onLinkActivated: Qt.openUrlExternally(link)
+            }
+
+            Button {
+                text: i18n.tr("Close")
+                onClicked: {
+                    PopupUtils.close(dialogInternal)
+                }
+            }
+        }
+    }
 }
