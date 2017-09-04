@@ -3,27 +3,21 @@ function checkForLink(string) {
         var words = string.split(' ');
         for (var i = 0; i < words.length; i++) {
             if (
-                (words[i].indexOf('https://') !== -1 || words[i].indexOf('http://') !== -1) &&
-                words[i].indexOf('href=') === -1
-            ) {
-                function isFirst() {
-                    if (words[i].charAt(0) !== 'h') {
-                        words[i] = words[i].slice(1);
-                        isFirst();
-                    }
-                }
-                isFirst();
+                    (words[i].indexOf('https://') !== -1 || words[i].indexOf('http://') !== -1) &&
+                    words[i].indexOf('href=') === -1
+                    ) {
+                words[i] = words[i].slice(words[i].indexOf("http"));
                 var forbiddenEnd = ":/?#[]@!$&'()*+,;=<>\^`{|}%" + '"';
-                function isLast() {
-                    for (var j = 0; j < forbiddenEnd.length; j++) {
-                        if (words[i].charAt(words[i].length - 1) === forbiddenEnd[j]) {
-                            words[i] = words[i].slice(0, -1);
-                        }
+                for (var j = 0; j < forbiddenEnd.length; j++) {
+                    if (i === (words.length - 1) && words[i].charAt(words[i].length - 2) === forbiddenEnd[j]) {
+                        words[i] = words[i].slice(0, -2);
+                    }
+                    else if (words[i].charAt(words[i].length - 1) === forbiddenEnd[j]) {
+                        words[i] = words[i].slice(0, -1);
                     }
                 }
-                isLast();
                 var newContent = string.replace(words[i], '<a href="' + words[i] + '">' + words[i] + '</a>');
-                console.log(newContent);
+                //console.log(newContent);
                 string = newContent;
             }
         }
