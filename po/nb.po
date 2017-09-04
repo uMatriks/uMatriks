@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-09-03 15:43+0200\n"
+"POT-Creation-Date: 2017-08-27 18:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Marius Gripsgard <marius@ubports.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,117 +17,110 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:21
+#: /home/bjarne/uMatriks/uMatriks/About.qml:20
 msgid "About..."
 msgstr "Om..."
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:28
+#: /home/bjarne/uMatriks/uMatriks/About.qml:32
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:268
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:315
 msgid "Back"
 msgstr "Tilbake"
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:17
+#: /home/bjarne/uMatriks/uMatriks/About.qml:114
+msgid "Share Debug Logs"
+msgstr "Del Utvikler Logger"
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:24
+msgid "Wrong username or password, please try again"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:35
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:85
+msgid "Login..."
+msgstr "Logg p..."
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:142
+msgid "Failed to login, please try again"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:147
+#, fuzzy
+msgid "User Name or Matrix ID:"
+msgstr "Matrix ID:"
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:159
+msgid "Password:"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Login.qml:173
+#, fuzzy
+msgid "Login"
+msgstr "Logg p..."
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:175
 msgid "[ uMatriks ]"
 msgstr "[ uMatriks ]"
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:23
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:9
-msgid "Join room"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:35
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:188
 msgid "Log out"
 msgstr ""
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:45
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:198
 #, fuzzy
 msgid "About"
 msgstr "Om..."
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:69
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:222
 msgid ""
 "This will activate a test function, which lets you see the amount of unread "
 "messages for each room. Please report bugs. Restart the app so the changes "
 "take effect."
 msgstr ""
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:70
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:223
 msgid ""
 "Deactivated test function. Please restart the app so the changes take effect."
 msgstr ""
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:10
-msgid "Join room:"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:36
-msgid "Cancel"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:44
-msgid "Join"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:24
-msgid "Wrong username or password, please try again"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:35
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:62
-msgid "Login..."
-msgstr "Logg p..."
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:112
-msgid "Failed to login, please try again"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:117
-#, fuzzy
-msgid "User Name or Matrix ID:"
-msgstr "Matrix ID:"
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:129
-msgid "Password:"
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:142
-#, fuzzy
-msgid "Login"
-msgstr "Logg p..."
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/MemberList.qml:49
-msgid "Failed to add direct chat with "
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/MemberList.qml:51
-msgid " because this is not implented yet. This was just a test button."
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:11
-#, fuzzy
-msgid "RoomList"
-msgstr "Rom"
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:184
-msgid "Leave"
-msgstr "Forlate"
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:216
-msgid "Members of "
-msgstr ""
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:257
-msgid "Room Topic"
-msgstr "Rom Emne"
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:268
-msgid "Close"
-msgstr "Lukk"
-
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomView.qml:8
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:255
 msgid "Room"
 msgstr "Rom"
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:20
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:302
+msgid "Members"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:360
+msgid "Failed to add direct chat with "
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:362
+msgid " because this is not implented yet. This was just a test button."
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:401
+msgid "Warning!"
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/Main.qml:412
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:314
+msgid "Close"
+msgstr "Lukk"
+
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:220
+msgid "Leave"
+msgstr "Forlate"
+
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:254
+msgid "Members of "
+msgstr ""
+
+#: /home/bjarne/uMatriks/uMatriks/RoomList.qml:303
+msgid "Room Topic"
+msgstr "Rom Emne"
+
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:20
 msgid ""
 "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
 "that allows you to use the Matrix network."
@@ -135,24 +128,22 @@ msgstr ""
 "Velcommen til uMatriks!<br/>            <br/>            uMatriks er ett "
 "program som gjr at du kan bruke Matrix nettverket"
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:36
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
 msgstr "For  bruke uMatriks, m du logge p med din Matrix <i>bruker</i>."
 
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:42
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
 msgstr "Matrix ID:"
 
 #. TRANSLATORS: Example nickname
-#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:51
+#: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
 msgstr "brukernavn"
 
-#~ msgid "Share Debug Logs"
-#~ msgstr "Del Utvikler Logger"
-
-#~ msgid "uMatriks"
-#~ msgstr "uMatriks"
+#: /home/bjarne/build-uMatriks-UbuntuSDK_for_device_armhf_1504_GCC_armhf_ubuntu_sdk_15_04-Release/uMatriks/uMatriks.desktop.h:1
+msgid "uMatriks"
+msgstr "uMatriks"
 
 #~ msgid "Menu"
 #~ msgstr "Meny"
