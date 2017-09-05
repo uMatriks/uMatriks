@@ -47,17 +47,11 @@ Page {
             centerIn: parent
         }
 
-        UbuntuShape {
+        Image {
             width: units.gu(10)
             height: width
             anchors.horizontalCenter: parent.horizontalCenter
-            source: Image {
-                source: "../logo.png"
-            }
-            MouseArea{
-                anchors.fill: parent
-                onClicked: {if(showDebug < 3){showDebug++}}
-            }
+            source:  settings.theme ? "./logo-dark.png" : "./logo.png"
         }
 
         Repeater {

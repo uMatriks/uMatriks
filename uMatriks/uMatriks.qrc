@@ -8,6 +8,7 @@
         <file>utils.js</file>
         <file>Login.qml</file>
         <file>logo.png</file>
+        <file>logo-dark.png</file>
         <file>RoomList.qml</file>
         <file>RoomView.qml</file>
         <file>MemberList.qml</file>

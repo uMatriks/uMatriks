@@ -83,7 +83,7 @@ Page {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
                 antialiasing: true
-                source: "qrc:/logo.png"
+                source: settings.theme ? "./logo-dark.png" : "./logo.png"
             }
         }
 
