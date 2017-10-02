@@ -144,7 +144,7 @@ Page {
             id: homeserverField
             inputMethodHints: Qt.ImhNoAutoUppercase
             width: parent.width
-            placeholderText: qsTr("https://matrix.org")
+            placeholderText: "https://matrix.org"
         }
 
         Button{
