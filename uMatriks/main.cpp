@@ -13,6 +13,7 @@
 #include "models/roomlistmodel.h"
 #include "models/imageprovider.h"
 #include "settings.h"
+#include "matrixconn.h"
 using namespace QMatrixClient;
 
 Q_DECLARE_METATYPE(SyncJob*)
@@ -47,11 +48,12 @@ int main(int argc, char *argv[])
     qmlRegisterType<Room>();        qRegisterMetaType<Room*>    ("Room*");
     qmlRegisterType<User>();        qRegisterMetaType<User*>    ("User*");
 
-    Connection* conn = new Connection();
-    ImageProvider* img = new ImageProvider(conn);
-    view.engine()->rootContext()->setContextProperty("connection", conn);
-    view.engine()->addImageProvider("mtx", img);
+//    Connection* conn = new Connection();
+//    ImageProvider* img = new ImageProvider(conn);
+//    view.engine()->rootContext()->setContextProperty("connection", conn);
+//    view.engine()->addImageProvider("mtx", img);
 
+    qmlRegisterType<MatrixConn>             ("Matrix", 1, 0, "MatrixConn");
     qmlRegisterType<Connection>        ("Matrix", 1, 0, "Connection");
     qmlRegisterType<MessageEventModel> ("Matrix", 1, 0, "MessageEventModel");
     qmlRegisterType<RoomListModel>     ("Matrix", 1, 0, "RoomListModel");

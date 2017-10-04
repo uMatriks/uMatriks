@@ -31,10 +31,10 @@ BasePage {
 
     function setConnection(conn) {
         rooms.setConnection(conn)
-        roomView.setConnection(connection)
+        roomView.setConnection(conn)
     }
 
-    function init() {
+    function init(connection) {
         setConnection(connection)
         var defaultRoom = "#uMatriks:matrix.org"
         initialised = true

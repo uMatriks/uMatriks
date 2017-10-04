@@ -40,6 +40,7 @@ MainView {
         id: memberList
     }
 
+    property Connection connection: null
     property bool initialised: false
     property bool loggedOut: false
     property int activeRoomIndex: -1
@@ -50,11 +51,16 @@ MainView {
 
         property string user: ""
         property string token: ""
+        property string homeserver: ""
         property bool theme: false
         property bool devScan: false
 
         property alias winWidth: roomList.width
         property alias winHeight: roomList.height
+    }
+
+    MatrixConn {
+        id: matrixconn
     }
 
     function resync() {
@@ -76,15 +82,26 @@ MainView {
         loggedOut = true;
         settings.user = "";
         settings.token = "";
+        settings.homeserver = "";
     }
 
-    function login(user, pass, connect) {
-        if(!connect) connect = connection.connectToServer
+    function login(user, pass, server, connectWithToken) {
+
+        if(!server) server = "https://matrix.org"
+        connection = matrixconn.createConnection(server)
+        connection.loginError.connect(login.loginError)
+
+        var matrixconnect
+        if(!connectWithToken)
+            matrixconnect = connection.connectToServer
+        else
+            matrixconnect = connection.connectWithToken
 
         // TODO: apparently reconnect is done with password but only a token is available so it won't reconnect
         connection.connected.connect(function() {
             settings.user = connection.userId()
             settings.token = connection.token()
+            settings.homeserver = connection.homeserver()
 
             connection.syncError.connect(reconnect)
             connection.resolveError.connect(reconnect)
@@ -94,27 +111,11 @@ MainView {
             connection.sync()
         })
 
-        var userParts = user.split(':')
-        if(userParts.length === 1 || userParts[1] === "matrix.org") {
-            connect(user, pass)
-            if(loggedOut)
-            {
-                pageStack.pop()
-                pageStack.push(roomList)
-            }
-        } else {
-            connection.resolved.connect(function() {
-                connect(user, pass)
-                if(loggedOut)
-                {
-                    pageStack.pop()
-                    pageStack.push(roomList)
-                }
-            })
-            connection.resolveError.connect(function() {
-                console.log("Couldn't resolve server!")
-            })
-            connection.resolveServer(userParts[1])
+        matrixconnect(user, pass)
+        if(loggedOut)
+        {
+            pageStack.pop()
+            pageStack.push(roomList)
         }
         leaveRoom.connect(connection.leaveRoom)
     }
@@ -125,9 +126,10 @@ MainView {
         Component.onCompleted: {
             var user = settings.user
             var token = settings.token
+            var server = settings.homeserver
             if(user && token) {
                 login.login(true)
-                uMatriks.login(user, token, connection.connectWithToken)
+                uMatriks.login(user, token, server, true)
                 login.loadingMode(true)
             }
         }
