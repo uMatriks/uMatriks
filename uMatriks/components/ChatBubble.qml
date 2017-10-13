@@ -182,7 +182,7 @@ Item {
                 width = Math.max(contentImage.width, innerRect.width) + 30
                 height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
             }
-            console.log("event: " + eventType + " content " + content)
+            // console.log("event: " + eventType + " content " + content)
         }
     }
 
