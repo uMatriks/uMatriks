@@ -33,6 +33,21 @@
 #include "libqmatrixclient/events/roomaliasesevent.h"
 #include "libqmatrixclient/events/unknownevent.h"
 
+using namespace QMatrixClient;
+
+QHash<int, QByteArray> MessageEventModel::roleNames() const
+{
+    QHash<int, QByteArray> roles = QAbstractItemModel::roleNames();
+    roles[EventTypeRole] = "eventType";
+    roles[TimeRole] = "time";
+    roles[DateRole] = "date";
+    roles[AuthorRole] = "author";
+    roles[ContentRole] = "content";
+    roles[UserIdRole] = "userId";
+    roles[AvatarRole] = "avatar";
+    return roles;
+}
+
 MessageEventModel::MessageEventModel(QObject* parent)
     : QAbstractListModel(parent)
 {
@@ -44,7 +59,7 @@ MessageEventModel::~MessageEventModel()
 {
 }
 
-void MessageEventModel::changeRoom(QMatrixClient::Room* room)
+void MessageEventModel::changeRoom(Room* room)
 {
     beginResetModel();
     if( m_currentRoom )
@@ -54,7 +69,6 @@ void MessageEventModel::changeRoom(QMatrixClient::Room* room)
     m_currentRoom = room;
     if( room )
     {
-        using namespace QMatrixClient;
         connect( room, &Room::aboutToAddNewMessages,
                 [=](const RoomEvents& events)
                 {
@@ -72,24 +86,10 @@ void MessageEventModel::changeRoom(QMatrixClient::Room* room)
     endResetModel();
 }
 
-void MessageEventModel::setConnection(QMatrixClient::Connection* connection)
+void MessageEventModel::setConnection(Connection* connection)
 {
     m_connection = connection;
 }
-
-// QModelIndex LogMessageModel::index(int row, int column, const QModelIndex& parent) const
-// {
-//     if( parent.isValid() )
-//         return QModelIndex();
-//     if( row < 0 || row >= m_currentMessages.count() )
-//         return QModelIndex();
-//     return createIndex(row, column, m_currentMessages.at(row));
-// }
-//
-// LogMessageModel::parent(const QModelIndex& index) const
-// {
-//     return QModelIndex();
-// }
 
 int MessageEventModel::rowCount(const QModelIndex& parent) const
 {
@@ -104,41 +104,41 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             index.row() < 0 || index.row() >= m_currentRoom->messageEvents().size() )
         return QVariant();
 
-    QMatrixClient::RoomEvent *event = (m_currentRoom->messageEvents().end() - index.row() - 1)->event();
+    RoomEvent *event = (m_currentRoom->messageEvents().end() - index.row() - 1)->event();
     // FIXME: Rewind to the name that was at the time of this event
 
     QString senderName = m_currentRoom->roomMembername(event->senderId());
 
     if( role == Qt::DisplayRole )
     {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        if( event->type() == EventType::RoomMessage )
         {
-            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
             return QString("%1: %2").arg(senderName, e->plainBody());
         }
-        if( event->type() == QMatrixClient::EventType::RoomMember )
+        if( event->type() == EventType::RoomMember )
         {
-            QMatrixClient::RoomMemberEvent* e = static_cast<QMatrixClient::RoomMemberEvent*>(event);
+            RoomMemberEvent* e = static_cast<RoomMemberEvent*>(event);
             switch( e->membership() )
             {
-                case QMatrixClient::MembershipType::Join:
+                case MembershipType::Join:
                     return QString("%1 (%2) joined the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Leave:
+                case MembershipType::Leave:
                     return QString("%1 (%2) left the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Ban:
+                case MembershipType::Ban:
                     return QString("%1 (%2) was banned from the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Invite:
+                case MembershipType::Invite:
                     return QString("%1 (%2) was invited to the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Knock:
+                case MembershipType::Knock:
                     return QString("%1 (%2) knocked").arg(e->displayName(), e->userId());
             }
         }
-        if( event->type() == QMatrixClient::EventType::RoomAliases )
+        if( event->type() == EventType::RoomAliases )
         {
-            QMatrixClient::RoomAliasesEvent* e = static_cast<QMatrixClient::RoomAliasesEvent*>(event);
+            RoomAliasesEvent* e = static_cast<RoomAliasesEvent*>(event);
             return QString("Current aliases: %1").arg(e->aliases().join(", "));
         }
-        if (event->type() == QMatrixClient::EventType::Typing)
+        if (event->type() == EventType::Typing)
             qDebug() << "Typing";
         return "Unknown Event";
     }
@@ -150,21 +150,24 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
 
     if( role == EventTypeRole )
     {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
-            return "message";
-        if( event->type() == QMatrixClient::EventType::RoomName )
-            return "roomName";
-        if( event->type() == QMatrixClient::EventType::RoomAliases )
-            return "roomAliases";
-        if( event->type() == QMatrixClient::EventType::RoomCanonicalAlias )
-            return "roomCanonicalAlias";
-        if( event->type() == QMatrixClient::EventType::RoomTopic )
-            return "roomTopic";
-        if( event->type() == QMatrixClient::EventType::Typing )
-            return "typing";
-        if( event->type() == QMatrixClient::EventType::Receipt )
-            return "receipt";
-        return "unknown";
+        switch (event->type()) {
+            case EventType::RoomMessage: {
+                auto msgType = static_cast<RoomMessageEvent*>(event)->msgtype();
+                if (msgType == MessageEventType::Image) {
+                    return "image";
+                }
+                return "message";
+            }
+            case EventType::RoomName:
+            case EventType::RoomAliases:
+            case EventType::RoomCanonicalAlias:
+            case EventType::RoomTopic:
+            case EventType::Typing:
+            case EventType::Receipt:
+                return "state";
+            default:
+                return "unknown";
+        }
     }
 
     if( role == TimeRole )
@@ -184,38 +187,20 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
 
     if (role == UserIdRole)
     {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        if( event->type() == EventType::RoomMessage )
         {
-            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
             qDebug() << QString(e->senderId());
             return QString(e->senderId());
         }
         return QVariant();
     }
 
-
-    if (role == MsgTypeRole)
-    {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
-        {
-            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
-            switch (e->msgtype()) {
-            case QMatrixClient::RoomMessageEvent::MsgType::Image:
-                return "image";
-                break;
-            default:
-                break;
-            }
-        }
-        return QVariant();
-    }
-
-
     if (role == AvatarRole)
     {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        if( event->type() == EventType::RoomMessage )
         {
-            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
             for (int i = 0; i < m_currentRoom->users().size(); i++){
                  if (e->senderId() ==  m_currentRoom->users()[i]->id()){
                      QPixmap p = m_currentRoom->users()[i]->avatar(500,500);
@@ -234,44 +219,43 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
 
     if( role == ContentRole )
     {
-        if( event->type() == QMatrixClient::EventType::RoomMessage )
+        if( event->type() == EventType::RoomMessage )
         {
-            QMatrixClient::RoomMessageEvent* e = static_cast<QMatrixClient::RoomMessageEvent*>(event);
+            auto e = static_cast<RoomMessageEvent*>(event);
             switch (e->msgtype()) {
-            case QMatrixClient::RoomMessageEvent::MsgType::Image:
-            {
-                const QMatrixClient::MessageEventContent::ImageContent* img = static_cast<const QMatrixClient::MessageEventContent::ImageContent*>(e->content());
-                return QUrl("image://mtx/" + img->url.host() + img->url.path());
-                break;
-            }
-            default:
-                return e->plainBody();
-                break;
+                case MessageEventType::Image: {
+                    auto content = static_cast<const MessageEventContent::ImageContent*>(e->content());
+                    return QUrl("image://mtx/" + content->url.host() + content->url.path());
+                    break;
+                }
+                default:
+                    return e->plainBody();
+                    break;
             }
         }
-        if( event->type() == QMatrixClient::EventType::RoomMember )
+        if( event->type() == EventType::RoomMember )
         {
-            QMatrixClient::RoomMemberEvent* e = static_cast<QMatrixClient::RoomMemberEvent*>(event);
+            RoomMemberEvent* e = static_cast<RoomMemberEvent*>(event);
             switch( e->membership() )
             {
-                case QMatrixClient::MembershipType::Join:
+                case MembershipType::Join:
                     return QString("%1 (%2) joined the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Leave:
+                case MembershipType::Leave:
                     return QString("%1 (%2) left the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Ban:
+                case MembershipType::Ban:
                     return QString("%1 (%2) was banned from the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Invite:
+                case MembershipType::Invite:
                     return QString("%1 (%2) was invited to the room").arg(e->displayName(), e->userId());
-                case QMatrixClient::MembershipType::Knock:
+                case MembershipType::Knock:
                     return QString("%1 (%2) knocked").arg(e->displayName(), e->userId());
             }
         }
-        if( event->type() == QMatrixClient::EventType::RoomAliases )
+        if( event->type() == EventType::RoomAliases )
         {
-            QMatrixClient::RoomAliasesEvent* e = static_cast<QMatrixClient::RoomAliasesEvent*>(event);
+            RoomAliasesEvent* e = static_cast<RoomAliasesEvent*>(event);
             return QString("Current aliases: %1").arg(e->aliases().join(", "));
         }
-        if( event->type() == QMatrixClient::EventType::Unknown )
+        if( event->type() == EventType::Unknown )
         {
             return "Unknown Event: ";  // + e->typeString() + "(" + e->content();
         }
@@ -279,16 +263,3 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
     return QVariant();
 }
 
-QHash<int, QByteArray> MessageEventModel::roleNames() const
-{
-    QHash<int, QByteArray> roles = QAbstractItemModel::roleNames();
-    roles[EventTypeRole] = "eventType";
-    roles[TimeRole] = "time";
-    roles[DateRole] = "date";
-    roles[AuthorRole] = "author";
-    roles[ContentRole] = "content";
-    roles[UserIdRole] = "userId";
-    roles[AvatarRole] = "avatar";
-    roles[MsgTypeRole] = "msgType";
-    return roles;
-}

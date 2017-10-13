@@ -15,8 +15,8 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
-#ifndef LOGMESSAGEMODEL_H
-#define LOGMESSAGEMODEL_H
+
+#pragma once
 
 #include "events/event.h"
 
@@ -50,8 +50,6 @@ class MessageEventModel: public QAbstractListModel
         Q_INVOKABLE void setConnection(QMatrixClient::Connection* connection);
         Q_INVOKABLE void changeRoom(QMatrixClient::Room* room);
 
-        //override QModelIndex index(int row, int column, const QModelIndex& parent=QModelIndex()) const;
-        //override QModelIndex parent(const QModelIndex& index) const;
         int rowCount(const QModelIndex& parent = QModelIndex()) const override;
         QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
@@ -60,5 +58,3 @@ class MessageEventModel: public QAbstractListModel
         QMatrixClient::Connection* m_connection;
         QMatrixClient::Room* m_currentRoom;
 };
-
-#endif // LOGMESSAGEMODEL_H

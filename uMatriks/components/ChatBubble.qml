@@ -97,7 +97,7 @@ Item {
             anchors.margins: 15
             fillMode: Image.PreserveAspectFit
             height: units.gu(20)
-            width:  height
+            width: height
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -138,7 +138,7 @@ Item {
             }
         }
 
-        function checkForLink()
+        function checkForLink(content)
         {
             if (content.indexOf("https://") !== -1 || content.indexOf("http://") !== -1)
             {
@@ -172,18 +172,17 @@ Item {
 
         Component.onCompleted: {
             if (eventType == "message"){
-                if (msgType === "m.image"){
-                    contentImage.width = chatBubble.width - avatarIcon.width - 40 - 30
-                    width = Math.max(contentImage.width, innerRect.width) + 30
-                    height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
-                }   else {
-                    contentlabel.width = Math.min(contentlabel.contentWidth, chatBubble.width - avatarIcon.width - 40 - 30)
-                    contentlabel.height = contentlabel.contentHeight
-                    width = Math.max(contentlabel.width, innerRect.width) + 30
-                    height = Math.max(contentlabel.height + innerRect.height + 40, avatarIcon.height)
-                }
+                contentlabel.width = Math.min(contentlabel.contentWidth, chatBubble.width - avatarIcon.width - 40 - 30)
+                contentlabel.height = contentlabel.contentHeight
+                width = Math.max(contentlabel.width, innerRect.width) + 30
+                height = Math.max(contentlabel.height + innerRect.height + 40, avatarIcon.height)
+                checkForLink(content);
+            } else if (eventType === "image") {
+                contentImage.width = chatBubble.width - avatarIcon.width - 40 - 30
+                width = Math.max(contentImage.width, innerRect.width) + 30
+                height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
             }
-            checkForLink();
+            console.log("event: " + eventType + " content " + content)
         }
     }
 
@@ -215,13 +214,11 @@ Item {
                 rect.anchors.left = avatarIcon.right
                 //                rect.color = "#bdc3c7"
             }
-
-            if (msgType === "m.image") {
+        } else if (eventType === "image") {
                 contentImage.sourceSize = "1000x1000"
                 contentImage.source = content;
                 contentImage.visible = true;
                 contentlabel.visible = false;
-            }
         } else {
             innerRect.visible = false
             avatarIcon.visible = false
