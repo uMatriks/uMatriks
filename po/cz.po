@@ -5,28 +5,28 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 "Project-Id-Version: uMatriks\n"
-"Language: no\n"
+"Language: cs\n"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:21
 msgid "About..."
-msgstr "Om..."
+msgstr "O..."
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:28
 msgid "Back"
-msgstr "Tilbake"
+msgstr "Zpět"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:24
 msgid "Wrong username or password, please try again"
-msgstr ""
+msgstr "Nesprávné uživatelské jméno nebo heslo, zkuste to znovu"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:35
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:62
 msgid "Login..."
-msgstr "Logg p..."
+msgstr "Přihlásit..."
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:112
 msgid "Failed to login, please try again"
-msgstr ""
+msgstr "Přihlášení selhalo, zkuste to znovu"
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:17
 msgid "[ uMatriks ]"
@@ -34,37 +34,36 @@ msgstr "[ uMatriks ]"
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:35
 msgid "Log out"
-msgstr ""
+msgstr "Odhlášení"
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:45
-#, fuzzy
 msgid "About"
-msgstr "Om..."
+msgstr "O"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomView.qml:8
 msgid "Room"
-msgstr "Rom"
+msgstr "Chatovací místnost"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:184
 msgid "Leave"
-msgstr "Forlate"
+msgstr "Opustit"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:257
 msgid "Room Topic"
-msgstr "Rom Emne"
+msgstr "Téma chatovací místnosti"
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:154
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:268
 msgid "Close"
-msgstr "Lukk"
+msgstr "Ukončit"
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:20
 msgid "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program that allows you to use the Matrix network."
-msgstr "Velcommen til uMatriks!<br/>            <br/>            uMatriks er ett program som gjr at du kan bruke Matrix nettverket"
+msgstr "Vítejte v uMatriks!<br/>            <br/>            uMatriks vám umožňuje využívat sítě Matrix."
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
-msgstr "For  bruke uMatriks, m du logge p med din Matrix <i>bruker</i>."
+msgstr "Pokud chcete používat uMatriks musíte se přihlásit pod vaším <i>uživatelským jménem</i>."
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
@@ -73,7 +72,7 @@ msgstr "Matrix ID:"
 #. TRANSLATORS: Example nickname
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
-msgstr "brukernavn"
+msgstr "přezdívka"
 
 #: /home/bjarne/build-uMatriks-Desktop-Debug/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
@@ -81,58 +80,58 @@ msgstr "uMatriks"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:117
 msgid "User Name or Matrix ID:"
-msgstr ""
+msgstr "Uživatelské jméno nebo Matrix ID:"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:129
 msgid "Password:"
-msgstr ""
+msgstr "Heslo:"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:142
 msgid "Login"
-msgstr ""
+msgstr "Přihlášení"
 
 #: /home/bjarne/uMatriks/uMatriks/MemberList.qml:50
 msgid "Failed to add direct chat with "
-msgstr ""
+msgstr "Selhalo přidání přímé konverzace s "
 
 #: /home/bjarne/uMatriks/uMatriks/MemberList.qml:52
 msgid " because this is not implented yet. This was just a test button."
-msgstr ""
+msgstr " tato funkce není dosud aktivní. Funkce je zatím v režimu testování."
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:143
 msgid "Warning!"
-msgstr ""
+msgstr "Varování!"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:216
 msgid "Members of "
-msgstr ""
+msgstr "Členové "
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:69
 msgid "This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect."
-msgstr ""
+msgstr "Tímto aktivujete testovací funkci, která vám umožní zobrazení počtu dosud nepřečtených zpráv v každé chatovací místnosti. Prosím zašlete nám hlášení o chybách. Pro uplatnění změn aplikaci restartujte."
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:70
 msgid "Deactivated test function. Please restart the app so the changes take effect."
-msgstr ""
+msgstr "Testovací funkce deaktivována. Pro uplatnění změn  aplikaci restartujte."
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:23
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:9
 msgid "Join room"
-msgstr ""
+msgstr "Vstoupit do chatovací místnosti"
 
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:10
 msgid "Join room:"
-msgstr ""
+msgstr "Vstoupit do chatovací místnosti:"
 
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:36
 msgid "Cancel"
-msgstr ""
+msgstr "Ukončit"
 
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:44
 msgid "Join"
-msgstr ""
+msgstr "Vstoupit"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:11
 msgid "RoomList"
-msgstr ""
+msgstr "Seznammístností"
 
