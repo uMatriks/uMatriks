@@ -117,21 +117,21 @@ msgstr "Funcionalitat desactivada. Reinicieu l'aplicació perquè els canvis ten
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:23
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:9
 msgid "Join room"
-msgstr ""
+msgstr "Entra a una sala"
 
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:10
 msgid "Join room:"
-msgstr ""
+msgstr "Entra a una sala:"
 
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:36
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel·la"
 
 #: /home/bjarne/uMatriks/uMatriks/DialogJoinRoom.qml:44
 msgid "Join"
-msgstr ""
+msgstr "Entra"
 
 #: /home/bjarne/uMatriks/uMatriks/RoomList.qml:11
 msgid "RoomList"
-msgstr ""
+msgstr "RoomList"
 
