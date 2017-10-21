@@ -48,6 +48,9 @@ class RoomListModel: public QAbstractListModel
         void addRoom(QMatrixClient::Room* room);
         void highlightCountChanged(QMatrixClient::Room* room);
 
+    signals:
+        void dataChanged(int index);
+
     private:
         QMatrixClient::Connection* m_connection;
         QList<QMatrixClient::Room*> m_rooms;

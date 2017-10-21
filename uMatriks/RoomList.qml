@@ -18,15 +18,16 @@ BasePage {
 
         onDataChanged: {
             // may have received a message but if focused, mark as read
-            console.log("Event...")
-            if(initialised && settings.devScan) {
+            console.log("********************* Event..." + index)
+            var room  = rooms.roomAt(index)
+            console.log(room.displayName + " : " + room.hasUnreadMessages() + " -> "+ room.notificationCount())
+            if(initialised) {
                 for (var i = 0; i < rooms.rowCount(); i++) {
                     roomListView.currentIndex = i
                     roomListView.currentItem.refreshUnread()
                 }
             }
         }
-
     }
 
     function setConnection(conn) {
@@ -42,10 +43,10 @@ BasePage {
         for (var i = 0; i < rooms.rowCount(); i++) {
             if (rooms.roomAt(i).canonicalAlias === defaultRoom) {
                 roomListView.currentIndex = i
+                roomListView.currentItem.refreshUnread()
             }
         }
         if (!found) connection.joinRoom(defaultRoom)
-        if (settings.devScan) scan()
     }
 
     function refresh() {
@@ -59,34 +60,6 @@ BasePage {
 
     function getNumber(index) {
         return rooms.roomAt(index).notificationCount()
-    }
-
-    function scan() {
-        function Timer() {
-            return Qt.createQmlObject("import QtQuick 2.4; Timer {}", rooms);
-        }
-        var currentIndex = 0
-        for (var i = 0; i < rooms.rowCount(); i++) {
-            roomListView.currentIndex = i
-            roomListView.currentItem.refreshUnread()
-        }
-        var counter = 0
-        var speedTrigger = false
-        var timer = new Timer();
-        timer.interval = 300;
-        timer.repeat = true;
-        timer.triggered.connect(function()
-        {
-            var savedPos = roomListView.contentY
-            roomListView.currentIndex = currentIndex
-            roomListView.currentItem.refreshUnread()
-            roomListView.contentY = savedPos
-            if (uMatriks.activeRoomIndex !== -1) rooms.roomAt(uMatriks.activeRoomIndex).markAllMessagesAsRead()
-            if (currentIndex !== (rooms.rowCount() - 1)) currentIndex++
-            else currentIndex = 0
-        })
-
-        timer.start();
     }
 
     Column {
@@ -115,8 +88,7 @@ BasePage {
                 height: roomListLayout.height + (divider.visible ? divider.height : 0)
                 property bool unread: false
                 property int number: 0
-                function refreshUnread ()
-                {
+                function refreshUnread() {
                     //console.log("Running..." + index)
                     var i = index
                     if(getUnread(i) !== unread || getNumber(i) !== number)
@@ -232,17 +204,6 @@ BasePage {
                     pageStack.push(roomView)
                 }
             }
-
-            highlight: Rectangle {
-                visible: !settings.devScan
-                height: 20
-                radius: 2
-                color: "#9E7D96"
-            }
-            highlightMoveDuration: 0
-
-            highlightFollowsCurrentItem: !settings.devScan
-
         }
     }
 
