@@ -10,8 +10,8 @@ include(libqmatrixclient/libqmatrixclient.pri)
 SOURCES += main.cpp \
     models/roomlistmodel.cpp \
     models/messageeventmodel.cpp \
-    models/imageprovider.cpp #\
-#    models/avatarprovider.cpp
+    models/imageprovider.cpp \ 
+    matrixconn.cpp
 
 RESOURCES += uMatriks.qrc
 
@@ -61,4 +61,4 @@ HEADERS += \
     models/roomlistmodel.h \
     models/messageeventmodel.h \
     models/imageprovider.h \
-    models/avatarprovider.h
+    matrixconn.h

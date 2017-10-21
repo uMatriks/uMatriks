@@ -1,5 +1,4 @@
-#ifndef IMAGEPROVIDER_H
-#define IMAGEPROVIDER_H
+#pragma once
 
 #include <QtQuick/QQuickImageProvider>
 #include <QtCore/QMutex>
@@ -30,5 +29,3 @@ class ImageProvider: public QObject, public QQuickImageProvider
 
 Q_DECLARE_METATYPE(QPixmap*)
 Q_DECLARE_METATYPE(QWaitCondition*)
-
-#endif // IMAGEPROVIDER_H

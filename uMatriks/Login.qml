@@ -8,29 +8,6 @@ Page {
     width: parent.width
     anchors.centerIn: parent
 
-    Connections {
-        target: connection
-        onLoginError: {
-            if (error.indexOf("Forbidden") !== -1) {
-                if(uMatriks.loggedOut)
-                {
-                    pageStack.pop(pageMain)
-                    pageStack.push(loginPage)
-                }
-                passwordField.text = ""
-                console.log("Wrong password")
-                loadingMode(false)
-                errorLabel.color = UbuntuColors.red
-                errorLabel.text = i18n.tr("Wrong username or password, please try again")
-                errorLabel.visible = true
-                return;
-            }
-            console.log("unknown login error", error);
-            errorLabel.visible = true
-            return;
-        }
-    }
-
     header: PageHeader {
         title: i18n.tr("Login...")
         leadingActionBar {
@@ -45,7 +22,7 @@ Page {
         if (userNameField.text == "" && passwordField.text == "")
             return
         loadingMode(true)
-        if(!pretend) uMatriks.login(userNameField.text, passwordField.text)
+        if(!pretend) uMatriks.login(userNameField.text, passwordField.text, homeserverField.text)
 
     }
 
@@ -55,12 +32,34 @@ Page {
         loading.running = state;
         userNameField.visible = !state
         passwordField.visible = !state
+        homeserverField.visible = !state
         userNameLabel.visible = !state
         passwordLabel.visible = !state
+        homeserverLabel.visible = !state
         loginButton.visible = !state
         errorLabel.color = UbuntuColors.green
         errorLabel.text = i18n.tr("Login...")
         errorLabel.visible = true
+    }
+
+    function loginError(error) {
+        if (error.indexOf("Forbidden") !== -1) {
+            if(uMatriks.loggedOut)
+            {
+                pageStack.pop(pageMain)
+                pageStack.push(loginPage)
+            }
+            passwordField.text = ""
+            console.log("Wrong password")
+            loadingMode(false)
+            errorLabel.color = UbuntuColors.red
+            errorLabel.text = i18n.tr("Wrong username or password, please try again")
+            errorLabel.visible = true
+            return;
+        }
+        console.log("unknown login error", error);
+        errorLabel.visible = true
+        return;
     }
 
     Column {
@@ -134,6 +133,18 @@ Page {
             echoMode: TextInput.Password
             width: parent.width
             placeholderText: qsTr("Password")
+        }
+
+        Label {
+            id: homeserverLabel
+            text:i18n.tr("Home server URL:")
+        }
+
+        TextField {
+            id: homeserverField
+            inputMethodHints: Qt.ImhNoAutoUppercase
+            width: parent.width
+            placeholderText: "https://matrix.org"
         }
 
         Button{
