@@ -76,9 +76,7 @@ msgstr ""
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:10
 msgid "Join room:"
-msgstr ""
-"\n"
-"Entrar en habitación:"
+msgstr "Entrar en habitación:"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:36
 msgid "Cancel"
@@ -160,7 +158,7 @@ msgid ""
 "that allows you to use the Matrix network."
 msgstr ""
 "Bienvenido a uMatriks!<br/>            <br/>            uMatriks es un "
-"programa que te permite usar la red Matrix.\n"
+"programa que te permite usar la red Matrix."
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
