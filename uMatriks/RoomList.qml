@@ -16,6 +16,7 @@ BasePage {
 
         onDataChanged: {
             var room  = rooms.roomAt(index)
+            console.log("Event for: %1".arg(room.displayName))
             roomListView.contentItem.children[index].refreshUnread()
         }
     }
@@ -177,6 +178,7 @@ BasePage {
 
                 onClicked: {
                     console.log("Room clicked. Entering: " + display + " room.")
+                    roomListView.contentItem.children[index].refreshUnread()
                     uMatriks.activeRoomIndex = index
                     roomListView.currentIndex = index
                     roomView.setRoom(rooms.roomAt(index))
