@@ -11,22 +11,12 @@ BasePage {
     title: i18n.tr("RoomList")
     visible: false
 
-    property bool initialised: false
-
     RoomListModel {
         id: rooms
 
         onDataChanged: {
-            // may have received a message but if focused, mark as read
-            console.log("********************* Event..." + index)
             var room  = rooms.roomAt(index)
-            console.log(room.displayName + " : " + room.hasUnreadMessages() + " -> "+ room.notificationCount())
-            if(initialised) {
-                for (var i = 0; i < rooms.rowCount(); i++) {
-                    roomListView.currentIndex = i
-                    roomListView.currentItem.refreshUnread()
-                }
-            }
+            roomListView.contentItem.children[index].refreshUnread()
         }
     }
 
@@ -37,16 +27,9 @@ BasePage {
 
     function init(connection) {
         setConnection(connection)
-        var defaultRoom = "#uMatriks:matrix.org"
-        initialised = true
-        var found = false
-        for (var i = 0; i < rooms.rowCount(); i++) {
-            if (rooms.roomAt(i).canonicalAlias === defaultRoom) {
-                roomListView.currentIndex = i
-                roomListView.currentItem.refreshUnread()
-            }
+        for(var child in roomListView.contentItem.children) {
+           roomListView.contentItem.children[child].refreshUnread()
         }
-        if (!found) connection.joinRoom(defaultRoom)
     }
 
     function refresh() {
@@ -55,7 +38,7 @@ BasePage {
     }
 
     function getUnread(index) {
-        return rooms.roomAt(index).hasUnreadMessages()
+        return true ? rooms.roomAt(index).hasUnreadMessages() > 0 : false
     }
 
     function getNumber(index) {
@@ -86,17 +69,14 @@ BasePage {
                 }
 
                 height: roomListLayout.height + (divider.visible ? divider.height : 0)
+
                 property bool unread: false
                 property int number: 0
+
                 function refreshUnread() {
-                    //console.log("Running..." + index)
-                    var i = index
-                    if(getUnread(i) !== unread || getNumber(i) !== number)
-                    {
-                        unread = getUnread(i)
-                        number = getNumber(i)
-                        console.log(display + unread + number)
-                    }
+                    unread = getUnread(index)
+                    number = getNumber(index)
+                    console.log("[%1] %2 unread: %3 number: %4".arg(index).arg(display).arg(unread).arg(number))
                 }
 
                 ListItemLayout{
@@ -135,7 +115,7 @@ BasePage {
                         border.width: parent.activeFocus ? 0.5 : 1
                         border.color: "black"
                         color: UbuntuColors.green
-                        visible: helpId.unread
+                        visible: helpId.unread && helpId.number > 0
                         radius: width * 0.5
                         Text {
                             anchors{

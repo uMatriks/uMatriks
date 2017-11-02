@@ -62,18 +62,7 @@ Page {
                     onTriggered: {
                         settings.theme = !settings.theme
                     }
-                },
-                Action {
-                    id: actionScan
-                    iconName: settings.devScan ? "transfer-progress" : "transfer-none"
-                    onTriggered: {
-                        settings.devScan = !settings.devScan
-                        var popup = PopupUtils.open(warning, roomList);
-                        if (settings.devScan) popup.description = i18n.tr("This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect.")
-                        else popup.description = i18n.tr("Deactivated test function. Please restart the app so the changes take effect.")
-                    }
                 }
-
             ]
         }
     }

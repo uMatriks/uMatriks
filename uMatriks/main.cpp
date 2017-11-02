@@ -8,7 +8,6 @@
 #include "user.h"
 #include "jobs/syncjob.h"
 #include "jobs/joinroomjob.h"
-#include "jobs/leaveroomjob.h"
 #include "models/messageeventmodel.h"
 #include "models/roomlistmodel.h"
 #include "models/imageprovider.h"

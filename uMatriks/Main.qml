@@ -53,8 +53,6 @@ MainView {
         property string token: ""
         property string homeserver: ""
         property bool theme: false
-        property bool devScan: false
-
         property alias winWidth: roomList.width
         property alias winHeight: roomList.height
     }
@@ -111,7 +109,10 @@ MainView {
             connection.sync()
         })
 
-        matrixconnect(user, pass)
+
+        // TODO save deviceId to settings
+        console.log("dev: " + connection.deviceId())
+        matrixconnect(user, pass, connection.deviceId())
         if(loggedOut)
         {
             pageStack.pop()

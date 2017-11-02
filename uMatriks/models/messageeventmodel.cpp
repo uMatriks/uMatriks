@@ -30,10 +30,20 @@
 #include "libqmatrixclient/events/event.h"
 #include "libqmatrixclient/events/roommessageevent.h"
 #include "libqmatrixclient/events/roommemberevent.h"
-#include "libqmatrixclient/events/roomaliasesevent.h"
-#include "libqmatrixclient/events/unknownevent.h"
+#include "libqmatrixclient/events/simplestateevents.h"
 
 using namespace QMatrixClient;
+
+enum EventRoles {
+    EventTypeRole = Qt::UserRole + 1,
+    TimeRole,
+    DateRole,
+    AuthorRole,
+    ContentRole,
+    UserIdRole,
+    AvatarRole,
+    MsgTypeRole
+};
 
 QHash<int, QByteArray> MessageEventModel::roleNames() const
 {
