@@ -1,6 +1,6 @@
 [Desktop Entry]
 _Name=uMatriks
-Exec=uMatriks
+Exec=qmlscene %U uMatriks/Main.qml
 Icon=uMatriks/umatriks.svg
 Terminal=false
 Type=Application

@@ -2,7 +2,7 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import QtGraphicalEffects 1.0
 import Matrix 1.0
-import '../utils.js' as Utils
+import 'utils.js' as Utils
 
 Item {
     id: chatBubble
