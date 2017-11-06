@@ -1,7 +1,6 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Matrix 1.0
-import "components"
 
 
 Rectangle {

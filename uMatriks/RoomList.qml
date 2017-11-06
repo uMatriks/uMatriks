@@ -39,7 +39,7 @@ BasePage {
     }
 
     function getUnread(index) {
-        return true ? rooms.roomAt(index).hasUnreadMessages() > 0 : false
+        return rooms.roomAt(index).hasUnreadMessages()
     }
 
     function getNumber(index) {
@@ -178,12 +178,12 @@ BasePage {
 
                 onClicked: {
                     console.log("Room clicked. Entering: " + display + " room.")
-                    roomListView.contentItem.children[index].refreshUnread()
                     uMatriks.activeRoomIndex = index
                     roomListView.currentIndex = index
                     roomView.setRoom(rooms.roomAt(index))
                     roomList.visible = false;
                     pageStack.push(roomView)
+                    roomListView.contentItem.children[index].refreshUnread()
                 }
             }
         }
