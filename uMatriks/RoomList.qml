@@ -11,22 +11,14 @@ BasePage {
     title: i18n.tr("RoomList")
     visible: false
 
-    property bool initialised: false
-
     RoomListModel {
         id: rooms
 
         onDataChanged: {
-            // may have received a message but if focused, mark as read
-            console.log("Event...")
-            if(initialised && settings.devScan) {
-                for (var i = 0; i < rooms.rowCount(); i++) {
-                    roomListView.currentIndex = i
-                    roomListView.currentItem.refreshUnread()
-                }
-            }
+            var room  = rooms.roomAt(index)
+            console.log("Event for: %1".arg(room.displayName))
+            roomListView.contentItem.children[index].refreshUnread()
         }
-
     }
 
     function setConnection(conn) {
@@ -36,16 +28,9 @@ BasePage {
 
     function init(connection) {
         setConnection(connection)
-        var defaultRoom = "#uMatriks:matrix.org"
-        initialised = true
-        var found = false
-        for (var i = 0; i < rooms.rowCount(); i++) {
-            if (rooms.roomAt(i).canonicalAlias === defaultRoom) {
-                roomListView.currentIndex = i
-            }
+        for(var child in roomListView.contentItem.children) {
+           roomListView.contentItem.children[child].refreshUnread()
         }
-        if (!found) connection.joinRoom(defaultRoom)
-        if (settings.devScan) scan()
     }
 
     function refresh() {
@@ -59,34 +44,6 @@ BasePage {
 
     function getNumber(index) {
         return rooms.roomAt(index).notificationCount()
-    }
-
-    function scan() {
-        function Timer() {
-            return Qt.createQmlObject("import QtQuick 2.4; Timer {}", rooms);
-        }
-        var currentIndex = 0
-        for (var i = 0; i < rooms.rowCount(); i++) {
-            roomListView.currentIndex = i
-            roomListView.currentItem.refreshUnread()
-        }
-        var counter = 0
-        var speedTrigger = false
-        var timer = new Timer();
-        timer.interval = 300;
-        timer.repeat = true;
-        timer.triggered.connect(function()
-        {
-            var savedPos = roomListView.contentY
-            roomListView.currentIndex = currentIndex
-            roomListView.currentItem.refreshUnread()
-            roomListView.contentY = savedPos
-            if (uMatriks.activeRoomIndex !== -1) rooms.roomAt(uMatriks.activeRoomIndex).markAllMessagesAsRead()
-            if (currentIndex !== (rooms.rowCount() - 1)) currentIndex++
-            else currentIndex = 0
-        })
-
-        timer.start();
     }
 
     Column {
@@ -113,18 +70,14 @@ BasePage {
                 }
 
                 height: roomListLayout.height + (divider.visible ? divider.height : 0)
+
                 property bool unread: false
                 property int number: 0
-                function refreshUnread ()
-                {
-                    //console.log("Running..." + index)
-                    var i = index
-                    if(getUnread(i) !== unread || getNumber(i) !== number)
-                    {
-                        unread = getUnread(i)
-                        number = getNumber(i)
-                        console.log(display + unread + number)
-                    }
+
+                function refreshUnread() {
+                    unread = getUnread(index)
+                    number = getNumber(index)
+                    console.log("[%1] %2 unread: %3 number: %4".arg(index).arg(display).arg(unread).arg(number))
                 }
 
                 ListItemLayout{
@@ -163,7 +116,7 @@ BasePage {
                         border.width: parent.activeFocus ? 0.5 : 1
                         border.color: "black"
                         color: UbuntuColors.green
-                        visible: helpId.unread
+                        visible: helpId.unread && helpId.number > 0
                         radius: width * 0.5
                         Text {
                             anchors{
@@ -230,19 +183,9 @@ BasePage {
                     roomView.setRoom(rooms.roomAt(index))
                     roomList.visible = false;
                     pageStack.push(roomView)
+                    roomListView.contentItem.children[index].refreshUnread()
                 }
             }
-
-            highlight: Rectangle {
-                visible: !settings.devScan
-                height: 20
-                radius: 2
-                color: "#9E7D96"
-            }
-            highlightMoveDuration: 0
-
-            highlightFollowsCurrentItem: !settings.devScan
-
         }
     }
 

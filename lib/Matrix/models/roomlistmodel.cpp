@@ -48,6 +48,8 @@ void RoomListModel::setConnection(QMatrixClient::Connection* connection)
 
     for( QMatrixClient::Room* room: connection->roomMap().values() ) {
         connect( room, &QMatrixClient::Room::namesChanged, this, &RoomListModel::namesChanged );
+        connect( room, &QMatrixClient::Room::unreadMessagesChanged, this, &RoomListModel::unreadMessagesChanged );
+        connect( room, &QMatrixClient::Room::highlightCountChanged, this, &RoomListModel::highlightCountChanged );
         m_rooms.append(room);
     }
     endResetModel();
@@ -69,9 +71,6 @@ void RoomListModel::removeRoom(QMatrixClient::Room* room)
 void RoomListModel::addRoom(QMatrixClient::Room* room)
 {
     beginInsertRows(QModelIndex(), m_rooms.count(), m_rooms.count());
-    connect( room, &QMatrixClient::Room::namesChanged, this, &RoomListModel::namesChanged );
-    connect( room, &QMatrixClient::Room::unreadMessagesChanged, this, &RoomListModel::unreadMessagesChanged );
-    connect( room, &QMatrixClient::Room::highlightCountChanged, this, &RoomListModel::highlightCountChanged );
     m_rooms.append(room);
     endInsertRows();
 }
@@ -121,17 +120,18 @@ QHash<int, QByteArray> RoomListModel::roleNames() const {
 void RoomListModel::namesChanged(QMatrixClient::Room* room)
 {
     int row = m_rooms.indexOf(room);
-    emit dataChanged(index(row), index(row));
+    emit dataChanged(row);
 }
 
 void RoomListModel::unreadMessagesChanged(QMatrixClient::Room* room)
 {
     int row = m_rooms.indexOf(room);
-    emit dataChanged(index(row), index(row));
+    emit dataChanged(row);
+    qCDebug(MAIN) << "unreadMessagesChanged: " << row;
 }
 
 void RoomListModel::highlightCountChanged(QMatrixClient::Room* room)
 {
     int row = m_rooms.indexOf(room);
-    emit dataChanged(index(row), index(row));
+    emit dataChanged(row);
 }

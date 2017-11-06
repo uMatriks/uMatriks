@@ -1,5 +1,5 @@
 /******************************************************************************
- * Copyright (C) 2015 Felix Rohrbach <kde@fxrh.de>
+ * Copyright (C) 2016 Felix Rohrbach <kde@fxrh.de>
  *
  * This library is free software; you can redistribute it and/or
  * modify it under the terms of the GNU Lesser General Public
@@ -16,45 +16,45 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#pragma once
-
-#include "events/event.h"
+#ifndef ROOMLISTMODEL_H
+#define ROOMLISTMODEL_H
 
 #include <QtCore/QAbstractListModel>
-#include <QtCore/QModelIndex>
 
 namespace QMatrixClient
 {
-    class Room;
     class Connection;
+    class Room;
 }
 
-class MessageEventModel: public QAbstractListModel
+class RoomListModel: public QAbstractListModel
 {
         Q_OBJECT
     public:
-        enum EventRoles {
-            EventTypeRole = Qt::UserRole + 1,
-            TimeRole,
-            DateRole,
-            AuthorRole,
-            ContentRole,
-            UserIdRole,
-            AvatarRole,
-            MsgTypeRole
-        };
-
-        MessageEventModel(QObject* parent=0);
-        virtual ~MessageEventModel();
+        RoomListModel(QObject* parent=0);
+        virtual ~RoomListModel();
 
         Q_INVOKABLE void setConnection(QMatrixClient::Connection* connection);
-        Q_INVOKABLE void changeRoom(QMatrixClient::Room* room);
+        Q_INVOKABLE QMatrixClient::Room* roomAt(int row);
 
-        int rowCount(const QModelIndex& parent = QModelIndex()) const override;
         QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
+        Q_INVOKABLE int rowCount(const QModelIndex& parent=QModelIndex()) const override;
+
         QHash<int, QByteArray> roleNames() const override;
+
+    private slots:
+        void namesChanged(QMatrixClient::Room* room);
+        void unreadMessagesChanged(QMatrixClient::Room* room);
+        void addRoom(QMatrixClient::Room* room);
+        void highlightCountChanged(QMatrixClient::Room* room);
+
+    signals:
+        void dataChanged(int index);
 
     private:
         QMatrixClient::Connection* m_connection;
-        QMatrixClient::Room* m_currentRoom;
+        QList<QMatrixClient::Room*> m_rooms;
+        void removeRoom(QMatrixClient::Room* room);
 };
+
+#endif // ROOMLISTMODEL_H
