@@ -22,20 +22,20 @@ msgstr "Terug"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:56
 msgid "Wrong username or password, please try again"
-msgstr "Verkeerde gebruikersnaam of wachtwoord, probeer opnieuw"
+msgstr "Verkeerde gebruikersnaam of wachtwoord, probeer het alstublieft opnieuw"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:12
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:41
 msgid "Login..."
-msgstr "Login..."
+msgstr "Log in..."
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:111
 msgid "Failed to login, please try again"
-msgstr "Inloggen mislukt, probeer opnieuw"
+msgstr "Inloggen mislukt, probeer het alstublieft opnieuw"
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:19
 msgid "[ uMatriks ]"
-msgstr ""
+msgstr "[ uMatriks ]"
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:38
 msgid "Log out"
@@ -64,7 +64,7 @@ msgstr "Sluiten"
 
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:20
 msgid "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program that allows you to use the Matrix network."
-msgstr "Welkom by uMatriks!<br/><br/>uMatriks is een programma om het Matrix netwerk te gebruiken."
+msgstr "Welkom by uMatriks!<br/>         <br/>uMatriks is een programma om het Matrix netwerk te gebruiken."
 
 #. Shouldn't this be username instead of user?
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:36
@@ -78,11 +78,11 @@ msgstr "Matrix ID:"
 #. TRANSLATORS: Example nickname
 #: /home/bjarne/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
-msgstr ""
+msgstr "chattyman"
 
 #: /home/bjarne/build-uMatriks-UbuntuSDK_for_device_armhf_1504_GCC_armhf_ubuntu_sdk_15_04-Release/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
-msgstr ""
+msgstr "uMatriks"
 
 #: /home/bjarne/uMatriks/uMatriks/Login.qml:116
 msgid "User Name or Matrix ID:"
@@ -98,11 +98,11 @@ msgstr "Login"
 
 #: /home/bjarne/uMatriks/uMatriks/MemberList.qml:50
 msgid "Failed to add direct chat with "
-msgstr "Kan niet direkt chatten met␣"
+msgstr "Kan niet direct chatten met␣"
 
 #: /home/bjarne/uMatriks/uMatriks/MemberList.qml:52
 msgid " because this is not implented yet. This was just a test button."
-msgstr "␣omdat dit nog niet geimplementeerd is. Dit is alleen een testknop."
+msgstr "␣omdat dit nog niet geïmplementeerd is. Dit is alleen een testknop."
 
 #: /home/bjarne/uMatriks/uMatriks/Main.qml:145
 msgid "Warning!"
@@ -114,7 +114,7 @@ msgstr "Leden van␣"
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:72
 msgid "This will activate a test function, which lets you see the amount of unread messages for each room. Please report bugs. Restart the app so the changes take effect."
-msgstr "Dit activeert een testfunctie die je de hoeveelheid ongelezen berichten van elke kamer laat zien. Rapporteer aub. fouten. Herstart de app om wijziging te effectueren."
+msgstr "Dit activeert een testfunctie die je de hoeveelheid ongelezen berichten van elke kamer laat zien. Rapporteer a.u.b. fouten. Herstart de app om wijziging te effectueren."
 
 #: /home/bjarne/uMatriks/uMatriks/BasePage.qml:73
 msgid "Deactivated test function. Please restart the app so the changes take effect."
@@ -147,7 +147,7 @@ msgstr "Auteurs"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:106
 msgid "<a href='https://github.com/delijati'>Josip Delic</a> (@delijati:matrix.org)"
-msgstr ""
+msgstr "<a href='https://github.com/delijati'>Josip Delic</a> (@delijati:matrix.org)"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:151
 msgid "Translations"
@@ -155,7 +155,7 @@ msgstr "Vertalingen"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:161
 msgid "Not in your language? Please help us translating the app by contributing on: <a href='https://poeditor.com/join/project/Og2UosRdlD'>poeditor</a> "
-msgstr ""
+msgstr "Niet in jouw taal? Help ons alstublieft de app te vertalen op: <a href='https://poeditor.com/join/project/Og2UosRdlD'>poeditor</a>␣"
 
 #: /home/bjarne/uMatriks/uMatriks/About.qml:170
 msgid "Acknowledgement"
