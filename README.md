@@ -48,8 +48,14 @@ This explains how to compile && build the app without the the SDK.
     $ git submodule update --init
     $ qmake
     $ make
-    $ ./uMatriks/uMatriks
+    $ qmlscene -I lib/ Main.qml
     $ click build .
+
+Local non root install:
+
+    $ INSTALL_ROOT=$PWD/package_root make install
+    $ cd package_root
+    $ qmlscene -I lib/x86_64-linux-gnu/ uMatriks/Main.qml
 
 #### Build for ARM
 
