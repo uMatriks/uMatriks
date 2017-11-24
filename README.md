@@ -22,19 +22,29 @@ This application also takes important parts of the code base of [Tensor](https:/
 `#tensor:matrix.org`
 
 ## Pre-requisites
-Ubunu-SDK (this section will vary with the clickable environment inclusion).
+Ubunu-SDK or clickable (see app development section to build the app without sdk or clickable).
 
 ## Building
 Compile using the sdk and then create a .click file.
 
-Note: _Instructions to build this app with [clickable](https://wiki.ubports.com/wiki/Set-up-an-app-development-environment 'clickable') will be released soon._
+### Clickable
+We can use [clickable](https://docs.ubports.com/en/latest/appdev/index.html#clickable 'clickable') to build and create a click file.
+
+    $ clickable build
+    $ clickable click-build
+    
+This will create a build folder and the click file will be there.
 
 ## Installation
 There are different ways to install this app in a phone.
 
 - Use the Ubuntu-SDK to install the created click package.
 - Send to yourself the click package over wire, or over telegram, and open the file with the OpenStore app.
-- more soon...
+
+### Clickable
+Once the click file has been created with clickable, the app installation can be made with the following command.
+
+    $ clickable install
 
 ## App development
 This is the initial release of the uMatriks app. There are several things to improve, both in the usability as in the features side.
