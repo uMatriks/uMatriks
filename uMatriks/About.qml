@@ -103,7 +103,7 @@ Page {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("<a href='https://github.com/delijati'>Josip Delic</a> (@delijati:matrix.org)")
+                text: "<a href='https://github.com/delijati'>Josip Delic</a> (@delijati:matrix.org)"
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 
