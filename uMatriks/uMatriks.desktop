@@ -1,7 +1,0 @@
-[Desktop Entry]
-_Name=uMatriks
-Exec=qmlscene %U uMatriks/Main.qml
-Icon=uMatriks/umatriks.svg
-Terminal=false
-Type=Application
-X-Ubuntu-Touch=true

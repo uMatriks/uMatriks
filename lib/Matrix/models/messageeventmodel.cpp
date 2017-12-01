@@ -166,6 +166,11 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
                 if (msgType == MessageEventType::Image) {
                     return "image";
                 }
+                if (msgType == MessageEventType::Emote) {
+                    return "message.emote";
+                } else if (msgType == MessageEventType::Notice) {
+                    return "message.notice";
+                }
                 return "message";
             }
             case EventType::RoomName:
