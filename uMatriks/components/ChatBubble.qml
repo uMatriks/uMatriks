@@ -77,12 +77,10 @@ Item {
             text: content
             wrapMode: Text.Wrap
             font.pointSize: units.gu(1.5)
+            font.italic: eventType == "message.emote" ? true : false
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.margins: units.gu(1)
-
-            //            color: "white"
-            //            linkColor: "black"
             color: uMatriks.theme.palette.normal.backgroundText
             linkColor: "blue"
             textFormat: Text.RichText
@@ -132,7 +130,18 @@ Item {
             }
             Text {
                 id: authorlabel
-                text: eventType == "message" ? author : "***"
+                text: {
+                    if (eventType.indexOf("message") !== -1) {
+                        if (eventType == "message.emote") {
+                            return "* " + author;
+                        } else  {
+                            return author;
+                        }
+                    } else {
+                        return "***"
+                    }
+                }
+                font.italic: eventType == "message.emote" ? true : false
                 color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
@@ -171,7 +180,7 @@ Item {
         }
 
         Component.onCompleted: {
-            if (eventType == "message"){
+            if (eventType.indexOf("message") !== -1){
                 contentlabel.width = Math.min(contentlabel.contentWidth, chatBubble.width - avatarIcon.width - 40 - 30)
                 contentlabel.height = contentlabel.contentHeight
                 width = Math.max(contentlabel.width, innerRect.width) + 30
@@ -187,7 +196,7 @@ Item {
     }
 
     Component.onCompleted: {
-        if (eventType == "message"){
+        if (eventType.indexOf("message") !== -1){
 
             if (avatar) {
                 avatarImg.source = avatar

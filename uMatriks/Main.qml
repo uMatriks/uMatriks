@@ -23,6 +23,25 @@ MainView {
 
     width: units.gu(50)
     height: units.gu(75)
+    
+    property Connection connection: null
+    property bool initialised: false
+    property int syncIx: 0
+    property var lastSync
+    property bool loggedOut: false
+    property int activeRoomIndex: -1
+    property bool roomListComplete: false
+
+    signal componentsComplete();
+    signal leaveRoom(var room)
+
+    Timer {
+        id: synctimer
+        repeat: false
+        onTriggered: {
+            connection.sync(30000)
+        }
+    }
 
     RoomList {
         id: roomList
@@ -40,12 +59,6 @@ MainView {
         id: memberList
     }
 
-    property Connection connection: null
-    property bool initialised: false
-    property bool loggedOut: false
-    property int activeRoomIndex: -1
-    signal leaveRoom(var room)
-
     Settings   {
         id: settings
 
@@ -55,10 +68,12 @@ MainView {
         property bool theme: false
         property alias winWidth: roomList.width
         property alias winHeight: roomList.height
+        property int minResyncMs: 4000
     }
 
     MatrixConn {
         id: matrixconn
+        property string stateSaveFile: "state.json";
     }
 
     function resync() {
@@ -68,7 +83,23 @@ MainView {
             pageStack.push(roomList)
             initialised = true
         }
-        connection.sync(30000)
+        syncIx += 1
+
+        // timing
+        var now = new Date()
+        var delay = (now - lastSync) / 1000
+        console.log("..> synced in ", delay, " s <..")
+        synctimer.interval = settings.minResyncMs - (delay * 1000)
+        if (!(synctimer.interval > 0)) { // this expression also takes care of NaN
+            synctimer.interval = 0
+        }
+        console.log("resync in .. ", synctimer.interval, " ms")
+
+        synctimer.start()
+        lastSync = now
+
+        // every now and then but not on the first sync
+        if ((syncIx % 30) == 2) connection.saveState(connection.stateSaveFile)
     }
 
     function reconnect() {
@@ -106,12 +137,17 @@ MainView {
             connection.syncDone.connect(resync)
             connection.reconnected.connect(resync)
 
-            connection.sync()
+            var startSyncFn = function() {
+                connection.loadState(connection.stateSaveFile)
+                connection.sync()
+            }
+            if (roomListComplete) startSyncFn()
+            else componentsComplete.connect(startSyncFn)
         })
 
 
         // TODO save deviceId to settings
-        console.log("dev: " + connection.deviceId())
+        // console.log("dev: " + connection.deviceId())
         matrixconnect(user, pass, connection.deviceId())
         if(loggedOut)
         {

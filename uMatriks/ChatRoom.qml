@@ -13,7 +13,7 @@ Rectangle {
     function setRoom(room) {
         currentRoom = room
         messageModel.changeRoom(room)
-        console.log("ChatRoom setting room: "+ room.name)
+        // console.log("ChatRoom setting room: "+ room.name)
         room.markAllMessagesAsRead()
         chatView.positionViewAtIndex(room.notificationCount() - 1, ListView.Beginning)
     }
@@ -25,12 +25,23 @@ Rectangle {
 
     function sendLine(text) {
         console.log("Sending: " + text)
-        console.log("Room: " + currentRoom)
-        console.log("Conn: " + currentConnection)
+        // console.log("Room: " + currentRoom)
+        // console.log("Conn: " + currentConnection)
+        if (text.trim().length === 0) {
+            return
+        }
         if(!currentRoom || !currentConnection) {
             return
         }
-        currentConnection.postMessage(currentRoom, "m.text", text)
+
+        var type = "m.text"
+        var PREFIX_ME = '/me '
+        if (text.indexOf(PREFIX_ME) === 0) {
+            text = text.substr(PREFIX_ME.length)
+            type = "m.emote"
+        }
+
+        currentRoom.postMessage(type, text)
         chatView.positionViewAtBeginning()
     }
 

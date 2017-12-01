@@ -60,6 +60,8 @@ BasePage {
 
             Component.onCompleted: {
                 visible = true;
+                uMatriks.roomListComplete = true
+                uMatriks.componentsComplete();
             }
 
             delegate: ListItem{
@@ -77,7 +79,7 @@ BasePage {
                 function refreshUnread() {
                     unread = getUnread(index)
                     number = getNumber(index)
-                    console.log("[%1] %2 unread: %3 number: %4".arg(index).arg(display).arg(unread).arg(number))
+                    // console.log("[%1] %2 unread: %3 number: %4".arg(index).arg(display).arg(unread).arg(number))
                 }
 
                 ListItemLayout{
