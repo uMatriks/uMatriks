@@ -41,7 +41,7 @@ Rectangle {
             type = "m.emote"
         }
 
-        currentConnection.postMessage(currentRoom, type, text)
+        currentRoom.postMessage(type, text)
         chatView.positionViewAtBeginning()
     }
 
