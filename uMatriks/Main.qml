@@ -27,21 +27,12 @@ MainView {
     property Connection connection: null
     property bool initialised: false
     property int syncIx: 0
-    property var lastSync
     property bool loggedOut: false
     property int activeRoomIndex: -1
     property bool roomListComplete: false
 
     signal componentsComplete();
     signal leaveRoom(var room)
-
-    Timer {
-        id: synctimer
-        repeat: false
-        onTriggered: {
-            connection.sync(30000)
-        }
-    }
 
     RoomList {
         id: roomList
@@ -68,12 +59,10 @@ MainView {
         property bool theme: false
         property alias winWidth: roomList.width
         property alias winHeight: roomList.height
-        property int minResyncMs: 4000
     }
 
     MatrixConn {
         id: matrixconn
-        property string stateSaveFile: "state.json";
     }
 
     function resync() {
@@ -85,21 +74,12 @@ MainView {
         }
         syncIx += 1
 
-        // timing
-        var now = new Date()
-        var delay = (now - lastSync) / 1000
-        console.log("..> synced in ", delay, " s <..")
-        synctimer.interval = settings.minResyncMs - (delay * 1000)
-        if (!(synctimer.interval > 0)) { // this expression also takes care of NaN
-            synctimer.interval = 0
-        }
-        console.log("resync in .. ", synctimer.interval, " ms")
-
-        synctimer.start()
-        lastSync = now
-
+        connection.sync(30000)
         // every now and then but not on the first sync
-        if ((syncIx % 30) == 2) connection.saveState(connection.stateSaveFile)
+        if ((syncIx % 10) == 2) { 
+            console.log("Saving state: " + syncIx)
+            connection.saveState(connection.stateSaveFile)
+        }
     }
 
     function reconnect() {
