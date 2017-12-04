@@ -74,11 +74,12 @@ MainView {
         }
         syncIx += 1
 
-        console.log("Sync ... " + syncIx)
         connection.sync(30000)
         // every now and then but not on the first sync
-        console.log("Saving state ...")
-        connection.saveState(connection.stateSaveFile)
+        if ((syncIx % 10) == 2) { 
+            console.log("Saving state: " + syncIx)
+            connection.saveState(connection.stateSaveFile)
+        }
     }
 
     function reconnect() {
