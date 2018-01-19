@@ -31,13 +31,15 @@ void MatrixPlugin::registerTypes(const char *uri)
     qmlRegisterType<Connection> ("Matrix", 1, 0, "Connection");
     qmlRegisterType<MessageEventModel> ("Matrix", 1, 0, "MessageEventModel");
     qmlRegisterType<RoomListModel> ("Matrix", 1, 0, "RoomListModel");
-    // qmlRegisterType<Settings> ("Matrix", 1, 0, "Settings");
 }
 
 void MatrixPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
 {
     QQmlExtensionPlugin::initializeEngine(engine, uri);
+
+    // qDebug() << "uri: " << uri;
     Connection* conn = new Connection();
+    // TODO we need so set somewhere the connection or base_url is empty
     ImageProvider* img = new ImageProvider(conn);
     engine->addImageProvider("mtx", img);
 }
