@@ -1,5 +1,4 @@
-#ifndef MATRIXCONN_H
-#define MATRIXCONN_H
+#pragma once
 
 #include <QObject>
 
@@ -8,14 +7,11 @@
 class MatrixConn : public QObject
 {
     Q_OBJECT
-public:
-    explicit MatrixConn(QObject *parent = 0);
+    public:
+        explicit MatrixConn(QObject *parent = 0);
 
-    Q_INVOKABLE QMatrixClient::Connection* createConnection(const QUrl &server);
+        Q_INVOKABLE QMatrixClient::Connection* createConnection(const QUrl &server);
 
-signals:
-
-public slots:
+    signals:
+        void setImageProviderConnection(QMatrixClient::Connection* connection);
 };
-
-#endif // MATRIXCONN_H

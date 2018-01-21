@@ -79,8 +79,6 @@ void MessageEventModel::changeRoom(Room* room)
     m_currentRoom = room;
     if( room )
     {
-        // img->setConnection(room->connection());
-
         connect(m_currentRoom, &Room::aboutToAddNewMessages, this,
                 [=](RoomEventsRange events)
                 {
@@ -224,20 +222,7 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
                  if (e->senderId() ==  m_currentRoom->users()[i]->id()){
                      auto img = m_currentRoom->users()[i]->avatarUrl();//avatar(500,500);
                      auto url = QUrl("image://mtx/" + img.host() + img.path());
-                     qDebug() << "Avatar: " << url;
                      return url;
-                     // return avatar;
-                     // if (!avatar.isNull()) {
-                     //     return avatar;
-                     // }
-                     // QPixmap p = QPixmap::fromImage(m_currentRoom->users()[i]->avatar(500,500));
-                     // QByteArray bArr;
-                     // QBuffer buff(&bArr);
-                     // p.save(&buff, "JPEG");
-                     //
-                     // QString image("data:image/jpg;base64,");
-                     // image.append(QString::fromLatin1(bArr.toBase64().data()));
-                     // return image;
                  }
             }
         }
@@ -253,7 +238,6 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
                 case MessageEventType::Image: {
                     auto content = static_cast<const MessageEventContent::ImageContent*>(e->content());
                     auto url = QUrl("image://mtx/" + content->url.host() + content->url.path());
-                    qDebug() << "Image: " << url;
                     return url;
                     break;
                 }
