@@ -9,7 +9,7 @@ To have more information or to talk about this app, join the room:
 To know more about Matrix go to https://matrix.org/
 
 ## Translate
-You can help translating the app visiting this link: https://poeditor.com/join/project/Og2UosRdlD
+Deleted! Will be recreated soon...
 
 ## Thanks
 
