@@ -92,22 +92,13 @@ BasePage {
                         SlotsLayout.position: SlotsLayout.Leading
                         height: units.gu(5)
                         width: height
-                        border.width: parent.activeFocus ? 1 : 2
-                        border.color: uMatriks.theme.palette.normal.backgroundText
                         color: uMatriks.theme.palette.normal.background
-                        radius: width * 0.5
-                        Text {
-                            anchors{
-                                horizontalCenter: parent.horizontalCenter
-                                verticalCenter: parent.verticalCenter
-                            }
-                            font.bold: true
-                            font.pointSize: units.gu(2)
-                            text: roomListLayout.title.text[0]+roomListLayout.title.text[1]
-                            color: uMatriks.theme.palette.normal.backgroundText
 
+                        Image {
+                            id: roomAvatar
+                            anchors.fill: parent
+                            source: roomImg
                         }
-
                     }
 
                     Rectangle {

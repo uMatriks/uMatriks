@@ -1,26 +1,28 @@
-/******************************************************************************
- * Copyright (C) 2016 Felix Rohrbach <kde@fxrh.de>
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
+/**************************************************************************
+ *                                                                        *
+ * Copyright (C) 2016 Felix Rohrbach <kde@fxrh.de>                        *
+ *                                                                        *
+ * This program is free software; you can redistribute it and/or          *
+ * modify it under the terms of the GNU General Public License            *
+ * as published by the Free Software Foundation; either version 3         *
+ * of the License, or (at your option) any later version.                 *
+ *                                                                        *
+ * This program is distributed in the hope that it will be useful,        *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ * GNU General Public License for more details.                           *
+ *                                                                        *
+ * You should have received a copy of the GNU General Public License      *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
+ *                                                                        *
+ **************************************************************************/
 
 #include "roomlistmodel.h"
 
 #include <QtGui/QBrush>
 #include <QtGui/QColor>
 #include <QtCore/QDebug>
+#include <QtGui/QIcon>
 
 #include "libqmatrixclient/connection.h"
 #include "libqmatrixclient/room.h"
@@ -92,20 +94,41 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
         qDebug() << "UserListModel: something wrong here...";
         return QVariant();
     }
-    QMatrixClient::Room* room = m_rooms.at(index.row());
-    if( role == Qt::DisplayRole )
+    auto room = m_rooms.at(index.row());
+    switch (role)
     {
-        return room->displayName();
-    }
-    if ( role == RoomEventStateRole )
-    {
-        if (room->highlightCount() > 0) {
-            return "highlight";
-        } else if (room->hasUnreadMessages()) {
-            return "unread";
-        } else {
-            return "normal";
+        case Qt::DisplayRole:
+            return room->displayName();
+        case Qt::DecorationRole:
+        {
+            // auto avatar = room->avatar(16, 16);
+            auto img = room->avatarUrl();//avatar(500,500);
+            if (img.isValid()) {
+                // qDebug() << "***** Img: " << img.host() << " path " << img.path();
+                auto url = QUrl("image://mtx/" + img.host() + img.path());
+                return url;
+            }
+            switch( room->joinState() )
+            {
+                case QMatrixClient::JoinState::Join:
+                    return "../icons/breeze/irc-channel-joined.svg";
+                case QMatrixClient::JoinState::Invite:
+                    return "../icons/irc-channel-invited.svg";
+                case QMatrixClient::JoinState::Leave:
+                    return "../icons/breeze/irc-channel-parted.svg";
+            }
         }
+        case RoomEventStateRole:
+        {
+            if (room->highlightCount() > 0) {
+                return "highlight";
+            } else if (room->hasUnreadMessages()) {
+                return "unread";
+            } else {
+                return "normal";
+            }
+        }
+        return QVariant();
     }
     return QVariant();
 }
@@ -113,6 +136,7 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
 QHash<int, QByteArray> RoomListModel::roleNames() const {
     return QHash<int, QByteArray>({
                       std::make_pair(Qt::DisplayRole, QByteArray("display")),
+                      std::make_pair(Qt::DecorationRole, QByteArray("roomImg")),
                       std::make_pair(RoomEventStateRole, QByteArray("roomEventState"))
           });
 }
