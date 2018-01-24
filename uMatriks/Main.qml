@@ -61,10 +61,6 @@ MainView {
         property alias winHeight: roomList.height
     }
 
-    MatrixConn {
-        id: matrixconn
-    }
-
     function resync() {
         if(!initialised) {
             login.visible = false

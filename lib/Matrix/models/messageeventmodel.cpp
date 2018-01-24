@@ -1,20 +1,21 @@
-/******************************************************************************
- * Copyright (C) 2015 Felix Rohrbach <kde@fxrh.de>
- *
- * This library is free software; you can redistribute it and/or
- * modify it under the terms of the GNU Lesser General Public
- * License as published by the Free Software Foundation; either
- * version 2.1 of the License, or (at your option) any later version.
- *
- * This library is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- * Lesser General Public License for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License along with this library; if not, write to the Free Software
- * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
- */
+/**************************************************************************
+ *                                                                        *
+ * Copyright (C) 2015 Felix Rohrbach <kde@fxrh.de>                        *
+ *                                                                        *
+ * This program is free software; you can redistribute it and/or          *
+ * modify it under the terms of the GNU General Public License            *
+ * as published by the Free Software Foundation; either version 3         *
+ * of the License, or (at your option) any later version.                 *
+ *                                                                        *
+ * This program is distributed in the hope that it will be useful,        *
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of         *
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the          *
+ * GNU General Public License for more details.                           *
+ *                                                                        *
+ * You should have received a copy of the GNU General Public License      *
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.  *
+ *                                                                        *
+ **************************************************************************/
 
 #include "messageeventmodel.h"
 
@@ -60,38 +61,39 @@ QHash<int, QByteArray> MessageEventModel::roleNames() const
 
 MessageEventModel::MessageEventModel(QObject* parent)
     : QAbstractListModel(parent)
-{
-    m_currentRoom = 0;
-    m_connection = 0;
-}
-
-MessageEventModel::~MessageEventModel()
-{
-}
+    , m_currentRoom(nullptr)
+{ }
 
 void MessageEventModel::changeRoom(Room* room)
 {
+    if (room == m_currentRoom)
+        return;
+
     beginResetModel();
     if( m_currentRoom )
     {
         m_currentRoom->disconnect(this);
+        qDebug() << "Disconnected from" << m_currentRoom->id();
     }
+
     m_currentRoom = room;
     if( room )
     {
-        connect( room, &Room::aboutToAddNewMessages,
-                [=](const RoomEvents& events)
+        connect(m_currentRoom, &Room::aboutToAddNewMessages, this,
+                [=](RoomEventsRange events)
                 {
-                    beginInsertRows(QModelIndex(), 0, events.size() - 1);
+                    beginInsertRows(QModelIndex(), rowCount(),
+                                    rowCount() + int(events.size()) - 1);
                 });
-        connect( room, &Room::aboutToAddHistoricalMessages,
-                [=](const RoomEvents& events)
+        connect(m_currentRoom, &Room::aboutToAddHistoricalMessages, this,
+                [=](RoomEventsRange events)
                 {
-                    beginInsertRows(QModelIndex(),
-                                    rowCount(), rowCount() + events.size() - 1);
+                    beginInsertRows(QModelIndex(), 0, int(events.size()) - 1);
                 });
-        connect( room, &Room::addedMessages,
+        connect(m_currentRoom, &Room::addedMessages,
                  this, &MessageEventModel::endInsertRows );
+        qDebug() << "Connected to room" << room->id()
+                 << "as" << room->connection()->userId();
     }
     endResetModel();
 }
@@ -123,12 +125,12 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
     {
         if( event->type() == EventType::RoomMessage )
         {
-            RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
+            auto* e = static_cast<const RoomMessageEvent*>(event);
             return QString("%1: %2").arg(senderName, e->plainBody());
         }
         if( event->type() == EventType::RoomMember )
         {
-            RoomMemberEvent* e = static_cast<RoomMemberEvent*>(event);
+            auto* e = static_cast<const RoomMemberEvent*>(event);
             switch( e->membership() )
             {
                 case MembershipType::Join:
@@ -145,7 +147,7 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
         }
         if( event->type() == EventType::RoomAliases )
         {
-            RoomAliasesEvent* e = static_cast<RoomAliasesEvent*>(event);
+            auto* e = static_cast<const RoomAliasesEvent*>(event);
             return QString("Current aliases: %1").arg(e->aliases().join(", "));
         }
         if (event->type() == EventType::Typing)
@@ -218,14 +220,9 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
             for (int i = 0; i < m_currentRoom->users().size(); i++){
                  if (e->senderId() ==  m_currentRoom->users()[i]->id()){
-                     QPixmap p = m_currentRoom->users()[i]->avatar(500,500);
-                     QByteArray bArr;
-                     QBuffer buff(&bArr);
-                     p.save(&buff, "JPEG");
-
-                     QString image("data:image/jpg;base64,");
-                     image.append(QString::fromLatin1(bArr.toBase64().data()));
-                     return image;
+                     auto img = m_currentRoom->users()[i]->avatarUrl();//avatar(500,500);
+                     auto url = QUrl("image://mtx/" + img.host() + img.path());
+                     return url;
                  }
             }
         }
@@ -240,7 +237,8 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             switch (e->msgtype()) {
                 case MessageEventType::Image: {
                     auto content = static_cast<const MessageEventContent::ImageContent*>(e->content());
-                    return QUrl("image://mtx/" + content->url.host() + content->url.path());
+                    auto url = QUrl("image://mtx/" + content->url.host() + content->url.path());
+                    return url;
                     break;
                 }
                 default:
