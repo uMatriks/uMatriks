@@ -220,9 +220,11 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
             for (int i = 0; i < m_currentRoom->users().size(); i++){
                  if (e->senderId() ==  m_currentRoom->users()[i]->id()){
-                     auto img = m_currentRoom->users()[i]->avatarUrl();//avatar(500,500);
-                     auto url = QUrl("image://mtx/" + img.host() + img.path());
-                     return url;
+                     auto mediaid = m_currentRoom->users()[i]->avatarMediaId();
+                     if (!mediaid.isEmpty()) {
+                        auto url = QUrl("image://mtx/" + mediaid);
+                        return url;
+                     }
                  }
             }
         }

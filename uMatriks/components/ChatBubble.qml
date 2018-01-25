@@ -28,6 +28,8 @@ Item {
             id: avatarImg
             anchors.fill: parent
             visible: false
+            sourceSize.width: 16
+            sourceSize.height: 16
         }
 
         OpacityMask {
