@@ -101,11 +101,10 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
             return room->displayName();
         case Qt::DecorationRole:
         {
-            // auto avatar = room->avatar(16, 16);
-            auto img = room->avatarUrl();//avatar(500,500);
+            auto img = room->avatarUrl();
             if (img.isValid()) {
-                // qDebug() << "***** Img: " << img.host() << " path " << img.path();
-                auto url = QUrl("image://mtx/" + img.host() + img.path());
+                // qDebug() << "***** MediaID: " << room->avatarMediaId();
+                auto url = QUrl("image://mtx/" + room->avatarMediaId());
                 return url;
             }
             switch( room->joinState() )

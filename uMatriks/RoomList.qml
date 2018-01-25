@@ -98,6 +98,8 @@ BasePage {
                             id: roomAvatar
                             anchors.fill: parent
                             source: roomImg
+                            sourceSize.width: 16;
+                            sourceSize.height: 16;
                         }
                     }
 
