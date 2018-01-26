@@ -31,30 +31,46 @@ const int RoomEventStateRole = Qt::UserRole + 1;
 
 RoomListModel::RoomListModel(QObject* parent)
     : QAbstractListModel(parent)
-{
-    m_connection = 0;
-}
+{ }
 
-RoomListModel::~RoomListModel()
+void RoomListModel::addConnection(QMatrixClient::Connection* connection)
 {
-}
+    Q_ASSERT(connection);
 
-void RoomListModel::setConnection(QMatrixClient::Connection* connection)
-{
+    using QMatrixClient::Room;
     beginResetModel();
-    m_connection = connection;
-    m_rooms.clear();
+    m_connections.push_back(connection);
+    connect( connection, &QMatrixClient::Connection::loggedOut,
+             this, [=]{ deleteConnection(connection); } );
+    connect( connection, &QMatrixClient::Connection::invitedRoom,
+             this, &RoomListModel::updateRoom);
+    connect( connection, &QMatrixClient::Connection::joinedRoom,
+             this, &RoomListModel::updateRoom);
+    connect( connection, &QMatrixClient::Connection::leftRoom,
+             this, &RoomListModel::updateRoom);
+    connect( connection, &QMatrixClient::Connection::aboutToDeleteRoom,
+             this, &RoomListModel::deleteRoom);
 
-    connect( connection, &QMatrixClient::Connection::newRoom, this, &RoomListModel::addRoom );
-    connect( connection, &QMatrixClient::Connection::leftRoom, this, &RoomListModel::removeRoom );
-
-    for( QMatrixClient::Room* room: connection->roomMap().values() ) {
-        connect( room, &QMatrixClient::Room::namesChanged, this, &RoomListModel::namesChanged );
-        connect( room, &QMatrixClient::Room::unreadMessagesChanged, this, &RoomListModel::unreadMessagesChanged );
-        connect( room, &QMatrixClient::Room::highlightCountChanged, this, &RoomListModel::highlightCountChanged );
-        m_rooms.append(room);
-    }
+    for( auto r: connection->roomMap() )
+        doAddRoom(r);
     endResetModel();
+}
+
+void RoomListModel::deleteConnection(QMatrixClient::Connection* connection)
+{
+    Q_ASSERT(connection);
+
+    // TODO: Save selection
+    beginResetModel();
+    connection->disconnect(this);
+    for( QMatrixClient::Room* room: m_rooms )
+        room->disconnect( this );
+    m_rooms.erase(
+        std::remove_if(m_rooms.begin(), m_rooms.end(),
+            [=](const QMatrixClient::Room* r) { return r->connection() == connection; }),
+        m_rooms.end());
+    endResetModel();
+    // TODO: Restore selection
 }
 
 QMatrixClient::Room* RoomListModel::roomAt(int row)
@@ -62,19 +78,86 @@ QMatrixClient::Room* RoomListModel::roomAt(int row)
     return m_rooms.at(row);
 }
 
-void RoomListModel::removeRoom(QMatrixClient::Room* room)
+void RoomListModel::updateRoom(QMatrixClient::Room* room,
+                               QMatrixClient::Room* prev)
 {
-    int position = m_rooms.indexOf(room);
-    beginRemoveRows(QModelIndex(), position, position);
-    m_rooms.removeAt(position);
+    // There are two cases when this method is called:
+    // 1. (prev == nullptr) adding a new room to the room list
+    // 2. (prev != nullptr) accepting/rejecting an invitation or inviting to
+    //    the previously left room (in both cases prev has the previous state).
+    if (prev == room)
+    {
+        qCritical() << "RoomListModel::updateRoom: room tried to replace itself";
+        refresh(static_cast<QMatrixClient::Room*>(room));
+        return;
+    }
+    if (prev && room->id() != prev->id())
+    {
+        qCritical() << "RoomListModel::updateRoom: attempt to update room"
+                    << room->id() << "to" << prev->id();
+        // That doesn't look right but technically we still can do it.
+    }
+    // Ok, we're through with pre-checks, now for the real thing.
+    auto* newRoom = room;
+    const auto it = std::find_if(m_rooms.begin(), m_rooms.end(),
+          [=](const QMatrixClient::Room* r) { return r == prev || r == newRoom; });
+    if (it != m_rooms.end())
+    {
+        const int row = it - m_rooms.begin();
+        // There's no guarantee that prev != newRoom
+        if (*it == prev && *it != newRoom)
+        {
+            prev->disconnect(this);
+            m_rooms.replace(row, newRoom);
+            connectRoomSignals(newRoom);
+        }
+        emit dataChanged(index(row), index(row));
+        emit roomDataChangedEvent(row);
+    }
+    else
+    {
+        beginInsertRows(QModelIndex(), m_rooms.count(), m_rooms.count());
+        doAddRoom(newRoom);
+        endInsertRows();
+    }
+}
+
+void RoomListModel::deleteRoom(QMatrixClient::Room* room)
+{
+    auto i = m_rooms.indexOf(room);
+    if (i == -1)
+        return; // Already deleted, nothing to do
+
+    beginRemoveRows(QModelIndex(), i, i);
+    m_rooms.removeAt(i);
     endRemoveRows();
 }
 
-void RoomListModel::addRoom(QMatrixClient::Room* room)
+void RoomListModel::doAddRoom(QMatrixClient::Room* r)
 {
-    beginInsertRows(QModelIndex(), m_rooms.count(), m_rooms.count());
+    if (auto* room = r)
+    {
     m_rooms.append(room);
-    endInsertRows();
+        connectRoomSignals(room);
+    } else
+    {
+        qCritical() << "Attempt to add nullptr to the room list";
+        Q_ASSERT(false);
+    }
+}
+
+void RoomListModel::connectRoomSignals(QMatrixClient::Room* room)
+{
+    connect(room, &QMatrixClient::Room::displaynameChanged,
+            this, [=]{ displaynameChanged(room); } );
+    connect( room, &QMatrixClient::Room::unreadMessagesChanged,
+             this, [=]{ unreadMessagesChanged(room); } );
+    connect( room, &QMatrixClient::Room::notificationCountChanged,
+             this, [=]{ unreadMessagesChanged(room); } );
+    connect( room, &QMatrixClient::Room::joinStateChanged,
+             this, [=]{ refresh(room); });
+    connect( room, &QMatrixClient::Room::avatarChanged,
+             this, [=]{ refresh(room, { Qt::DecorationRole }); });
 }
 
 int RoomListModel::rowCount(const QModelIndex& parent) const
@@ -139,21 +222,22 @@ QHash<int, QByteArray> RoomListModel::roleNames() const {
           });
 }
 
-void RoomListModel::namesChanged(QMatrixClient::Room* room)
+void RoomListModel::displaynameChanged(QMatrixClient::Room* room)
 {
-    int row = m_rooms.indexOf(room);
-    emit dataChanged(row);
+    refresh(room);
 }
 
 void RoomListModel::unreadMessagesChanged(QMatrixClient::Room* room)
 {
-    int row = m_rooms.indexOf(room);
-    emit dataChanged(row);
-    qCDebug(MAIN) << "unreadMessagesChanged: " << row;
+    refresh(room);
 }
 
-void RoomListModel::highlightCountChanged(QMatrixClient::Room* room)
+void RoomListModel::refresh(QMatrixClient::Room* room, const QVector<int>& roles)
 {
     int row = m_rooms.indexOf(room);
-    emit dataChanged(row);
+    if (row == -1)
+        qCritical() << "Room" << room->id() << "not found in the room list";
+    else
+        emit dataChanged(index(row), index(row), roles);
+        emit roomDataChangedEvent(row);
 }

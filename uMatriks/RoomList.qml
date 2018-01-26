@@ -14,7 +14,8 @@ BasePage {
     RoomListModel {
         id: rooms
 
-        onDataChanged: {
+        onRoomDataChangedEvent: {
+            // XXX used for updating unread marker
             var room  = rooms.roomAt(index)
             console.log("Event for: %1".arg(room.displayName))
             roomListView.contentItem.children[index].refreshUnread()
@@ -22,7 +23,7 @@ BasePage {
     }
 
     function setConnection(conn) {
-        rooms.setConnection(conn)
+        rooms.addConnection(conn)
         roomView.setConnection(conn)
     }
 

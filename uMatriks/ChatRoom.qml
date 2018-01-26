@@ -20,7 +20,7 @@ Rectangle {
 
     function setConnection(conn) {
         currentConnection = conn
-        messageModel.setConnection(conn)
+        // messageModel.setConnection(conn)
     }
 
     function sendLine(text) {
