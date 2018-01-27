@@ -4,8 +4,7 @@ TARGET = uMatriks
 RESOURCES += uMatriks.qrc
 
 QML_FILES += $$files(*.qml,false) \
-             $$files(*.js,true) \
-             $$files(*.png,true)
+             $$files(*.js,true)
 
 CONF_FILES +=  uMatriks.apparmor
 
