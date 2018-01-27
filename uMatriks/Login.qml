@@ -82,7 +82,7 @@ Page {
                 anchors.fill: parent
                 fillMode: Image.PreserveAspectFit
                 antialiasing: true
-                source: settings.theme ? "./logo-dark.png" : "./logo.png"
+                source: settings.theme ? "./resources/logo-dark.png" : "./resources/logo.png"
             }
         }
 

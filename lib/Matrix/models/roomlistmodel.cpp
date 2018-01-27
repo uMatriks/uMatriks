@@ -192,11 +192,11 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
             switch( room->joinState() )
             {
                 case QMatrixClient::JoinState::Join:
-                    return "../icons/breeze/irc-channel-joined.svg";
+                    return "./resources/icons/breeze/irc-channel-joined.svg";
                 case QMatrixClient::JoinState::Invite:
-                    return "../icons/irc-channel-invited.svg";
+                    return "./resources/icons/irc-channel-invited.svg";
                 case QMatrixClient::JoinState::Leave:
-                    return "../icons/breeze/irc-channel-parted.svg";
+                    return "./resources/icons/breeze/irc-channel-parted.svg";
             }
         }
         case RoomEventStateRole:
