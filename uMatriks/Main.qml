@@ -135,6 +135,7 @@ MainView {
 
     Login {
         id: login
+        objectName: "login"
         anchors.fill: parent
         Component.onCompleted: {
             var user = settings.user
