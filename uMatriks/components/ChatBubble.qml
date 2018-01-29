@@ -76,7 +76,7 @@ Item {
 
         Text {
             id: contentlabel
-            text: content
+            text: display
             wrapMode: Text.Wrap
             font.pointSize: units.gu(1.5)
             font.italic: eventType == "message.emote" ? true : false
@@ -193,7 +193,7 @@ Item {
                 width = Math.max(contentImage.width, innerRect.width) + 30
                 height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
             }
-            // console.log("event: " + eventType + " content " + content)
+            console.log("event: " + eventType + " content " + content)
         }
     }
 
