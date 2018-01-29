@@ -160,7 +160,7 @@ BasePage {
                             onTriggered: {
                                 // the value will be undefined
                                 console.log("Show member list: " + rooms.roomAt(index).displayName);
-                                memberList.members = rooms.roomAt(index).memberNames()
+                                memberList.members = rooms.roomAt(index).memberNames
                                 roomList.visible = false
                                 memberList.title = i18n.tr("Members of ")
                                 memberList.title += rooms.roomAt(index).displayName
