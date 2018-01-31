@@ -210,7 +210,7 @@ Item {
 
             }
 
-            if (userId === connection.userId()) {
+            if (userId === connection.userId) {
                 avatarIcon.anchors.right = chatBubble.right
                 rect.anchors.right = avatarIcon.left
                 //                rect.color = "#2ecc71"

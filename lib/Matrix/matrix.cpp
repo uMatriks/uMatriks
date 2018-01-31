@@ -19,7 +19,7 @@ void MatrixPlugin::registerTypes(const char *uri)
 
     qmlRegisterType<SyncJob>(); qRegisterMetaType<SyncJob*> ("SyncJob*");
     qmlRegisterType<JoinRoomJob>(); qRegisterMetaType<JoinRoomJob*> ("JoinRoomJob*");
-    qmlRegisterType<LeaveRoomJob>(); qRegisterMetaType<LeaveRoomJob*> ("LeaveRoomJob*");
+    // qmlRegisterType<LeaveRoomJob>(); qRegisterMetaType<LeaveRoomJob*> ("LeaveRoomJob*");
     qmlRegisterType<Room>(); qRegisterMetaType<Room*> ("Room*");
     qmlRegisterType<User>(); qRegisterMetaType<User*> ("User*");
 
