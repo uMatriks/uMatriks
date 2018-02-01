@@ -188,7 +188,7 @@ Item {
                 width = Math.max(contentImage.width, innerRect.width) + 30
                 height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
             }
-            console.log("event: " + eventType + " content " + content)
+            // console.log("event: " + eventType + " content " + content)
         }
     }
 
@@ -201,7 +201,6 @@ Item {
             avatarMask.visible = false
             avatarText.visible = true
         }
-        console.log("UserId: " + userId + " ConnId: " + connection.localUserId);
 
         if (userId && userId === connection.localUserId) {
             avatarIcon.anchors.right = chatBubble.right
