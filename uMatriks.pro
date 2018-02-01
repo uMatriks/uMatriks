@@ -37,7 +37,7 @@ aptest.commands = bash $$PWD/uMatriks/tests/autopilot/run
 aptest.depends  = sub-uMatriks
 
 unittest.target   = check
-unittest.commands = /usr/bin/qmltestrunner -input $$PWD/uMatriks/tests/unit
+unittest.commands = /usr/bin/qmltestrunner -input $$PWD/uMatriks/tests/unit -import $$PWD/lib
 unittest.depends  = sub-uMatriks
 
 QMAKE_EXTRA_TARGETS += aptest unittest
