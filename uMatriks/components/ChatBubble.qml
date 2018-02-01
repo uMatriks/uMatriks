@@ -10,6 +10,7 @@ Item {
     height: Math.max(avatarIcon.height, rect.height)
 
     property var room: null
+    property var connection: null
 
     Rectangle {
         id: avatarIcon
@@ -17,12 +18,10 @@ Item {
         anchors.top: chatBubble.top
         width: height
         radius: height/2
-        //        anchors.margins: 20
         anchors.margins: units.gu(0.5)
         clip: true
         border.color: uMatriks.theme.palette.normal.overlayText
         color: uMatriks.theme.palette.normal.background
-
 
         Image {
             id: avatarImg
@@ -64,8 +63,6 @@ Item {
         id: rect
         anchors.top: chatBubble.top
         anchors.margins: {
-            //            right: 20
-            //            left: 20
             right: units.gu(1)
             left: units.gu(1)
         }
@@ -76,10 +73,12 @@ Item {
 
         Text {
             id: contentlabel
-            text: display
+            text: eventType == "state" || eventType == "emote" ?
+                      "* " + author + " " + display :
+                  eventType != "other" ? display : "***"
             wrapMode: Text.Wrap
             font.pointSize: units.gu(1.5)
-            font.italic: eventType == "message.emote" ? true : false
+            font.italic: eventType == ["other", "emote", "state"].indexOf(eventType) >= 0 ? true : false
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.margins: units.gu(1)
@@ -94,7 +93,7 @@ Item {
             visible: false
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.margins: 15
+            anchors.margins: units.gu(1)
             fillMode: Image.PreserveAspectFit
             height: units.gu(20)
             width: height
@@ -106,9 +105,10 @@ Item {
             visible: false
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.margins: 15
+            anchors.margins: units.gu(1)
             fillMode: Image.PreserveAspectFit
             height: units.gu(20)
+            width: height
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
@@ -132,18 +132,11 @@ Item {
             }
             Text {
                 id: authorlabel
-                text: {
-                    if (eventType.indexOf("message") !== -1) {
-                        if (eventType == "message.emote") {
-                            return "* " + author;
-                        } else  {
-                            return author;
-                        }
-                    } else {
-                        return "***"
-                    }
-                }
-                font.italic: eventType == "message.emote" ? true : false
+                horizontalAlignment: if( ["other", "emote", "state"].indexOf(eventType) >= 0 ) { Text.AlignRight }
+                elide: Text.ElideRight
+                text: eventType == "state" || eventType == "emote" ?
+                          "* " + author :
+                      eventType != "other" ? author : "***"
                 color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
@@ -182,12 +175,14 @@ Item {
         }
 
         Component.onCompleted: {
-            if (eventType.indexOf("message") !== -1){
+            if (["notice", "emote", "message", "file"].indexOf(eventType) >= 0){
                 contentlabel.width = Math.min(contentlabel.contentWidth, chatBubble.width - avatarIcon.width - 40 - 30)
                 contentlabel.height = contentlabel.contentHeight
                 width = Math.max(contentlabel.width, innerRect.width) + 30
                 height = Math.max(contentlabel.height + innerRect.height + 40, avatarIcon.height)
-                checkForLink(content);
+                if (eventType != "file") {
+                    checkForLink(content);
+                }
             } else if (eventType === "image") {
                 contentImage.width = chatBubble.width - avatarIcon.width - 40 - 30
                 width = Math.max(contentImage.width, innerRect.width) + 30
@@ -198,39 +193,36 @@ Item {
     }
 
     Component.onCompleted: {
-        if (eventType.indexOf("message") !== -1){
-
-            if (avatar) {
-                avatarImg.source = avatar
-                avatarMask.visible = true
-            } else {
-                avatarImg.visible = false
-                avatarMask.visible = false
-                avatarText.visible = true
-
-            }
-
-            if (userId === connection.userId) {
-                avatarIcon.anchors.right = chatBubble.right
-                rect.anchors.right = avatarIcon.left
-                //                rect.color = "#2ecc71"
-                rect.color = "#9E7D96"
-                contentlabel.color = "white"
-                timelabel.color = UbuntuColors.lightGrey
-                authorlabel.color = UbuntuColors.lightGrey
-                dashlabel.color = UbuntuColors.lightGrey
-
-            } else {
-                avatarIcon.anchors.left = chatBubble.left
-                rect.anchors.left = avatarIcon.right
-                //                rect.color = "#bdc3c7"
-            }
-        } else if (eventType === "image") {
-                contentImage.sourceSize = "1000x1000"
-                contentImage.source = content;
-                contentImage.visible = true;
-                contentlabel.visible = false;
+        if (avatar) {
+            avatarImg.source = avatar
+            avatarMask.visible = true
         } else {
+            avatarImg.visible = false
+            avatarMask.visible = false
+            avatarText.visible = true
+        }
+        console.log("UserId: " + userId + " ConnId: " + connection.localUserId);
+
+        if (userId && userId === connection.localUserId) {
+            avatarIcon.anchors.right = chatBubble.right
+            rect.anchors.right = avatarIcon.left
+            rect.color = "#9E7D96"
+            contentlabel.color = "white"
+            timelabel.color = UbuntuColors.lightGrey
+            authorlabel.color = UbuntuColors.lightGrey
+            dashlabel.color = UbuntuColors.lightGrey
+        } else {
+            avatarIcon.anchors.left = chatBubble.left
+            rect.anchors.left = avatarIcon.right
+        }
+
+        if (eventType === "image") {
+            contentImage.sourceSize = "1000x1000"
+            contentImage.source = content;
+            contentImage.visible = true;
+            contentlabel.visible = false;
+        }
+        if (["other", "state"].indexOf(eventType) >= 0 ){
             innerRect.visible = false
             avatarIcon.visible = false
             rect.color = uMatriks.theme.palette.normal.background

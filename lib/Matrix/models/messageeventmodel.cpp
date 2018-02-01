@@ -337,9 +337,9 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             switch (static_cast<const RoomMessageEvent*>(event)->msgtype())
             {
                 case MessageEventType::Emote:
-                    return "message.emote";
+                    return "emote";
                 case MessageEventType::Notice:
-                    return "message.notice";
+                    return "notice";
                 case MessageEventType::Image:
                     return "image";
                 case MessageEventType::File:
