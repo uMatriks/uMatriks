@@ -57,8 +57,6 @@ MainView {
         property string accessToken: ""
         property string homeserver: ""
         property bool theme: false
-        property alias winWidth: roomList.width
-        property alias winHeight: roomList.height
     }
 
     function resync() {
@@ -79,7 +77,9 @@ MainView {
     }
 
     function reconnect() {
-        connection.connectWithaccessToken(connection.localUserId, connection.accessToken)
+        connection.connectWithToken(connection.localUserId,
+                                    connection.accessToken,
+                                    connection.deviceId)
     }
 
     function logout() {
@@ -90,17 +90,17 @@ MainView {
         settings.homeserver = "";
     }
 
-    function login(user, pass, server, connectWithaccessToken) {
+    function login(user, pass, server, hasToken) {
 
         if(!server) server = "https://matrix.org"
         connection = matrixconn.createConnection(server)
         connection.loginError.connect(login.loginError)
 
         var matrixconnect
-        if(!connectWithaccessToken)
+        if(!hasToken)
             matrixconnect = connection.connectToServer
         else
-            matrixconnect = connection.connectWithaccessToken
+            matrixconnect = connection.connectWithToken
 
         // TODO: apparently reconnect is done with password but only a accessToken is available so it won't reconnect
         connection.connected.connect(function() {
@@ -141,6 +141,7 @@ MainView {
             var user = settings.user
             var accessToken = settings.accessToken
             var server = settings.homeserver
+
             if(user && accessToken) {
                 login.login(true)
                 uMatriks.login(user, accessToken, server, true)
