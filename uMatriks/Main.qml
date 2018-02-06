@@ -93,14 +93,14 @@ MainView {
     function login(user, pass, server, hasToken) {
 
         if(!server) server = "https://matrix.org"
-        connection = matrixconn.createConnection(server)
+        connection = matrixHelper.createConnection(server)
         connection.loginError.connect(login.loginError)
 
-        var matrixconnect
+        var matrixConn
         if(!hasToken)
-            matrixconnect = connection.connectToServer
+            matrixConn = connection.connectToServer
         else
-            matrixconnect = connection.connectWithToken
+            matrixConn = connection.connectWithToken
 
         // TODO: apparently reconnect is done with password but only a accessToken is available so it won't reconnect
         connection.connected.connect(function() {
@@ -124,7 +124,7 @@ MainView {
 
         // TODO save deviceId to settings
         // console.log("dev: " + connection.deviceId)
-        matrixconnect(user, pass, connection.deviceId)
+        matrixConn(user, pass, connection.deviceId)
         if(loggedOut)
         {
             pageStack.pop()

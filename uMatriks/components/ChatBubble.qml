@@ -1,6 +1,7 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import QtGraphicalEffects 1.0
+import Ubuntu.DownloadManager 1.2
 import Matrix 1.0
 import '../utils.js' as Utils
 
@@ -112,6 +113,55 @@ Item {
             anchors.horizontalCenter: parent.horizontalCenter
         }
 
+        Rectangle {
+            id: fileRect
+            visible: false
+            anchors.left: parent.left
+            anchors.top: parent.top
+            anchors.margins: units.gu(1)
+
+            Button {
+                id: downloadButton
+                text: i18n.tr("Download")
+                height: 50
+                // anchors.right: parent.right
+                onClicked: {
+                    var downloadUrl = room.urlToDownload(eventId)
+                    console.log("Download Url: " + downloadUrl)
+                    single.metadata.title = display
+                    single.download(downloadUrl)
+                }
+            }
+
+            ProgressBar {
+                minimumValue: 0
+                maximumValue: 100
+                value: single.progress
+                height: units.gu(0.5)
+                anchors {
+                    left: parent.left
+                    right: parent.right
+                    bottom: parent.bottom
+                }
+            }
+
+            SingleDownload {
+                id: single
+                autoStart: true
+                metadata: Metadata {
+                    showInIndicator: true
+                }
+
+                onFinished: {
+                    downloadButton.enabled = false
+                    console.log('Downloaded to: '+path)
+                    pageStack.push(Qt.resolvedUrl("../SharePage.qml"), {'link': path})
+                    // XXX is not working apparmor 
+                    // matrixHelper.moveToDownloads(path);
+                }
+            }
+        }
+
         Row {
             id: innerRect
             anchors.left: parent.left
@@ -180,7 +230,9 @@ Item {
                 contentlabel.height = contentlabel.contentHeight
                 width = Math.max(contentlabel.width, innerRect.width) + 30
                 height = Math.max(contentlabel.height + innerRect.height + 40, avatarIcon.height)
-                if (eventType != "file") {
+                if (eventType == "file") {
+                    fileRect.visible = true;
+                } else {
                     checkForLink(content);
                 }
             } else if (eventType === "image") {

@@ -32,10 +32,13 @@ qml_resources.files += resources
 config_files.path = /uMatriks
 config_files.files += $${CONF_FILES}
 
+content_hub.path = /uMatriks
+content_hub.files += content-hub.json
+
 #install the desktop file, a translated version is
 #automatically created in the build directory
 desktop_file.path = /uMatriks
 desktop_file.files = $$OUT_PWD/uMatriks.desktop
 desktop_file.CONFIG += no_check_exist
 
-INSTALLS+=config_files qml_files qml_components desktop_file qml_resources
+INSTALLS+=config_files qml_files qml_components desktop_file qml_resources content_hub

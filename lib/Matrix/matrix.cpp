@@ -8,7 +8,7 @@
 #include "models/messageeventmodel.h"
 #include "models/roomlistmodel.h"
 #include "settings.h"
-#include "matrixconn.h"
+#include "matrixhelper.h"
 
 Q_DECLARE_METATYPE(SyncJob*)
 Q_DECLARE_METATYPE(Room*)
@@ -37,9 +37,9 @@ void MatrixPlugin::initializeEngine(QQmlEngine *engine, const char *uri)
     // TODO we need so set somewhere the connection or base_url is empty
     img = new ImageProvider(conn);
     engine->addImageProvider("mtx", img);
-    auto matrixconn = new MatrixConn();
-    engine->rootContext()->setContextProperty("matrixconn", matrixconn);
-    connect(matrixconn, &MatrixConn::setImageProviderConnection, this, &MatrixPlugin::setImageProviderConnection);
+    auto matrixHelper = new MatrixHelper();
+    engine->rootContext()->setContextProperty("matrixHelper", matrixHelper);
+    connect(matrixHelper, &MatrixHelper::setImageProviderConnection, this, &MatrixPlugin::setImageProviderConnection);
 }
 
 void MatrixPlugin::setImageProviderConnection(Connection* connection)
