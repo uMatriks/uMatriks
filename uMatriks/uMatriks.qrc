@@ -7,14 +7,20 @@
         <file>jschat.js</file>
         <file>utils.js</file>
         <file>Login.qml</file>
-        <file>logo.png</file>
-        <file>logo-dark.png</file>
         <file>RoomList.qml</file>
         <file>RoomView.qml</file>
         <file>MemberList.qml</file>
         <file>DialogJoinRoom.qml</file>
         <file>Theme.qml</file>
-        <file>umatriks.svg</file>
+        <file>SharePage.qml</file>
+        <file>components/DialogDownload.qml</file>
         <file>components/ChatBubble.qml</file>
+
+        <file>resources/umatriks.svg</file>
+        <file>resources/logo.png</file>
+        <file>resources/logo-dark.png</file>
+        <file alias="irc-channel-joined.svg">resources/icons/breeze/irc-channel-joined.svg</file>
+        <file alias="irc-channel-parted.svg">resources/icons/breeze/irc-channel-parted.svg</file>
+        <file alias="irc-channel-invited.svg">resources/icons/irc-channel-invited.svg</file>
     </qresource>
 </RCC>

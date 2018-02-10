@@ -19,14 +19,9 @@
 
 #pragma once
 
-#include <QtCore/QAbstractListModel>
+#include "libqmatrixclient/room.h"
 
-namespace QMatrixClient
-{
-    class Room;
-    class Connection;
-    class RoomEvent;
-}
+#include <QtCore/QAbstractListModel>
 
 class MessageEventModel: public QAbstractListModel
 {
@@ -40,14 +35,20 @@ class MessageEventModel: public QAbstractListModel
     public:
         explicit MessageEventModel(QObject* parent = nullptr);
 
-        Q_INVOKABLE void setConnection(QMatrixClient::Connection* connection);
         Q_INVOKABLE void changeRoom(QMatrixClient::Room* room);
 
         int rowCount(const QModelIndex& parent = QModelIndex()) const override;
         QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
         QHash<int, QByteArray> roleNames() const override;
 
+    private slots:
+        void refreshEvent(const QString& eventId);
+
     private:
         QMatrixClient::Room* m_currentRoom;
-        QMatrixClient::Connection* m_connection;
+        QString lastReadEventId;
+
+        QDateTime makeMessageTimestamp(QMatrixClient::Room::rev_iter_t baseIt) const;
+        QString makeDateString(QMatrixClient::Room::rev_iter_t baseIt) const;
+        void refreshEventRoles(const QString& eventId, const QVector<int> roles);
 };

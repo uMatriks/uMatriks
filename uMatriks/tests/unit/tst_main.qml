@@ -2,10 +2,7 @@ import QtQuick 2.4
 import QtTest 1.0
 import Ubuntu.Test 1.0
 import "../../"
-// See more details at https://developer.ubuntu.com/api/qml/sdk-14.10/Ubuntu.Test.UbuntuTestCase
-
-// Execute these tests with:
-//   qmltestrunner
+// See more details at https://api-docs.ubports.com/index.html
 
 Item {
 
@@ -22,20 +19,18 @@ Item {
 
         when: windowShown
 
-
         function init() {
-            var label = findChild(main, "label");
-            // See the compare method documentation at https://developer.ubuntu.com/api/qml/sdk-14.10/QtTest.TestCase/#compare-method
-            compare("Hello..", label.text);
+            var login = findChild(main, "login");
+            compare("[ uMatriks ]", login.header.title);
         }
 
-        function test_clickButtonMustChangeLabel() {
-            var button = findChild(main, "button");
-            var buttonCenter = centerOf(button)
-            mouseClick(button, buttonCenter.x, buttonCenter.y);
-            var label = findChild(main, "label");
-            // See the tryCompare method documentation at https://developer.ubuntu.com/api/qml/sdk-14.10/QtTest.TestCase/#tryCompare-method
-            tryCompare(label, "text", "..world!", 1);
-        }
+        // function test_clickButtonMustChangeLabel() {
+        //     var button = findChild(main, "button");
+        //     var buttonCenter = centerOf(button)
+        //     mouseClick(button, buttonCenter.x, buttonCenter.y);
+        //     var label = findChild(main, "label");
+        //     // See the tryCompare method documentation at https://developer.ubuntu.com/api/qml/sdk-14.10/QtTest.TestCase/#tryCompare-method
+        //     tryCompare(label, "text", "..world!", 1);
+        // }
     }
 }

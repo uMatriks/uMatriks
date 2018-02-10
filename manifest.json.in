@@ -6,7 +6,8 @@
     "hooks": {
         "uMatriks": {
             "apparmor": "uMatriks/uMatriks.apparmor",
-            "desktop": "uMatriks/uMatriks.desktop"
+            "desktop": "uMatriks/uMatriks.desktop",
+            "content-hub": "uMatriks/content-hub.json"
         }
     },
     "version": "0.8",

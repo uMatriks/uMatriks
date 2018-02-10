@@ -20,7 +20,6 @@ Rectangle {
 
     function setConnection(conn) {
         currentConnection = conn
-        messageModel.setConnection(conn)
     }
 
     function sendLine(text) {
@@ -57,6 +56,7 @@ Rectangle {
             id: chatBubble
             width: parent.width
             room: currentRoom
+            connection: currentConnection
         }
 
         onAtYBeginningChanged: {

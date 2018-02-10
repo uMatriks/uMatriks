@@ -14,7 +14,8 @@ BasePage {
     RoomListModel {
         id: rooms
 
-        onDataChanged: {
+        onRoomDataChangedEvent: {
+            // XXX used for updating unread marker
             var room  = rooms.roomAt(index)
             console.log("Event for: %1".arg(room.displayName))
             roomListView.contentItem.children[index].refreshUnread()
@@ -22,7 +23,7 @@ BasePage {
     }
 
     function setConnection(conn) {
-        rooms.setConnection(conn)
+        rooms.addConnection(conn)
         roomView.setConnection(conn)
     }
 
@@ -92,22 +93,15 @@ BasePage {
                         SlotsLayout.position: SlotsLayout.Leading
                         height: units.gu(5)
                         width: height
-                        border.width: parent.activeFocus ? 1 : 2
-                        border.color: uMatriks.theme.palette.normal.backgroundText
                         color: uMatriks.theme.palette.normal.background
-                        radius: width * 0.5
-                        Text {
-                            anchors{
-                                horizontalCenter: parent.horizontalCenter
-                                verticalCenter: parent.verticalCenter
-                            }
-                            font.bold: true
-                            font.pointSize: units.gu(2)
-                            text: roomListLayout.title.text[0]+roomListLayout.title.text[1]
-                            color: uMatriks.theme.palette.normal.backgroundText
 
+                        Image {
+                            id: roomAvatar
+                            anchors.fill: parent
+                            source: roomImg
+                            sourceSize.width: 16
+                            sourceSize.height: 16
                         }
-
                     }
 
                     Rectangle {
@@ -166,7 +160,7 @@ BasePage {
                             onTriggered: {
                                 // the value will be undefined
                                 console.log("Show member list: " + rooms.roomAt(index).displayName);
-                                memberList.members = rooms.roomAt(index).memberNames()
+                                memberList.members = rooms.roomAt(index).memberNames
                                 roomList.visible = false
                                 memberList.title = i18n.tr("Members of ")
                                 memberList.title += rooms.roomAt(index).displayName

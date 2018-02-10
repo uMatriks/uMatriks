@@ -54,11 +54,9 @@ MainView {
         id: settings
 
         property string user: ""
-        property string token: ""
+        property string accessToken: ""
         property string homeserver: ""
         property bool theme: false
-        property alias winWidth: roomList.width
-        property alias winHeight: roomList.height
     }
 
     function resync() {
@@ -79,34 +77,36 @@ MainView {
     }
 
     function reconnect() {
-        connection.connectWithToken(connection.userId(), connection.token())
+        connection.connectWithToken(connection.localUserId,
+                                    connection.accessToken,
+                                    connection.deviceId)
     }
 
     function logout() {
         connection.logout();
         loggedOut = true;
         settings.user = "";
-        settings.token = "";
+        settings.accessToken = "";
         settings.homeserver = "";
     }
 
-    function login(user, pass, server, connectWithToken) {
+    function login(user, pass, server, hasToken) {
 
         if(!server) server = "https://matrix.org"
-        connection = matrixconn.createConnection(server)
+        connection = matrixHelper.createConnection(server)
         connection.loginError.connect(login.loginError)
 
-        var matrixconnect
-        if(!connectWithToken)
-            matrixconnect = connection.connectToServer
+        var matrixConn
+        if(!hasToken)
+            matrixConn = connection.connectToServer
         else
-            matrixconnect = connection.connectWithToken
+            matrixConn = connection.connectWithToken
 
-        // TODO: apparently reconnect is done with password but only a token is available so it won't reconnect
+        // TODO: apparently reconnect is done with password but only a accessToken is available so it won't reconnect
         connection.connected.connect(function() {
-            settings.user = connection.userId()
-            settings.token = connection.token()
-            settings.homeserver = connection.homeserver()
+            settings.user = connection.localUserId
+            settings.accessToken = connection.accessToken
+            settings.homeserver = connection.homeserver
 
             connection.syncError.connect(reconnect)
             connection.resolveError.connect(reconnect)
@@ -123,8 +123,8 @@ MainView {
 
 
         // TODO save deviceId to settings
-        // console.log("dev: " + connection.deviceId())
-        matrixconnect(user, pass, connection.deviceId())
+        // console.log("dev: " + connection.deviceId)
+        matrixConn(user, pass, connection.deviceId)
         if(loggedOut)
         {
             pageStack.pop()
@@ -135,14 +135,16 @@ MainView {
 
     Login {
         id: login
+        objectName: "login"
         anchors.fill: parent
         Component.onCompleted: {
             var user = settings.user
-            var token = settings.token
+            var accessToken = settings.accessToken
             var server = settings.homeserver
-            if(user && token) {
+
+            if(user && accessToken) {
                 login.login(true)
-                uMatriks.login(user, token, server, true)
+                uMatriks.login(user, accessToken, server, true)
                 login.loadingMode(true)
             }
         }

@@ -1,15 +1,50 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
 import QtGraphicalEffects 1.0
+import Ubuntu.Components.Popups 1.3
 import Matrix 1.0
 import '../utils.js' as Utils
 
 Item {
     id: chatBubble
 
-    height: Math.max(avatarIcon.height, rect.height)
+    height: Math.max(units.gu(6), rect.height)
 
     property var room: null
+    property var connection: null
+
+    function checkForLink(content) {
+        if (content.indexOf("https://") !== -1 || content.indexOf("http://") !== -1) {
+            if((content.indexOf(".png") !== -1 || content.indexOf(".jpg") !== -1 || content.indexOf(".gif") !== -1)) {
+                var start = content.indexOf("https://") !== -1 ? content.indexOf("https://") : content.indexOf("http://");
+                var end;
+                var url;
+                if(content.indexOf(".gif") !== -1) {
+                    end = content.indexOf(".gif");
+                    url = content.slice(start, end + 4);
+                    contentAnimatedImage.source = url;
+                    contentAnimatedImage.visible = true;
+                    rect.height += contentAnimatedImage.height;
+                }
+                else {
+                    end = content.indexOf(".png") !== -1 ? content.indexOf(".png") : content.indexOf(".jpg");
+                    url = content.slice(start, end + 4);
+                    contentImage.source = url;
+                    contentImage.visible = true;
+                    rect.height += contentImage.height;
+                }
+            }
+            contentlabel.text = Utils.checkForLink(content);
+        }
+    }
+
+    DialogDownload {
+        id: dialogDownload
+        property var current: null
+        property var downloadButton: null
+        property var filename: null
+        property var downloadUrl: null
+    }
 
     Rectangle {
         id: avatarIcon
@@ -17,17 +52,17 @@ Item {
         anchors.top: chatBubble.top
         width: height
         radius: height/2
-        //        anchors.margins: 20
         anchors.margins: units.gu(0.5)
         clip: true
         border.color: uMatriks.theme.palette.normal.overlayText
         color: uMatriks.theme.palette.normal.background
 
-
         Image {
             id: avatarImg
             anchors.fill: parent
             visible: false
+            sourceSize.width: 16
+            sourceSize.height: 16
         }
 
         OpacityMask {
@@ -61,9 +96,8 @@ Item {
     Rectangle {
         id: rect
         anchors.top: chatBubble.top
+        height: height
         anchors.margins: {
-            //            right: 20
-            //            left: 20
             right: units.gu(1)
             left: units.gu(1)
         }
@@ -74,13 +108,19 @@ Item {
 
         Text {
             id: contentlabel
-            text: content
+            text: eventType == "state" || eventType == "emote" ?
+                      "* " + author + " " + display :
+                  eventType != "other" ? display : "***"
             wrapMode: Text.Wrap
             font.pointSize: units.gu(1.5)
-            font.italic: eventType == "message.emote" ? true : false
+            font.italic: eventType == ["other", "emote", "state"].indexOf(eventType) >= 0 ? true : false
             anchors.left: parent.left
             anchors.top: parent.top
-            anchors.margins: units.gu(1)
+            anchors.margins: {
+                top: units.gu(1)
+                left: units.gu(1)
+                bottom: units.gu(1)
+            }
             color: uMatriks.theme.palette.normal.backgroundText
             linkColor: "blue"
             textFormat: Text.RichText
@@ -91,30 +131,62 @@ Item {
             id: contentImage
             visible: false
             anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.margins: 15
+            anchors.top: contentlabel.visible ? contentlabel.bottom : undefined
+            anchors.margins: {
+                top: units.gu(1)
+                left: units.gu(1)
+                bottom: units.gu(1)
+            }
             fillMode: Image.PreserveAspectFit
             height: units.gu(20)
             width: height
-            anchors.horizontalCenter: parent.horizontalCenter
         }
 
         AnimatedImage {
             id: contentAnimatedImage
             visible: false
             anchors.left: parent.left
-            anchors.top: parent.top
-            anchors.margins: 15
+            anchors.top: contentlabel.visible ? contentlabel.bottom : undefined
+            anchors.margins: {
+                top: units.gu(1)
+                left: units.gu(1)
+                bottom: units.gu(1)
+            }
             fillMode: Image.PreserveAspectFit
             height: units.gu(20)
-            anchors.horizontalCenter: parent.horizontalCenter
+            width: height
+        }
+
+        Button {
+            id: downloadButton
+            visible: false
+            text: i18n.tr("Download")
+            anchors.left: parent.left
+            anchors.margins: {
+                top: units.gu(1)
+                left: units.gu(1)
+                bottom: units.gu(1)
+            }
+            onClicked: {
+                var downloadUrl = room.urlToDownload(eventId)
+                console.log("Download Url: " + downloadUrl)
+
+                dialogDownload.downloadButton = downloadButton
+                dialogDownload.filename = display
+                dialogDownload.downloadUrl = downloadUrl
+                dialogDownload.current = PopupUtils.open(dialogDownload, uMatriks)
+            }
         }
 
         Row {
             id: innerRect
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            anchors.margins: 5
+            anchors.margins: {
+                top: units.gu(1)
+                left: units.gu(1)
+                bottom: units.gu(1)
+            }
 
             Text {
                 id: timelabel
@@ -130,105 +202,72 @@ Item {
             }
             Text {
                 id: authorlabel
-                text: {
-                    if (eventType.indexOf("message") !== -1) {
-                        if (eventType == "message.emote") {
-                            return "* " + author;
-                        } else  {
-                            return author;
-                        }
-                    } else {
-                        return "***"
-                    }
-                }
-                font.italic: eventType == "message.emote" ? true : false
+                horizontalAlignment: if( ["other", "emote", "state"].indexOf(eventType) >= 0 ) { Text.AlignRight }
+                elide: Text.ElideRight
+                text: eventType == "state" || eventType == "emote" ?
+                          "* " + author :
+                      eventType != "other" ? author : "***"
                 color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
         }
 
-        function checkForLink(content)
-        {
-            if (content.indexOf("https://") !== -1 || content.indexOf("http://") !== -1)
-            {
-                if((content.indexOf(".png") !== -1 || content.indexOf(".jpg") !== -1 || content.indexOf(".gif") !== -1))
-                {
-                    var start = content.indexOf("https://") !== -1 ? content.indexOf("https://") : content.indexOf("http://");
-                    var end;
-                    var url;
-                    if(content.indexOf(".gif") !== -1)
-                    {
-                        end = content.indexOf(".gif");
-                        url = content.slice(start, end + 4);
-                        contentAnimatedImage.source = url;
-                        contentAnimatedImage.visible = true;
-                        contentAnimatedImage.anchors.top = contentlabel.bottom;
-                        rect.height += contentAnimatedImage.height;
-                    }
-                    else
-                    {
-                        end = content.indexOf(".png") !== -1 ? content.indexOf(".png") : content.indexOf(".jpg");
-                        url = content.slice(start, end + 4);
-                        contentImage.source = url;
-                        contentImage.visible = true;
-                        contentImage.anchors.top = contentlabel.bottom;
-                        rect.height += contentImage.height;
-                    }
-                }
-                contentlabel.text = Utils.checkForLink(content);
-            }
-        }
-
         Component.onCompleted: {
-            if (eventType.indexOf("message") !== -1){
+            if (["notice", "emote", "message", "file"].indexOf(eventType) >= 0){
                 contentlabel.width = Math.min(contentlabel.contentWidth, chatBubble.width - avatarIcon.width - 40 - 30)
                 contentlabel.height = contentlabel.contentHeight
                 width = Math.max(contentlabel.width, innerRect.width) + 30
-                height = Math.max(contentlabel.height + innerRect.height + 40, avatarIcon.height)
-                checkForLink(content);
+                rect.height = Math.max(contentlabel.height + innerRect.height + 40, avatarIcon.height)
+                if (eventType == "file") {
+                    downloadButton.anchors.top = contentlabel.bottom
+                    downloadButton.visible = true;
+                    rect.height += downloadButton.height + 20
+                } else {
+                    checkForLink(content);
+                }
             } else if (eventType === "image") {
                 contentImage.width = chatBubble.width - avatarIcon.width - 40 - 30
                 width = Math.max(contentImage.width, innerRect.width) + 30
-                height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
+                rect.height = Math.max(contentImage.height + innerRect.height + 40, avatarIcon.height)
+                rect.height += downloadButton.height + 20
+                downloadButton.anchors.top = contentImage.bottom
+                downloadButton.visible = true;
             }
+            height = rect.height
             // console.log("event: " + eventType + " content " + content)
         }
     }
 
     Component.onCompleted: {
-        if (eventType.indexOf("message") !== -1){
-
-            if (avatar) {
-                avatarImg.source = avatar
-                avatarMask.visible = true
-            } else {
-                avatarImg.visible = false
-                avatarMask.visible = false
-                avatarText.visible = true
-
-            }
-
-            if (userId === connection.userId()) {
-                avatarIcon.anchors.right = chatBubble.right
-                rect.anchors.right = avatarIcon.left
-                //                rect.color = "#2ecc71"
-                rect.color = "#9E7D96"
-                contentlabel.color = "white"
-                timelabel.color = UbuntuColors.lightGrey
-                authorlabel.color = UbuntuColors.lightGrey
-                dashlabel.color = UbuntuColors.lightGrey
-
-            } else {
-                avatarIcon.anchors.left = chatBubble.left
-                rect.anchors.left = avatarIcon.right
-                //                rect.color = "#bdc3c7"
-            }
-        } else if (eventType === "image") {
-                contentImage.sourceSize = "1000x1000"
-                contentImage.source = content;
-                contentImage.visible = true;
-                contentlabel.visible = false;
+        if (avatar) {
+            avatarImg.source = avatar
+            avatarMask.visible = true
         } else {
+            avatarImg.visible = false
+            avatarMask.visible = false
+            avatarText.visible = true
+        }
+
+        if (userId && userId === connection.localUserId) {
+            avatarIcon.anchors.right = chatBubble.right
+            rect.anchors.right = avatarIcon.left
+            rect.color = "#9E7D96"
+            contentlabel.color = "white"
+            timelabel.color = UbuntuColors.lightGrey
+            authorlabel.color = UbuntuColors.lightGrey
+            dashlabel.color = UbuntuColors.lightGrey
+        } else {
+            avatarIcon.anchors.left = chatBubble.left
+            rect.anchors.left = avatarIcon.right
+        }
+
+        if (eventType === "image") {
+            contentImage.sourceSize = "1000x1000"
+            contentImage.source = content;
+            contentImage.visible = true;
+            contentlabel.visible = false;
+        }
+        if (["other", "state"].indexOf(eventType) >= 0 ){
             innerRect.visible = false
             avatarIcon.visible = false
             rect.color = uMatriks.theme.palette.normal.background
