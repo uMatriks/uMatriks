@@ -67,54 +67,20 @@ Local non root install:
     $ cd package_root
     $ qmlscene -I lib/x86_64-linux-gnu/ uMatriks/Main.qml
 
-#### Build for ARM
+### Plain docker
 
-The steps are essential the same we only need to setup a arm qemu container.
+Build docker image
 
-First we create a container:
+    $ docker build -t ubports_xenial .
 
-    sudo lxc-create -n vivid-armhf -t ubuntu -- -b utouch -a armhf -r vivid
+Build code
 
-Edit the config and add mounts and network support:
+    $ docker run -ti --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/developer/ubports_build ubports_xenial bash -c "qmake && make"
 
-    sudo nvim /var/lib/lxc/vivid-armhf/config
-    # Template used to create this container: /usr/share/lxc/templates/lxc-ubuntu
-    # Parameters passed to the template: -b utouch -a armhf -r vivid
-    # Template script checksum (SHA-1): 704a37e3ce689db94dd1c1a02eae680a00cb5a82
-    # For additional config options, please look at lxc.container.conf(5)
+Run code
 
-    # Uncomment the following line to support nesting containers:
-    #lxc.include = /usr/share/lxc/config/nesting.conf
-    # (Be aware this has security implications)
+    $ docker run -ti --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/developer/ubports_build ubports_xenial bash -c "/usr/bin/qmlscene -I lib/ uMatriks/Main.qml"
 
-    ## Network
-    lxc.utsname = vivid-armhf
-    lxc.network.type = veth
-    lxc.network.flags = up
-    lxc.network.link = lxcbr0
+Run tests
 
-    # Common configuration
-    lxc.include = /usr/share/lxc/config/ubuntu.common.conf
-
-    # Container specific configuration
-    lxc.rootfs = /var/lib/lxc/vivid-armhf/rootfs
-    lxc.rootfs.backend = dir
-    lxc.utsname = vivid-armhf
-    lxc.arch = armhf
-
-    # Network configuration
-    lxc.mount.entry = /home/utouch home/utouch none bind 0 0
-    lxc.mount.entry = /opt/develop  opt/develop none bind 0 0
-
-Start the container: 
-
-    sudo lxc-start -n vivid-armhf
-
-Connect to it:
-
-    sudo lxc-console -n vivid-armhf
-    # use your login go to /opt/develop and run the build commands
-
-Stop it:
-
-    sudo lxc-stop -n vivid-armhf
+    $ docker run -ti --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/developer/ubports_build ubports_xenial bash -c "qmake && make check"
