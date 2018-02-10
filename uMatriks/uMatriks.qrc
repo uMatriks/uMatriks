@@ -13,6 +13,7 @@
         <file>DialogJoinRoom.qml</file>
         <file>Theme.qml</file>
         <file>SharePage.qml</file>
+        <file>components/DialogDownload.qml</file>
         <file>components/ChatBubble.qml</file>
 
         <file>resources/umatriks.svg</file>
