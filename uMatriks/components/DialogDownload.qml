@@ -16,8 +16,8 @@ Component {
          // Binding loop detected for property "height"
          // thats why we set the conentHeight by hand
          dialog.contentHeight = units.gu(20)
-         // single.metadata.title = filename
-         // single.download(downloadUrl)
+         single.metadata.title = filename
+         single.download(downloadUrl)
       }
 
       Text {
