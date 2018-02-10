@@ -8,22 +8,26 @@ Component {
    Dialog {
       id: dialog
       title: "<b>%1</b>".arg(i18n.tr("Download"))
-
+      
       Component.onCompleted: {
          console.log("Download popup filename: " + filename)
          console.log("Download popup url: " + downloadUrl)
+         // TODO we geht some wired 
+         // Binding loop detected for property "height"
+         // thats why we set the conentHeight by hand
+         dialog.contentHeight = units.gu(20)
          // single.metadata.title = filename
          // single.download(downloadUrl)
       }
 
-      Label {
-         width: parent.width
+      Text {
          wrapMode: Text.WordWrap
          text: filename
       }
 
       Button {
          text: i18n.tr("Cancel")
+         anchors.bottomMargin: units.gu(2)
          onClicked: {
             single.cancel()
             console.log("Cancel");
