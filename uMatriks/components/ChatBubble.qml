@@ -109,7 +109,7 @@ Item {
         Text {
             id: contentlabel
             text: eventType == "state" || eventType == "emote" ?
-                      "* " + author + " " + display :
+                      "* " + author.displayName + " " + display :
                   eventType != "other" ? display : "***"
             wrapMode: Text.Wrap
             font.pointSize: units.gu(1.5)
@@ -205,8 +205,8 @@ Item {
                 horizontalAlignment: if( ["other", "emote", "state"].indexOf(eventType) >= 0 ) { Text.AlignRight }
                 elide: Text.ElideRight
                 text: eventType == "state" || eventType == "emote" ?
-                          "* " + author :
-                      eventType != "other" ? author : "***"
+                          "* " + author.displayName :
+                      eventType != "other" ? author.displayName : "***"
                 color: uMatriks.theme.palette.normal.backgroundTertiaryText
                 font.pointSize: units.gu(0.9)
             }
@@ -239,8 +239,9 @@ Item {
     }
 
     Component.onCompleted: {
-        if (avatar) {
-            avatarImg.source = avatar
+        if (author.avatarMediaId) {
+            avatarImg.source = "image://mtx/" + author.avatarMediaId
+            console.log("avatar Url: " + avatarImg.source)
             avatarMask.visible = true
         } else {
             avatarImg.visible = false
@@ -248,7 +249,7 @@ Item {
             avatarText.visible = true
         }
 
-        if (userId && userId === connection.localUserId) {
+        if (author && author.id === connection.localUserId) {
             avatarIcon.anchors.right = chatBubble.right
             rect.anchors.right = avatarIcon.left
             rect.color = "#9E7D96"

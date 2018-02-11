@@ -40,8 +40,6 @@ enum EventRoles {
     ReadMarkerRole,
     SpecialMarksRole,
     LongOperationRole,
-    AvatarRole,
-    UserIdRole,
 };
 
 QHash<int, QByteArray> MessageEventModel::roleNames() const
@@ -58,8 +56,6 @@ QHash<int, QByteArray> MessageEventModel::roleNames() const
     roles[ReadMarkerRole] = "readMarker";
     roles[SpecialMarksRole] = "marks";
     roles[LongOperationRole] = "progressInfo";
-    roles[UserIdRole] = "userId";
-    roles[AvatarRole] = "avatar";
     return roles;
 }
 
@@ -372,7 +368,7 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
                     && !e->prev_content()->displayName.isEmpty())
                 userId = e->prevSenderId();
         }
-        return m_currentRoom->roomMembername(userId);
+        return QVariant::fromValue(m_currentRoom->connection()->user(userId));
     }
 
     if (role == ContentTypeRole)
@@ -445,35 +441,6 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
             auto info = m_currentRoom->fileTransferInfo(event->id());
             return QVariant::fromValue(info);
         }
-    }
-
-    if (role == AvatarRole)
-    {
-        if( event->type() == EventType::RoomMessage )
-        {
-            RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
-            for (int i = 0; i < m_currentRoom->users().size(); i++){
-                 if (e->senderId() ==  m_currentRoom->users()[i]->id()){
-                     auto mediaid = m_currentRoom->users()[i]->avatarMediaId();
-                     if (!mediaid.isEmpty()) {
-                        auto url = QUrl("image://mtx/" + mediaid);
-                        return url;
-                     }
-                 }
-            }
-       }
-       return QVariant();
-    }
-
-    if (role == UserIdRole)
-    {
-        if( event->type() == EventType::RoomMessage )
-        {
-            RoomMessageEvent* e = static_cast<RoomMessageEvent*>(event);
-            //qDebug() << QString(e->senderId());
-            return QString(e->senderId());
-        }
-        return QVariant();
     }
 
     return QVariant();
