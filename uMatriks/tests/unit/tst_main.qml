@@ -19,9 +19,9 @@ Item {
 
         when: windowShown
 
-        function init() {
+        function test_login() {
             var login = findChild(main, "login");
-            compare("[ uMatriks ]", login.header.title);
+            compare("Login...", login.header.title);
         }
 
         // function test_clickButtonMustChangeLabel() {
