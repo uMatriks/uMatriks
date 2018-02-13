@@ -70,7 +70,7 @@ Page {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: "<a href='https://github.com/LarreaMikel/uMatriks'>Source Code</a>"
+                text: "<a href='https://github.com/uMatriks/uMatriks'>Source Code</a>"
                 linkColor: darkColor
                 onLinkActivated: Qt.openUrlExternally(link)
             }
@@ -155,7 +155,7 @@ Page {
                 width: parent.width
                 horizontalAlignment: Text.AlignHCenter
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
-                text: i18n.tr("Not in your language? Please help us translating the app by contributing on: <a href='https://poeditor.com/join/project/Og2UosRdlD'>poeditor</a> ")
+                text: i18n.tr("Not in your language? Please help us translating the app by contributing on: <a href='https://poeditor.com/join/project/4VSWHLQChQ'>poeditor</a> ")
                 onLinkActivated: Qt.openUrlExternally(link)
             }
 

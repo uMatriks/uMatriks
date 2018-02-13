@@ -9,7 +9,5 @@
         "camera",
         "audio"
     ],
-    "write_path": [
-    ],
     "policy_version": 1.3
 }
