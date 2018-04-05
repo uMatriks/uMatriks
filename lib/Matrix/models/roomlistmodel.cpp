@@ -24,8 +24,8 @@
 #include <QtCore/QDebug>
 #include <QtGui/QIcon>
 
-#include "libqmatrixclient/connection.h"
-#include "libqmatrixclient/room.h"
+#include "libqmatrixclient/lib/connection.h"
+#include "libqmatrixclient/lib/room.h"
 
 const int RoomEventStateRole = Qt::UserRole + 1;
 
@@ -69,6 +69,7 @@ void RoomListModel::deleteConnection(QMatrixClient::Connection* connection)
         std::remove_if(m_rooms.begin(), m_rooms.end(),
             [=](const QMatrixClient::Room* r) { return r->connection() == connection; }),
         m_rooms.end());
+    m_connections.removeOne(connection);
     endResetModel();
     // TODO: Restore selection
 }
@@ -181,7 +182,23 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
     switch (role)
     {
         case Qt::DisplayRole:
-            return room->displayName();
+        {
+            const auto unreadCount = room->unreadCount();
+            const auto postfix = unreadCount == -1 ? QString() :
+                room->readMarker() != room->timelineEdge()
+                    ? QStringLiteral(" [%1]").arg(unreadCount)
+                    : QStringLiteral(" [%1+]").arg(unreadCount);
+            for (auto c: m_connections)
+            {
+                if (c == room->connection())
+                    continue;
+                if (c->room(room->id(), room->joinState()))
+                    return tr("%1 (as %2)").arg(room->displayName(),
+                                                room->connection()->userId())
+                           + postfix;
+            }
+            return room->displayName() + postfix;
+        }
         case Qt::DecorationRole:
         {
             auto mediaid = room->avatarMediaId();

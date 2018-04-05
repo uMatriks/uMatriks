@@ -40,7 +40,7 @@ BasePage {
     }
 
     function getUnread(index) {
-        return rooms.roomAt(index).hasUnreadMessages()
+        return rooms.roomAt(index).hasUnreadMessages
     }
 
     function getNumber(index) {

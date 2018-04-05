@@ -22,11 +22,11 @@
 #include <QtCore/QDebug>
 #include <QtQml> // for qmlRegisterType()
 
-#include "libqmatrixclient/connection.h"
-#include "libqmatrixclient/user.h"
-#include "libqmatrixclient/events/roommemberevent.h"
-#include "libqmatrixclient/events/simplestateevents.h"
-#include "libqmatrixclient/events/redactionevent.h"
+#include "libqmatrixclient/lib/connection.h"
+#include "libqmatrixclient/lib/user.h"
+#include "libqmatrixclient/lib/events/roommemberevent.h"
+#include "libqmatrixclient/lib/events/simplestateevents.h"
+#include "libqmatrixclient/lib/events/redactionevent.h"
 
 enum EventRoles {
     EventTypeRole = Qt::UserRole + 1,
@@ -116,7 +116,7 @@ void MessageEventModel::changeRoom(QMatrixClient::Room* room)
         connect(m_currentRoom, &Room::fileTransferCancelled,
                 this, &MessageEventModel::refreshEvent);
         qDebug() << "Connected to room" << room->id()
-                 << "as" << room->connection()->userId();
+                 << "as" << room->localUser()->id();
     }
     lastReadEventId = room ? room->readMarkerEventId() : "";
     endResetModel();
@@ -295,17 +295,26 @@ QVariant MessageEventModel::data(const QModelIndex& index, int role) const
         if( event->type() == EventType::RoomCanonicalAlias )
         {
             auto* e = static_cast<const RoomCanonicalAliasEvent*>(event);
-            return tr("set the room main alias to: %1").arg(e->alias());
+            if (e->alias().isEmpty())
+                return tr("cleared the room main alias");
+            else
+                return tr("set the room main alias to: %1").arg(e->alias());
         }
         if( event->type() == EventType::RoomName )
         {
             auto* e = static_cast<const RoomNameEvent*>(event);
-            return tr("set the room name to: %1").arg(e->name());
+            if (e->name().isEmpty())
+                return tr("cleared the room name");
+            else
+                return tr("set the room name to: %1").arg(e->name());
         }
         if( event->type() == EventType::RoomTopic )
         {
             auto* e = static_cast<const RoomTopicEvent*>(event);
-            return tr("set the topic to: %1").arg(e->topic());
+            if (e->topic().isEmpty())
+                return tr("cleared the topic");
+            else
+                return tr("set the topic to: %1").arg(e->topic());
         }
         if( event->type() == EventType::RoomAvatar )
         {
