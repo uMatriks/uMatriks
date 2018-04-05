@@ -17,11 +17,14 @@ RUN apt-get update && \
     ubuntu-sdk-libs \
     ubuntu-sdk-libs-dev \
     ubuntu-sdk-libs-tools \
+    qtbase5-private-dev \
     oxideqt-codecs-extra \
     qt5-doc \
     language-pack-en \
     click \
+    libapparmor-dev \
     # testing QT with python
+    xvfb \
     python3-autopilot \
     ubuntu-ui-toolkit-autopilot \
     python-xlib \
