@@ -10,7 +10,7 @@
             "content-hub": "uMatriks/content-hub.json"
         }
     },
-    "version": "0.9",
+    "version": "0.10",
     "maintainer": "Mikel Larrea <developer@larreamikel.com>",
     "framework": "ubuntu-sdk-15.04.6"
 }
