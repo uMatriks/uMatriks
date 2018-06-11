@@ -52,7 +52,7 @@ Component {
          onFinished: {
             downloadButton.enabled = false
             console.log('Downloaded to: '+path)
-            pageStack.push(Qt.resolvedUrl("../SharePage.qml"), {'link': path})
+            mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage,Qt.resolvedUrl("../SharePage.qml"), {'link': path})
             PopupUtils.close(current);
          }
       }

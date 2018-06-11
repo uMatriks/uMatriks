@@ -13,7 +13,7 @@ Component {
          console.log("Joined room: " + room)
          PopupUtils.close(dialogJoinRoom.current)
          roomView.setRoom(room)
-         pageStack.push(roomView)
+         mainAdaptiveLayout.addPageToNextColumn(mainAdaptiveLayout.primaryPage,roomView)
       }
 
       Component.onCompleted: {

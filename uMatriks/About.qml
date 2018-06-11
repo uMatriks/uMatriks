@@ -28,8 +28,7 @@ Page {
                     text: i18n.tr("Back")
                     shortcut: "Ctrl+B"
                     onTriggered: {
-                        onClicked: pageStack.pop(aboutPage)
-                        roomList.visible = true;
+                        onClicked: mainAdaptiveLayout.removePages(aboutPage)
                     }
                 }
             ]

@@ -63,7 +63,7 @@ MainView {
         if(!initialised) {
             login.visible = false
             roomList.init(connection)
-            pageStack.push(roomList)
+            mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage,roomList)
             initialised = true
         }
         syncIx += 1
@@ -127,12 +127,17 @@ MainView {
         matrixConn(user, pass, connection.deviceId)
         if(loggedOut)
         {
-            pageStack.pop()
-            pageStack.push(roomList)
+            //pageStack.pop()
+            mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage, roomList)
         }
         leaveRoom.connect(connection.leaveRoom)
     }
 
+    AdaptivePageLayout {
+       id:mainAdaptiveLayout
+       anchors.fill: parent
+       primaryPage: login
+    }
     Login {
         id: login
         objectName: "login"

@@ -9,8 +9,20 @@ Page {
     id: memberList
     anchors.fill: parent
     visible: false
-
+    clip:true
     property var members
+
+    header: PageHeader {
+       id:_pageHeader
+       title: memberList.title
+       leadingActionBar.actions: [
+           Action {
+               iconName: "back"
+               text: "Back"
+               onTriggered: mainAdaptiveLayout.removePages(memberList)
+           }
+       ]
+    }
 
     Column {
         id: memberListColumn

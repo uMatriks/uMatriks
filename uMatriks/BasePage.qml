@@ -39,7 +39,7 @@ Page {
                     onTriggered: {
                         logout();
                         roomList.visible = false;
-                        pageStack.push(Qt.resolvedUrl("Login.qml"))
+                        mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage,Qt.resolvedUrl("Login.qml"))
                     }
                 },
                 Action {
@@ -48,7 +48,7 @@ Page {
                     text: i18n.tr("About")
                     onTriggered: {
                         roomList.visible = false;
-                        pageStack.push(Qt.resolvedUrl("About.qml"))
+                        mainAdaptiveLayout.addPageToNextColumn(mainAdaptiveLayout.primaryPage,Qt.resolvedUrl("About.qml"))
                     }
                 }
             ]

@@ -46,8 +46,8 @@ Page {
         if (error.indexOf("Forbidden") !== -1) {
             if(uMatriks.loggedOut)
             {
-                pageStack.pop(pageMain)
-                pageStack.push(loginPage)
+                mainAdaptiveLayout.removePages(pageMain)
+                mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage,loginPage)
             }
             passwordField.text = ""
             console.log("Wrong password")

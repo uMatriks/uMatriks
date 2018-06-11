@@ -10,6 +10,7 @@ BasePage {
     id: roomList
     title: i18n.tr("RoomList")
     visible: false
+    clip:true
 
     RoomListModel {
         id: rooms
@@ -161,11 +162,11 @@ BasePage {
                                 // the value will be undefined
                                 console.log("Show member list: " + rooms.roomAt(index).displayName);
                                 memberList.members = rooms.roomAt(index).memberNames
-                                roomList.visible = false
+                                //roomList.visible = false
                                 memberList.title = i18n.tr("Members of ")
                                 memberList.title += rooms.roomAt(index).displayName
-                                roomList.visible = false;
-                                pageStack.push(memberList)
+                                //roomList.visible = false;
+                                mainAdaptiveLayout.addPageToNextColumn(mainAdaptiveLayout.primaryPage, memberList)
 
                             }
                         }
@@ -177,8 +178,8 @@ BasePage {
                     uMatriks.activeRoomIndex = index
                     roomListView.currentIndex = index
                     roomView.setRoom(rooms.roomAt(index))
-                    roomList.visible = false;
-                    pageStack.push(roomView)
+                    //roomList.visible = false;
+                    mainAdaptiveLayout.addPageToNextColumn(mainAdaptiveLayout.primaryPage, roomView)
                     roomListView.contentItem.children[index].refreshUnread()
                 }
             }

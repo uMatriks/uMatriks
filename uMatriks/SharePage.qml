@@ -16,6 +16,18 @@ Page {
     property list<ContentItem> importItems
     property var activeTransfer
 
+    header: PageHeader {
+       id:_pageHeader
+       title: roomView.title
+       leadingActionBar.actions: [
+           Action {
+               iconName: "back"
+               text: "Back"
+               onTriggered: mainAdaptiveLayout.removePages(sharePage)
+           }
+       ]
+    }
+
     Component {
         id: itemTemplate
         ContentItem {}
@@ -39,11 +51,11 @@ Page {
                 activeTransfer.state = ContentTransfer.Charged;
             }
 
-            pageStack.pop()
+            mainAdaptiveLayout.removePages(sharePage)
         }
 
         onCancelPressed: {
-            pageStack.pop()
+            mainAdaptiveLayout.removePages(sharePage)
         }
 
         Component.onCompleted: {
