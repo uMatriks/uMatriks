@@ -36,7 +36,7 @@ BasePage {
     }
 
     function refresh() {
-        if(roomListView.visible)
+        //if(roomListView.visible)
         roomListView.forceLayout()
     }
 
@@ -162,10 +162,8 @@ BasePage {
                                 // the value will be undefined
                                 console.log("Show member list: " + rooms.roomAt(index).displayName);
                                 memberList.members = rooms.roomAt(index).memberNames
-                                //roomList.visible = false
                                 memberList.title = i18n.tr("Members of ")
                                 memberList.title += rooms.roomAt(index).displayName
-                                //roomList.visible = false;
                                 mainAdaptiveLayout.addPageToNextColumn(mainAdaptiveLayout.primaryPage, memberList)
 
                             }

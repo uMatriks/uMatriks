@@ -38,7 +38,6 @@ Page {
                     text: i18n.tr("Log out")
                     onTriggered: {
                         logout();
-                        roomList.visible = false;
                         mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage,Qt.resolvedUrl("Login.qml"))
                     }
                 },
@@ -47,7 +46,6 @@ Page {
                     iconName: "info"
                     text: i18n.tr("About")
                     onTriggered: {
-                        roomList.visible = false;
                         mainAdaptiveLayout.addPageToNextColumn(mainAdaptiveLayout.primaryPage,Qt.resolvedUrl("About.qml"))
                     }
                 }

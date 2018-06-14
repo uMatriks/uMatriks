@@ -99,35 +99,4 @@ Page {
             }
         }
     }
-    BottomEdge {
-        id:roomBottomEdge
-        hint.opacity: 0.1
-        height:textRect.height
-        contentComponent: Item {
-            height:textRect.height
-            Row {
-                anchors.fill:parent
-
-                Button {
-                     id:beBackBut
-                     color: uMatriks.theme.palette.normal.background
-                     iconName:"down"
-                     enabled: true
-                     height:parent.height
-                     width:height
-                     onClicked: roomBottomEdge.collapse()
-                 }
-                 Button {
-                     id:sendImage
-                     color: uMatriks.theme.palette.normal.background
-                     iconName:"image"
-                     enabled: true
-                     height:parent.height
-                     width:height
-                     //onClicked: room.
-                 }
-
-            }
-        }
-    }
 }

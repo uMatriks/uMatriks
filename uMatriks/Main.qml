@@ -61,7 +61,6 @@ MainView {
 
     function resync() {
         if(!initialised) {
-            login.visible = false
             roomList.init(connection)
             mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage,roomList)
             initialised = true
@@ -127,7 +126,6 @@ MainView {
         matrixConn(user, pass, connection.deviceId)
         if(loggedOut)
         {
-            //pageStack.pop()
             mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage, roomList)
         }
         leaveRoom.connect(connection.leaveRoom)

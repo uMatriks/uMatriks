@@ -29,10 +29,11 @@ Component {
 
       Row {
          anchors.margins: units.gu(1)
-         spacing: units.gu(1)
          width: parent.width
+         spacing: width - joinDialogCancelBut.width - joinDialogJoinBut.width
 
          Button {
+            id:joinDialogCancelBut
             text: i18n.tr("Cancel")
             onClicked: {
                PopupUtils.close(dialogJoinRoom.current);
@@ -41,6 +42,7 @@ Component {
          }
 
          Button {
+            id:joinDialogJoinBut
             text: i18n.tr("Join")
             color: UbuntuColors.orange
             onClicked: {

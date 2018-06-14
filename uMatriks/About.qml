@@ -82,6 +82,7 @@ Page {
                 text: i18n.tr("Authors")
                 fontSize: "large"
                 font.bold: true
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -92,6 +93,7 @@ Page {
                 text: "<a href='https://github.com/LarreaMikel'>Mikel Larrea</a> (@larrea.mikel:matrix.org)"
                 linkColor: darkColor
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -101,6 +103,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "<a href='https://github.com/delijati'>Josip Delic</a> (@delijati:matrix.org)"
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -110,6 +113,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "<a href='https://github.com/cibersheep'>Joan CiberSheep </a> (@cibersheep:matrix.org)"
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -119,6 +123,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "<a href='https://github.com/nfsprodriver'>Bjarne Roß </a> (@nfsprodriver:matrix.org)"
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -128,6 +133,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "<a href='https://github.com/mariogrip'>Marius Gripsgard </a> (@mariogrip:matrix.org)"
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -137,6 +143,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "<a href='https://github.com/thrrgilag'>Morgan McMillian </a> (@thrrgilag:monkeystew.net) "
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -147,6 +154,7 @@ Page {
                 text: i18n.tr("Translations")
                 fontSize: "large"
                 font.bold: true
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -156,6 +164,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: i18n.tr("Not in your language? Please help us translating the app by contributing on: <a href='https://poeditor.com/join/project/4VSWHLQChQ'>poeditor</a> ")
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -166,6 +175,7 @@ Page {
                 text: i18n.tr("Acknowledgement")
                 fontSize: "large"
                 font.bold: true
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
 
@@ -176,6 +186,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "This program uses <a href='https://github.com/QMatrixClient/libqmatrixclient'>libqmatrixclient</a> <i>Copyright (C) 2015-2017 Felix Rohrbach kde@fxrh.de and others<i><b> #quaternion:matrix.org <b>"
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
 
             Label{
@@ -185,6 +196,7 @@ Page {
                 wrapMode: Text.WrapAtWordBoundaryOrAnywhere
                 text: "and modifies code from <a href='https://github.com/Quiark/tensor'>Tensor</a><b> #tensor:matrix.org <b>"
                 onLinkActivated: Qt.openUrlExternally(link)
+                color: uMatriks.theme.palette.normal.backgroundText
             }
         }
     }
