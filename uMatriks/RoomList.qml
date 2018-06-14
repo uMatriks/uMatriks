@@ -36,8 +36,8 @@ BasePage {
     }
 
     function refresh() {
-        //if(roomListView.visible)
-        roomListView.forceLayout()
+        if(roomListView.visible)
+            roomListView.forceLayout();
     }
 
     function getUnread(index) {
