@@ -6,307 +6,310 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: uMatriks\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-02-13 21:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2018-06-17 00:22+02:00\n"
+"Last-Translator: Daniel Frańczak <danielfranczak5@wp.pl>\n"
+"Language: pl\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:21
 msgid "About..."
-msgstr ""
+msgstr "Informacje"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:28
 msgid "Back"
-msgstr ""
+msgstr "Wstecz"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:83
 msgid "Authors"
-msgstr ""
+msgstr "Autorzy"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:148
 msgid "Translations"
-msgstr ""
+msgstr "Tłumacze"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:158
 msgid ""
 "Not in your language? Please help us translating the app by contributing on: "
 "<a href='https://poeditor.com/join/project/4VSWHLQChQ'>poeditor</a> "
 msgstr ""
+"Nie w twoim języku? Pomóż nam w tłumaczeniu aplikacji, dodając:"
+"<a href='https://poeditor.com/join/project/4VSWHLQChQ'>poeditor</a> "
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:167
 msgid "Acknowledgement"
-msgstr ""
+msgstr "Potwierdzenie"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:19
 msgid "[ uMatriks ]"
-msgstr ""
+msgstr "[ uMatriks ]"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:25
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:9
 msgid "Join room"
-msgstr ""
+msgstr "Dołącz do pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:38
 msgid "Log out"
-msgstr ""
+msgstr "Wyloguj"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:48
 msgid "About"
-msgstr ""
+msgstr "Informacje"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:10
 msgid "Join room:"
-msgstr ""
+msgstr "Dołącz do pokoju:"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:36
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/components/DialogDownload.qml:25
 msgid "Cancel"
-msgstr ""
+msgstr "Anuluj"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:44
 msgid "Join"
-msgstr ""
+msgstr "Dołącz"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:12
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:41
 msgid "Login..."
-msgstr ""
+msgstr "Zaloguj Się..."
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:56
 msgid "Wrong username or password, please try again"
-msgstr ""
+msgstr "Zła nazwa użytkownika lub hasło, spróbuj ponownie"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:111
 msgid "Failed to login, please try again"
-msgstr ""
+msgstr "Nie udało się zalogować, spróbuj ponownie"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:116
 msgid "User Name or Matrix ID:"
-msgstr ""
+msgstr "Nazwa użytkownika lub identyfikator Matriks:"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:128
 msgid "Password:"
-msgstr ""
+msgstr "Hasło:"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:140
 msgid "Home server URL:"
-msgstr ""
+msgstr "Adres URL serwera głównego:"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:153
 msgid "Login"
-msgstr ""
+msgstr "Zaloguj Się"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:160
 msgid "Warning!"
-msgstr ""
+msgstr "Ostrzeżenie!"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:171
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:207
 msgid "Close"
-msgstr ""
+msgstr "Zamknij"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/MemberList.qml:50
 msgid "Failed to add direct chat with "
-msgstr ""
+msgstr "Nie można dodać bezpośredniego czatu"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/MemberList.qml:52
 msgid " because this is not implented yet. This was just a test button."
-msgstr ""
+msgstr " ponieważ nie zostało to jeszcze zaimplementowane. To był tylko przycisk testu."
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:11
 msgid "RoomList"
-msgstr ""
+msgstr "Lista pokoi"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:133
 msgid "Leave"
-msgstr ""
+msgstr "Opuść"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:165
 msgid "Members of "
-msgstr ""
+msgstr "Członkowie "
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:196
 msgid "Room Topic"
-msgstr ""
+msgstr "Temat pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomView.qml:8
 msgid "Room"
-msgstr ""
+msgstr "Pokuj"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20
 msgid ""
 "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
 "that allows you to use the Matrix network."
 msgstr ""
+"Witaj w uMatriks!<br/>            <br/>            uMatriks to program, "
+"który pozwala na korzystanie z sieci Matrix."
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
-msgstr ""
+msgstr "Aby użyć uMatriks, musisz zalogować się za pomocą macierzy <i>użytkownik</i>."
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
-msgstr ""
+msgstr "Identyfikator Matrix:"
 
 #. TRANSLATORS: Example nickname
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
-msgstr ""
+msgstr "gawędziarski człowiek"
 
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/components/ChatBubble.qml:163
 #: /home/larreamikel/Code/Touch/uMatriks/uMatriks/components/DialogDownload.qml:10
 msgid "Download"
-msgstr ""
+msgstr "Pobierz"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/connection.cpp:110
 #, qt-format
 msgid "%1 is not a valid homeserver address"
-msgstr ""
+msgstr "%1 nie jest prawidłowym adresem serwera głównego"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/connection.cpp:221
 #, qt-format
 msgid "%1 is an invalid homeserver URL"
-msgstr ""
+msgstr "%1 jest nieprawidłowym adresem URL serwera domowego"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1457
 #, qt-format
 msgid "%1 and %2"
-msgstr ""
+msgstr "%1 i %2"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1463
 #, qt-format
 msgid "%1 and %L2 others"
-msgstr ""
+msgstr "%1 i %L2 inne"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1493
 #, qt-format
 msgid "Empty room (was: %1)"
-msgstr ""
+msgstr "Pusty pokój (był: %1)"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1496
 #, qt-format
 msgid "Empty room (%1)"
-msgstr ""
+msgstr "Pusty pokój (%1)"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:201
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:391
 msgid "Redacted"
-msgstr ""
+msgstr "Redaguj"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:203
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:393
 #, qt-format
 msgid "Redacted: %1"
-msgstr ""
+msgstr "Redaguj: %1"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:220
 msgid "a file"
-msgstr ""
+msgstr "plik"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:235
 #, qt-format
 msgid "reinvited %1 to the room"
-msgstr ""
+msgstr "%1 ponownie zaproszony do pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:240
 msgid "joined the room (repeated)"
-msgstr ""
+msgstr "dołączyli do pokoju (powtórzono)"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:245
 #, qt-format
 msgid "invited %1 to the room"
-msgstr ""
+msgstr "zaprosił %1 do pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:246
 msgid "joined the room"
-msgstr ""
+msgstr "dołączono do pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:252
 msgid "cleared the display name"
-msgstr ""
+msgstr "wyczyszczono wyświetlaną nazwę"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:254
 #, qt-format
 msgid "changed the display name to %1"
-msgstr ""
+msgstr "zmienił wyświetlaną nazwę na %1"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:262
 msgid "cleared the avatar"
-msgstr ""
+msgstr "oczyściłem awatar"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:264
 msgid "updated the avatar"
-msgstr ""
+msgstr "zaktualizowałem awatar"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:273
 #, qt-format
 msgid "unbanned %1"
-msgstr ""
+msgstr "dozwolony %1"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:275
 msgid "self-unbanned"
-msgstr ""
+msgstr "niezablokowany"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:278
 #, qt-format
 msgid "has put %1 out of the room"
-msgstr ""
+msgstr "usunął %1 z pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:280
 msgid "left the room"
-msgstr ""
+msgstr "opuścić pokój"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:283
 #, qt-format
 msgid "banned %1 from the room"
-msgstr ""
+msgstr "zakazano %1 z pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:285
 msgid "self-banned from the room"
-msgstr ""
+msgstr "Zablokowany z pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:287
 #, qt-format
 msgid "%1 (%2) knocked"
-msgstr ""
+msgstr "%1 (%2) zapukał"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:293
 #, qt-format
 msgid "set aliases to: %1"
-msgstr ""
+msgstr "ustaw aliasy na: %1"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:298
 #, qt-format
 msgid "set the room main alias to: %1"
-msgstr ""
+msgstr "ustaw główny alias pokoju na: %1"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:303
 #, qt-format
 msgid "set the room name to: %1"
-msgstr ""
+msgstr "ustaw nazwę pokoju na: %1"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:308
 #, qt-format
 msgid "set the topic to: %1"
-msgstr ""
+msgstr "ustaw temat na:"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:312
 msgid "changed the room avatar"
-msgstr ""
+msgstr "zmienił avatar pokoju"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:316
 msgid "activated End-to-End Encryption"
-msgstr ""
+msgstr "aktywowane szyfrowanie end-to-end"
 
 #: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:318
 msgid "Unknown Event"
-msgstr ""
+msgstr "Nieznane wydarzenie"
 
 #: /home/larreamikel/Code/Touch/build-uMatriks-Meizu_Pro5_GCC_armhf_ubuntu_sdk_15_04_builder_armhf-Release/uMatriks/uMatriks.desktop.h:1
 msgid "uMatriks"
-msgstr ""
+msgstr "uMatriks"
