@@ -8,6 +8,10 @@
             "apparmor": "uMatriks/uMatriks.apparmor",
             "desktop": "uMatriks/uMatriks.desktop",
             "content-hub": "uMatriks/content-hub.json"
+        },
+        "push": {
+            "apparmor": "pushhelper/apparmor-push.json",
+            "push-helper": "pushhelper/push-helper.json"
         }
     },
     "version": "0.11",

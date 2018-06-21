@@ -32,8 +32,14 @@ We can use [clickable](https://docs.ubports.com/en/latest/appdev/index.html#clic
 
     $ clickable build
     $ clickable click-build
-    
+
 This will create a build folder and the click file will be there.
+
+### Clickable 16.04
+For development purposes, use this command to build and create a click file for 16.04
+
+    $ clickable --debug -k 16.04
+
 
 ## Installation
 There are different ways to install this app in a phone.
