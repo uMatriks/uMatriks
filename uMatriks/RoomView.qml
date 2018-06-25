@@ -18,7 +18,7 @@ Page {
     }
 
     function setRoom(room) {
-        console.log("RoomView setting room: "+ room.name)
+        console.log("RoomView setting room: "+ room.displayName)
 	      //title = room.name
         pageHeader.title = room.displayName
         currentRoom = room
