@@ -197,7 +197,7 @@ MainView {
           sourceComponent: PushClient {
               id: push_client
               //appId: MainView.applicationName
-              appId: "umatriks.larreamikel" //provisional solution hardcoded as MainView.applicationName does not return a QString
+              appId: "umatriks.larreamikel_uMatriks" //provisional solution hardcoded as MainView.applicationName does not return a QString
 
               property bool registered: false
               property bool loggedIn: readyForPush
