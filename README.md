@@ -85,6 +85,7 @@ Build code
 
 Run code
 
+    $ xhost +local:docker
     $ docker run -ti --rm -e DISPLAY=:0 -v /tmp/.X11-unix:/tmp/.X11-unix -v `pwd`:/home/developer/ubports_build ubports_xenial bash -c "/usr/bin/qmlscene -I lib/ uMatriks/Main.qml"
 
 Run tests
