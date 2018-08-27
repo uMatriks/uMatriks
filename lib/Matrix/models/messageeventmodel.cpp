@@ -29,6 +29,10 @@
 #include "libqmatrixclient/lib/events/simplestateevents.h"
 #include "libqmatrixclient/lib/events/redactionevent.h"
 #include "libqmatrixclient/lib/events/roomavatarevent.h"
+#include "libqmatrixclient/lib/events/callinviteevent.h"
+#include "libqmatrixclient/lib/events/callcandidatesevent.h"
+#include "libqmatrixclient/lib/events/callanswerevent.h"
+#include "libqmatrixclient/lib/events/callhangupevent.h"
 
 enum EventRoles {
     EventTypeRole = Qt::UserRole + 1,
@@ -600,6 +604,22 @@ QVariant MessageEventModel::data(const QModelIndex& idx, int role) const
                 default:
                     return e->plainBody();
             }
+        }
+        if (auto e = eventCast<const CallInviteEvent>(&evt))
+        {
+            return "CallInvite";
+        }
+        if (auto e = eventCast<const CallCandidatesEvent>(&evt))
+        {
+            return "CallCandidates";
+        }
+        if (auto e = eventCast<const CallAnswerEvent>(&evt))
+        {
+            return "CallAnswer";
+        }
+        if (auto e = eventCast<const CallHangupEvent>(&evt))
+        {
+            return "CallHangup";
         }
     }
 

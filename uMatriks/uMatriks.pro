@@ -3,8 +3,11 @@ TARGET = uMatriks
 
 RESOURCES += uMatriks.qrc
 
-QML_FILES += $$files(*.qml,false) \
-             $$files(*.js,true)
+QML_FILES += $$files(*.qml,true) \
+             $$files(*.js,true) \
+             $$files(*.png,true) \
+             $$files(*.html,true) \
+             $$files(*.ogg,true)
 
 CONF_FILES +=  uMatriks.apparmor
 

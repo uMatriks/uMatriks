@@ -26,6 +26,13 @@
 
 #include "libqmatrixclient/lib/connection.h"
 #include "libqmatrixclient/lib/room.h"
+#include "libqmatrixclient/lib/events/callinviteevent.h"
+#include "libqmatrixclient/lib/events/callcandidatesevent.h"
+#include "libqmatrixclient/lib/events/callanswerevent.h"
+#include "libqmatrixclient/lib/events/callhangupevent.h"
+#include "libqmatrixclient/lib/logging.h"
+
+using namespace QMatrixClient;
 
 const int RoomEventStateRole = Qt::UserRole + 1;
 
@@ -138,7 +145,7 @@ void RoomListModel::doAddRoom(QMatrixClient::Room* r)
 {
     if (auto* room = r)
     {
-    m_rooms.append(room);
+        m_rooms.append(room);
         connectRoomSignals(room);
     } else
     {
@@ -149,16 +156,18 @@ void RoomListModel::doAddRoom(QMatrixClient::Room* r)
 
 void RoomListModel::connectRoomSignals(QMatrixClient::Room* room)
 {
+    connect(room, &QMatrixClient::Room::callEvent,
+            this, &RoomListModel::callEventChanged); 
     connect(room, &QMatrixClient::Room::displaynameChanged,
-            this, [=]{ displaynameChanged(room); } );
-    connect( room, &QMatrixClient::Room::unreadMessagesChanged,
-             this, [=]{ unreadMessagesChanged(room); } );
-    connect( room, &QMatrixClient::Room::notificationCountChanged,
-             this, [=]{ unreadMessagesChanged(room); } );
-    connect( room, &QMatrixClient::Room::joinStateChanged,
-             this, [=]{ refresh(room); });
-    connect( room, &QMatrixClient::Room::avatarChanged,
-             this, [=]{ refresh(room, { Qt::DecorationRole }); });
+            this, [=]{ displaynameChanged(room); });
+    connect(room, &QMatrixClient::Room::unreadMessagesChanged,
+            this, [=]{ unreadMessagesChanged(room); });
+    connect(room, &QMatrixClient::Room::notificationCountChanged,
+            this, [=]{ unreadMessagesChanged(room); });
+    connect(room, &QMatrixClient::Room::joinStateChanged,
+            this, [=]{ refresh(room); });
+    connect(room, &QMatrixClient::Room::avatarChanged,
+            this, [=]{ refresh(room, { Qt::DecorationRole }); });
 }
 
 int RoomListModel::rowCount(const QModelIndex& parent) const
@@ -257,4 +266,29 @@ void RoomListModel::refresh(QMatrixClient::Room* room, const QVector<int>& roles
     else
         emit dataChanged(index(row), index(row), roles);
         emit roomDataChangedEvent(row);
+}
+
+void RoomListModel::callEventChanged(QMatrixClient::Room* room, const QMatrixClient::RoomEvent* e)
+{
+
+    const auto& ev = *e;
+
+    visit(ev
+        , [this, room] (const CallAnswerEvent& evt) {
+            qCDebug(MAIN) << evt.toJson();
+            emit callEvent("answer", room, evt.toJson());
+        }
+        , [this, room] (const CallCandidatesEvent& evt) {
+            qCDebug(MAIN) << evt.toJson();
+            emit callEvent("candidates", room, evt.toJson());
+        }
+        , [this, room] (const CallHangupEvent& evt) {
+            qCDebug(MAIN) << evt.toJson();
+            emit callEvent("hangup", room, evt.toJson());
+        }
+        , [this, room] (const CallInviteEvent& evt) {
+            qCDebug(MAIN) << evt.toJson();
+            emit callEvent("invite", room, evt.toJson());
+        }
+    );
 }

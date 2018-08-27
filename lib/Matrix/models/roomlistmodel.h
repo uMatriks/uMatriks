@@ -21,6 +21,8 @@
 
 #include <QtCore/QAbstractListModel>
 
+#include "libqmatrixclient/lib/events/roomevent.h"
+
 namespace QMatrixClient
 {
     class Connection;
@@ -52,10 +54,13 @@ class RoomListModel: public QAbstractListModel
         void updateRoom(QMatrixClient::Room* room,
                         QMatrixClient::Room* prev);
         void deleteRoom(QMatrixClient::Room* room);
+        
+        void callEventChanged(QMatrixClient::Room* room, const QMatrixClient::RoomEvent* e); 
 
     signals:
         // XXX used for updating unread marer
         void roomDataChangedEvent(int index);
+        void callEvent(const QString& type, QMatrixClient::Room* room, const QJsonObject& event); 
 
     private:
         QList<QMatrixClient::Connection*> m_connections;

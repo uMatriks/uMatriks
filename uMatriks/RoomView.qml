@@ -13,8 +13,32 @@ Page {
     property var completion
 
     header: PageHeader {
-      id: pageHeader
-      title: i18n.tr("Room")
+        id: pageHeader
+        title: i18n.tr("Room")
+        trailingActionBar {
+            numberOfSlots: 2
+            visible: currentRoom.isCallSupported()
+            actions: [
+                Action {
+                    id: actionCallVideo
+                    iconName: "camcorder"
+                    onTriggered: {
+                        console.log("video call")
+                        roomList.initCallPage(currentRoom);
+                        roomList.placeVideoCall();
+                    }
+                },
+                Action {
+                    id: actionCallVoice
+                    iconName: "call-start"
+                    onTriggered: {
+                        console.log("voice call")
+                        roomList.initCallPage(currentRoom);
+                        roomList.placeVoiceCall();
+                    }
+                }
+            ]
+        }
     }
 
     function setRoom(room) {

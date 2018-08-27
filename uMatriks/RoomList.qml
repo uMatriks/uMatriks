@@ -11,6 +11,36 @@ BasePage {
     title: i18n.tr("RoomList")
     visible: false
 
+    property bool inCall: false
+    property Connection currentConnection: null;
+    property var turnServer;
+
+    CallPage {
+      id: callPage
+    }
+    Connections {
+      target: currentConnection
+      onTurnServersChanged: {
+        turnServer = servers;
+        console.log("got turn server", turnServer);
+      }
+    }
+    function initCallPage(room) {
+      if (!inCall){
+        console.log("init callPage")
+        inCall = true;
+        callPage.init(room, currentConnection, turnServer);
+        callPage.visible = false;
+        pageStack.push(callPage)
+      }
+    }
+    function placeVideoCall() {
+      callPage.placeVideoCall();
+    }
+    function placeVoiceCall() {
+      callPage.placeVoiceCall();
+    }
+
     RoomListModel {
         id: rooms
 
@@ -20,9 +50,16 @@ BasePage {
             console.log("Event for: %1".arg(room.displayName))
             roomListView.contentItem.children[index].refreshUnread()
         }
+        onCallEvent: {
+            console.log("Call event", type, event);
+            initCallPage(room);
+            callPage.newEvent(type, event);
+        }
     }
 
     function setConnection(conn) {
+        currentConnection = conn;
+        currentConnection.getTurnServers();
         rooms.addConnection(conn)
         roomView.setConnection(conn)
     }
