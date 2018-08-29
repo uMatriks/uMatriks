@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-18 12:19+0000\n"
+"POT-Creation-Date: 2018-08-29 19:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -71,6 +71,11 @@ msgstr ""
 msgid "About"
 msgstr ""
 
+#: /home/developer/ubports_build/uMatriks/CallPage.qml:243
+#: /home/developer/ubports_build/build/tmp/uMatriks/CallPage.qml:243
+msgid "Call"
+msgstr ""
+
 #: /home/developer/ubports_build/uMatriks/DialogJoinRoom.qml:10
 #: /home/developer/ubports_build/build/tmp/uMatriks/DialogJoinRoom.qml:10
 msgid "Join room:"
@@ -78,6 +83,7 @@ msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/DialogJoinRoom.qml:36
 #: /home/developer/ubports_build/uMatriks/components/DialogDownload.qml:25
+#: /home/developer/ubports_build/build/tmp/uMatriks/DialogDownload.qml:25
 #: /home/developer/ubports_build/build/tmp/uMatriks/DialogJoinRoom.qml:36
 #: /home/developer/ubports_build/build/tmp/uMatriks/components/DialogDownload.qml:25
 msgid "Cancel"
@@ -86,6 +92,16 @@ msgstr ""
 #: /home/developer/ubports_build/uMatriks/DialogJoinRoom.qml:44
 #: /home/developer/ubports_build/build/tmp/uMatriks/DialogJoinRoom.qml:44
 msgid "Join"
+msgstr ""
+
+#: /home/developer/ubports_build/uMatriks/IncommingCallPage.qml:115
+#: /home/developer/ubports_build/build/tmp/uMatriks/IncommingCallPage.qml:115
+msgid "Incoming video call"
+msgstr ""
+
+#: /home/developer/ubports_build/uMatriks/IncommingCallPage.qml:115
+#: /home/developer/ubports_build/build/tmp/uMatriks/IncommingCallPage.qml:115
+msgid "Incoming voice call"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Login.qml:12
@@ -126,36 +142,41 @@ msgid "Login"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:175
-#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:160
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:175
 msgid "Warning!"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:186
-#: /home/developer/ubports_build/uMatriks/RoomList.qml:207
-#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:171
-#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:207
+#: /home/developer/ubports_build/uMatriks/RoomList.qml:244
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:186
+#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:244
 msgid "Close"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:284
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:284
 msgid "Notifications"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:285
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:285
 msgid ""
 "If you want Matrix notifications when you're not using the app, sign in to "
 "your Ubuntu One account."
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:292
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:292
 msgid "Sign in to Ubuntu One"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:300
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:300
 msgid "Remind me later"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/Main.qml:307
+#: /home/developer/ubports_build/build/tmp/uMatriks/Main.qml:307
 msgid "Don't want notifications"
 msgstr ""
 
@@ -174,23 +195,23 @@ msgstr ""
 msgid "RoomList"
 msgstr ""
 
-#: /home/developer/ubports_build/uMatriks/RoomList.qml:133
-#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:133
+#: /home/developer/ubports_build/uMatriks/RoomList.qml:170
+#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:170
 msgid "Leave"
 msgstr ""
 
-#: /home/developer/ubports_build/uMatriks/RoomList.qml:165
-#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:165
+#: /home/developer/ubports_build/uMatriks/RoomList.qml:202
+#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:202
 msgid "Members of "
 msgstr ""
 
-#: /home/developer/ubports_build/uMatriks/RoomList.qml:196
-#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:196
+#: /home/developer/ubports_build/uMatriks/RoomList.qml:233
+#: /home/developer/ubports_build/build/tmp/uMatriks/RoomList.qml:233
 msgid "Room Topic"
 msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/RoomView.qml:17
-#: /home/developer/ubports_build/build/tmp/uMatriks/RoomView.qml:8
+#: /home/developer/ubports_build/build/tmp/uMatriks/RoomView.qml:17
 msgid "Room"
 msgstr ""
 
@@ -219,188 +240,190 @@ msgstr ""
 
 #: /home/developer/ubports_build/uMatriks/components/ChatBubble.qml:163
 #: /home/developer/ubports_build/uMatriks/components/DialogDownload.qml:10
+#: /home/developer/ubports_build/build/tmp/uMatriks/ChatBubble.qml:163
+#: /home/developer/ubports_build/build/tmp/uMatriks/DialogDownload.qml:10
 #: /home/developer/ubports_build/build/tmp/uMatriks/components/ChatBubble.qml:163
 #: /home/developer/ubports_build/build/tmp/uMatriks/components/DialogDownload.qml:10
 msgid "Download"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:268
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:272
 msgid "Today"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:270
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:274
 msgid "Yesterday"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:272
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:276
 msgid "The day before yesterday"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:412
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:581
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:416
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:585
 msgid "Redacted"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:414
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:582
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:418
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:586
 #, qt-format
 msgid "Redacted: %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:430
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:434
 msgid "a file"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:443
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:447
 #, qt-format
 msgid "reinvited %1 to the room"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:448
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:452
 msgid "joined the room (repeated)"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:453
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:457
 #, qt-format
 msgid "invited %1 to the room"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:454
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:458
 msgid "joined the room"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:460
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:464
 msgid "cleared the display name"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:462
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:466
 #, qt-format
 msgid "changed the display name to %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:470
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:474
 msgid "cleared the avatar"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:472
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:476
 msgid "updated the avatar"
-msgstr ""
-
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:481
-#, qt-format
-msgid "unbanned %1"
-msgstr ""
-
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:482
-msgid "self-unbanned"
 msgstr ""
 
 #: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:485
 #, qt-format
-msgid "has put %1 out of the room"
+msgid "unbanned %1"
 msgstr ""
 
 #: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:486
-msgid "left the room"
+msgid "self-unbanned"
 msgstr ""
 
 #: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:489
 #, qt-format
-msgid "banned %1 from the room"
+msgid "has put %1 out of the room"
 msgstr ""
 
 #: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:490
+msgid "left the room"
+msgstr ""
+
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:493
+#, qt-format
+msgid "banned %1 from the room"
+msgstr ""
+
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:494
 msgid "self-banned from the room"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:492
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:496
 msgid "knocked"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:496
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:500
 msgid "made something unknown"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:499
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:503
 #, qt-format
 msgid "set aliases to: %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:503
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:507
 msgid "cleared the room main alias"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:504
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:508
 #, qt-format
 msgid "set the room main alias to: %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:508
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:512
 msgid "cleared the room name"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:509
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:513
 #, qt-format
 msgid "set the room name to: %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:513
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:517
 msgid "cleared the topic"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:514
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:518
 #, qt-format
 msgid "set the topic to: %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:517
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:521
 msgid "changed the room avatar"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:520
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:524
 msgid "activated End-to-End Encryption"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:522
+#: /home/developer/ubports_build/lib/Matrix/models/messageeventmodel.cpp:526
 msgid "Unknown Event"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/models/roomlistmodel.cpp:196
+#: /home/developer/ubports_build/lib/Matrix/models/roomlistmodel.cpp:205
 #, qt-format
 msgid "%1 (as %2)"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/connection.cpp:167
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/connection.cpp:168
 #, qt-format
 msgid "%1 is not a valid homeserver address"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/connection.cpp:274
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/connection.cpp:275
 #, qt-format
 msgid "%1 is an invalid homeserver URL"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1901
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1972
 #, qt-format
 msgid "Invitation from %1"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1910
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1981
 #, qt-format
 msgid "%1 and %2"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1916
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1987
 #, qt-format
 msgid "%1 and %L2 others"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1946
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:2021
 #, qt-format
 msgid "Empty room (was: %1)"
 msgstr ""
 
-#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:1949
+#: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/room.cpp:2024
 #, qt-format
 msgid "Empty room (%1)"
 msgstr ""
@@ -470,8 +493,4 @@ msgstr ""
 
 #: /home/developer/ubports_build/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:556
 msgid "Request failed"
-msgstr ""
-
-#: /home/developer/ubports_build/uMatriks/uMatriks.desktop.h:1
-msgid "uMatriks"
 msgstr ""
