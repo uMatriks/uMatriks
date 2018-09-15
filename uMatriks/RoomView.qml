@@ -2,18 +2,25 @@ import QtQuick 2.4
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Themes 1.3
 import Qt.labs.settings 1.0
+import Matrix 1.0
 
 Page {
     id: roomView
-    title: i18n.tr("Room")
+    //title: i18n.tr("Room")
     visible: false
 
     property var currentRoom
     property var completion
 
+    header: PageHeader {
+      id: pageHeader
+      title: i18n.tr("Room")
+    }
+
     function setRoom(room) {
-        console.log("RoomView setting room: "+ room.name)
-	title = room.name
+        console.log("RoomView setting room: "+ room.displayName)
+	      //title = room.name
+        pageHeader.title = room.displayName
         currentRoom = room
         chat.setRoom(room)
     }

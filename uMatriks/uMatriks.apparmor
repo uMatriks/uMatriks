@@ -1,5 +1,6 @@
 {
     "policy_groups": [
+        "accounts",
         "networking",
         "webview",
         "video",
@@ -7,7 +8,9 @@
         "content_exchange",
         "content_exchange_source",
         "camera",
-        "audio"
+        "audio",
+        "push-notification-client",
+        "connectivity"
     ],
-    "policy_version": 1.3
+    "policy_version": 16.04
 }

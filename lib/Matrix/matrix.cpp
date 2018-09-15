@@ -3,8 +3,7 @@
 #include "matrix.h"
 
 #include "user.h"
-#include "jobs/syncjob.h"
-#include "jobs/joinroomjob.h"
+#include "csapi/joining.h"
 #include "models/messageeventmodel.h"
 #include "models/roomlistmodel.h"
 #include "settings.h"
