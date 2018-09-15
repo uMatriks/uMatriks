@@ -23,7 +23,7 @@ Rectangle {
     }
 
     function sendLine(text) {
-        console.log("Sending: " + text)
+        // console.log("Sending: " + text)
         // console.log("Room: " + currentRoom)
         // console.log("Conn: " + currentConnection)
         if (text.trim().length === 0) {
@@ -33,14 +33,15 @@ Rectangle {
             return
         }
 
-        var type = "m.text"
-        var PREFIX_ME = '/me '
-        if (text.indexOf(PREFIX_ME) === 0) {
-            text = text.substr(PREFIX_ME.length)
-            type = "m.emote"
-        }
+        // TODO lib expects postMessage(text,MsgType::Emote); :/
+        // var PREFIX_ME = '/me '
+        // if (text.indexOf(PREFIX_ME) === 0) {
+        //     text = text.substr(PREFIX_ME.length)
+        //     type = "m.emote"
+        //     currentRoom.postMessage(text, type)
+        // }
 
-        currentRoom.postMessage(type, text)
+        currentRoom.postPlainText(text)
         chatView.positionViewAtBeginning()
     }
 
