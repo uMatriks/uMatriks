@@ -1,6 +1,12 @@
 # CHANGES
 
-## 0.10.0 (unreleased)
+## 0.11.0 (unreleased)
+
+- Code updated to work with `libqmatrixclient` master [delijati]
+- Updated models from Quaternion [delijati]
+- Merge basic convergence [delijati] 
+
+## 0.10.0 (2018-05-17)
 
 - Code updated to work with `libqmatrixclient` upstream (0.2) [delijati]
 - Updated models from Quaternion (count of unread shown) [delijati]
