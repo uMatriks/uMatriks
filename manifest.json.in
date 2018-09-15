@@ -8,9 +8,13 @@
             "apparmor": "uMatriks/uMatriks.apparmor",
             "desktop": "uMatriks/uMatriks.desktop",
             "content-hub": "uMatriks/content-hub.json"
+        },
+        "push": {
+            "apparmor": "pushhelper/apparmor-push.json",
+            "push-helper": "pushhelper/push-helper.json"
         }
     },
-    "version": "0.10",
+    "version": "0.12",
     "maintainer": "Mikel Larrea <developer@larreamikel.com>",
-    "framework": "ubuntu-sdk-15.04.6"
+    "framework": "ubuntu-sdk-16.04"
 }

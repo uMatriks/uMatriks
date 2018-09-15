@@ -105,26 +105,26 @@ BasePage {
                         }
                     }
 
-                    Rectangle {
-                        SlotsLayout.position: SlotsLayout.Trailing
-                        //                        color: "grey"
-                        height: units.gu(3)
-                        width: height
-                        border.width: parent.activeFocus ? 0.5 : 1
-                        border.color: "black"
-                        color: UbuntuColors.green
-                        visible: helpId.unread && helpId.number > 0
-                        radius: width * 0.5
-                        Text {
-                            anchors{
-                                horizontalCenter: parent.horizontalCenter
-                                verticalCenter: parent.verticalCenter
-                            }
-                            font.pointSize: helpId.number < 100 ? units.gu(1.5) : units.gu(1.1)
-                            text: helpId.number
-                        }
-
-                    }
+                    // Rectangle {
+                    //     SlotsLayout.position: SlotsLayout.Trailing
+                    //     //                        color: "grey"
+                    //     height: units.gu(3)
+                    //     width: height
+                    //     border.width: parent.activeFocus ? 0.5 : 1
+                    //     border.color: "black"
+                    //     color: UbuntuColors.green
+                    //     visible: helpId.unread && helpId.number > 0
+                    //     radius: width * 0.5
+                    //     Text {
+                    //         anchors{
+                    //             horizontalCenter: parent.horizontalCenter
+                    //             verticalCenter: parent.verticalCenter
+                    //         }
+                    //         font.pointSize: helpId.number < 100 ? units.gu(1.5) : units.gu(1.1)
+                    //         text: helpId.number
+                    //     }
+                    //
+                    // }
                 }
 
                 leadingActions: ListItemActions {

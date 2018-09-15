@@ -3,10 +3,11 @@ import QtGraphicalEffects 1.0
 import Ubuntu.Components 1.3
 import Ubuntu.Components.Themes 1.3
 import Qt.labs.settings 1.0
+import Matrix 1.0
 
 Page {
     id: roomView
-    title: i18n.tr("Room")
+    //title: i18n.tr("Room")
     visible: false
     clip:true
 
@@ -28,7 +29,6 @@ Page {
     function setRoom(room) {
         console.log("RoomView setting room: "+ room.name)
         _pageHeader.title = room.name
-
         currentRoom = room
         chat.setRoom(room)
     }

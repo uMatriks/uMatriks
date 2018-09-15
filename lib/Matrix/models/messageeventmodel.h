@@ -26,12 +26,6 @@
 class MessageEventModel: public QAbstractListModel
 {
         Q_OBJECT
-        // The below property is marked constant because it only changes
-        // when the whole model is reset (so anything that depends on the model
-        // has to be re-calculated anyway).
-        // XXX: A better way would be to make [Room::]Timeline a list model
-        // itself, leaving only representation of the model to a client.
-        Q_PROPERTY(QMatrixClient::Room* room MEMBER m_currentRoom CONSTANT)
     public:
         explicit MessageEventModel(QObject* parent = nullptr);
 
@@ -42,13 +36,22 @@ class MessageEventModel: public QAbstractListModel
         QHash<int, QByteArray> roleNames() const override;
 
     private slots:
-        void refreshEvent(const QString& eventId);
+        int refreshEvent(const QString& eventId);
+        void refreshRow(int row);
 
     private:
         QMatrixClient::Room* m_currentRoom;
         QString lastReadEventId;
+        int rowBelowInserted = -1;
+        bool movingEvent = 0;
 
-        QDateTime makeMessageTimestamp(QMatrixClient::Room::rev_iter_t baseIt) const;
-        QString makeDateString(QMatrixClient::Room::rev_iter_t baseIt) const;
-        void refreshEventRoles(const QString& eventId, const QVector<int> roles);
+        int timelineBaseIndex() const;
+        QDateTime makeMessageTimestamp(const QMatrixClient::Room::rev_iter_t& baseIt) const;
+        QString renderDate(QDateTime timestamp) const;
+        bool isUserActivityNotable(const QMatrixClient::Room::rev_iter_t& baseIt) const;
+
+        void refreshLastUserEvents(int baseRow);
+        void refreshEventRoles(int row, const QVector<int>& roles = {});
+        int refreshEventRoles(const QString& eventId,
+                              const QVector<int>& roles = {});
 };

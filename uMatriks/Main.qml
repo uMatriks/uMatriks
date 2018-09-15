@@ -1,10 +1,11 @@
 import QtQuick 2.4
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3 as Popup
 import Ubuntu.Components.Themes 1.3
 import Qt.labs.settings 1.0
 import Matrix 1.0
-import Ubuntu.Components.Popups 1.3
-
+import Ubuntu.OnlineAccounts.Client 0.1
+import Ubuntu.PushNotifications 0.1
 
 MainView {
     id: uMatriks
@@ -23,13 +24,20 @@ MainView {
 
     width: units.gu(50)
     height: units.gu(75)
-    
+
     property Connection connection: null
     property bool initialised: false
     property int syncIx: 0
     property bool loggedOut: false
     property int activeRoomIndex: -1
     property bool roomListComplete: false
+
+    //Push Client elements
+    property alias pushClient: push_client_loader.item
+    property bool readyForPush: false
+    signal pushLoaded()
+    signal pushRegister(string token, string version)
+    signal pushUnregister(string token)
 
     signal componentsComplete();
     signal leaveRoom(var room)
@@ -69,7 +77,7 @@ MainView {
 
         connection.sync(30000)
         // every now and then but not on the first sync
-        if ((syncIx % 10) == 2) { 
+        if ((syncIx % 10) == 2) {
             console.log("Saving state: " + syncIx)
             connection.saveState(connection.stateSaveFile)
         }
@@ -129,6 +137,13 @@ MainView {
             mainAdaptiveLayout.addPageToCurrentColumn(mainAdaptiveLayout.primaryPage, roomList)
         }
         leaveRoom.connect(connection.leaveRoom)
+
+        //Register on UBports push server and obtain token
+	      if (!push_client_loader.active) {
+            push_client_loader.active = true;
+        } else if (push_client_loader.status === Loader.Ready) {
+            pushClient.registerForPush();
+        }
     }
 
     AdaptivePageLayout {
@@ -155,7 +170,7 @@ MainView {
 
     Component {
         id: warning
-        Dialog {
+        Popup.Dialog {
             id: dialogInternal
 
             property string description
@@ -178,4 +193,132 @@ MainView {
             }
         }
     }
+    Loader {
+          id: push_client_loader
+          active: false
+          asynchronous: false
+          sourceComponent: PushClient {
+              id: push_client
+              //appId: MainView.applicationName
+              appId: "umatriks.larreamikel_uMatriks" //provisional solution hardcoded as MainView.applicationName does not return a QString
+
+              property bool registered: false
+              property bool loggedIn: readyForPush
+
+              function registerForPush() {
+                  if (registered) {
+                    console.log("Already registered for Push"); //To see if
+                    return;
+                  }
+
+      //TODO: Check from saved settings if push is enabled and we should register for it
+                  //if (!uMatriks.pushNotifications) {
+                  //    console.warn("push - ignoring, notifications disabled");
+                  //    return;
+                  //}
+
+                  if (token.length === 0) {
+                      console.warn("push - can't register, empty token.");
+                      return;
+                  }
+                  if (!readyForPush) {
+                      console.warn("push - can't register, not logged-in yet.");
+                      return;
+                  }
+
+                  console.log("push - registering with Matrix server");
+                  registered = true;
+                  pushRegister(token, Version.version);
+              }
+
+              function unregisterFromPush() {
+                  console.log("push - unregistering from Matrix server");
+                  pushUnregister(token);
+                  registered = false;
+              }
+
+              onTokenChanged: {
+                  console.log("push - token changed: " + (token.length > 0 ? "present" : "empty!"));
+                  if (token.length > 0) {
+                      registered = false;
+                      registerForPush();
+                  }
+              }
+
+              // onConnectedChanged: {
+              //     if (token.length > 0) {
+              //         registerForPush();
+              //     }
+              // }
+
+              onError: {
+                  if (status == "bad auth") {
+                      console.warn("push - 'bad auth' error: " + status);
+                      if (uMatriks.promptForPush) {
+                          push_dialog_loader.active = true;
+                      }
+                  } else {
+                      console.warn("push - unhandled error: " + status);
+                  }
+              }
+          }
+
+          onStatusChanged: {
+              if (status === Loader.Loading) {
+                  console.log("push - push client loading");
+              } else if (status === Loader.Ready) {
+                  console.log("push - push client loaded");
+              }
+          }
+
+          onLoaded: {
+              pushLoaded();
+          }
+      }
+
+      Loader {
+          id: push_dialog_loader
+          active: false
+          asynchronous: false
+          sourceComponent: Component {
+              id: push_dialog_component
+              Popup.Dialog {
+                  id: push_dialog
+                  title: i18n.tr("Notifications")
+                  text: i18n.tr("If you want Matrix notifications when you're not using the app, sign in to your Ubuntu One account.")
+
+                  function close() {
+                      PopupUtils.close(push_dialog);
+                  }
+
+                  Button {
+                      text: i18n.tr("Sign in to Ubuntu One")
+                      color: UbuntuColors.orange
+                      onClicked: {
+                          setup.exec();
+                          close();
+                      }
+                  }
+                  Button {
+                      text: i18n.tr("Remind me later")
+                      onClicked: {
+        //TODO: Implement saving of settings for later: prompt again for push setup, but turn off notifications
+                          close();
+                      }
+                  }
+                  Button {
+                      text: i18n.tr("Don't want notifications")
+                      onClicked: {
+        //TODO: Implement saving of settings for later: do not prompt again for push setup, and turn off notifications
+                          pushClient.unregisterFromPush();
+                          close();
+                      }
+                  }
+              }
+          }
+
+          onLoaded: {
+              openPushDialog();
+          }
+      }
 }

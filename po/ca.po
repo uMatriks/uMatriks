@@ -2,136 +2,170 @@ msgid ""
 msgstr ""
 "Project-Id-Version: uMatriks\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 21:01+0000\n"
+"POT-Creation-Date: 2018-06-13 23:16+0200\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: POEditor.com\n"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:21
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:21
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/About.qml:21
 msgid "About..."
 msgstr "Quant a "
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:28
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:28
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/About.qml:28
 msgid "Back"
 msgstr "Enrere"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:83
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:83
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/About.qml:83
 msgid "Authors"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:148
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:148
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/About.qml:148
 msgid "Translations"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:158
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:158
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/About.qml:158
 msgid ""
 "Not in your language? Please help us translating the app by contributing on: "
 "<a href='https://poeditor.com/join/project/4VSWHLQChQ'>poeditor</a> "
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/About.qml:167
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/About.qml:167
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/About.qml:167
 msgid "Acknowledgement"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:19
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:19
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/BasePage.qml:19
 msgid "[ uMatriks ]"
 msgstr "[ uMatriks ]"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:25
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:9
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:25
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:9
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/BasePage.qml:25
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/DialogJoinRoom.qml:9
 msgid "Join room"
 msgstr "Entra a una sala"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:38
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:38
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/BasePage.qml:38
 msgid "Log out"
 msgstr "Tanca"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/BasePage.qml:48
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/BasePage.qml:48
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/BasePage.qml:48
 msgid "About"
 msgstr "Quant a"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:10
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:10
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/DialogJoinRoom.qml:10
 msgid "Join room:"
 msgstr "Entra a una sala:"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:36
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/components/DialogDownload.qml:25
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:36
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/components/DialogDownload.qml:25
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/DialogJoinRoom.qml:36
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/components/DialogDownload.qml:25
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/DialogJoinRoom.qml:44
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/DialogJoinRoom.qml:44
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/DialogJoinRoom.qml:44
 msgid "Join"
 msgstr "Entra"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:12
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:41
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:12
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:41
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:12
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:41
 msgid "Login..."
 msgstr "Inicia la sessió"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:56
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:56
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:56
 msgid "Wrong username or password, please try again"
 msgstr "El nom d'usuari o contrassenya és incorrecte. Torneu a provar-ho"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:111
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:111
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:111
 msgid "Failed to login, please try again"
 msgstr "Ha fallat l'inici de sessió. Torneu a provar-ho"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:116
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:116
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:116
 msgid "User Name or Matrix ID:"
 msgstr "Nom d'usuari o id de Matrix:"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:128
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:128
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:128
 msgid "Password:"
 msgstr "Conttassenya"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:140
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:140
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:140
 msgid "Home server URL:"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Login.qml:153
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Login.qml:153
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Login.qml:153
 msgid "Login"
 msgstr "Inicia sessió"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:160
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Main.qml:160
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Main.qml:160
 msgid "Warning!"
 msgstr "Alertau"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/Main.qml:171
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:207
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/Main.qml:171
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:207
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/Main.qml:171
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/RoomList.qml:207
 msgid "Close"
 msgstr "Tanca"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/MemberList.qml:50
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/MemberList.qml:50
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/MemberList.qml:50
 msgid "Failed to add direct chat with "
 msgstr "No s'ha pogut establir un xat directe amb "
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/MemberList.qml:52
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/MemberList.qml:52
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/MemberList.qml:52
 msgid " because this is not implented yet. This was just a test button."
 msgstr " perquè no està implementat. Això és botó en proves."
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:11
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:11
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/RoomList.qml:11
 msgid "RoomList"
 msgstr "RoomList"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:133
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:133
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/RoomList.qml:133
 msgid "Leave"
 msgstr "Surt"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:165
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:165
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/RoomList.qml:165
 msgid "Members of "
 msgstr "Membres de "
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomList.qml:196
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomList.qml:196
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/RoomList.qml:196
 msgid "Room Topic"
 msgstr "Tema de la sala"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/RoomView.qml:8
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/RoomView.qml:8
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/RoomView.qml:8
 msgid "Room"
 msgstr "Sala"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:20
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:20
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/WelcomePage.qml:20
 msgid ""
 "Welcome to uMatriks!<br/>            <br/>            uMatriks is a program "
 "that allows you to use the Matrix network."
@@ -139,174 +173,268 @@ msgstr ""
 "Us donem la benvinguda a l'uMatriks!<br/>            <br/>            "
 "L'uMatriks és una aplicació que us permet usar la xarxa Matrix."
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:36
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:36
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/WelcomePage.qml:36
 msgid "To use uMatriks, you need to login with your matrix <i>user</i>."
 msgstr ""
 "Per usar l'uMatriks, heu de iniciar la sessió amb el vostre <i>usuari</i> de "
 "Matrix."
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:42
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:42
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/WelcomePage.qml:42
 msgid "Matrix ID:"
 msgstr "ID de Matrix:"
 
 #. TRANSLATORS: Example nickname
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/WelcomePage.qml:51
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/WelcomePage.qml:51
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/WelcomePage.qml:51
 msgid "chattyman"
 msgstr "chattyman"
 
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/components/ChatBubble.qml:163
-#: /home/larreamikel/Code/Touch/uMatriks/uMatriks/components/DialogDownload.qml:10
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/components/ChatBubble.qml:163
+#: /opt/develop/privat/mobile/ubports/uMatriks/uMatriks/components/DialogDownload.qml:10
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/components/ChatBubble.qml:163
+#: /opt/develop/privat/mobile/ubports/uMatriks/build/tmp/uMatriks/components/DialogDownload.qml:10
 msgid "Download"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/connection.cpp:110
-#, qt-format
-msgid "%1 is not a valid homeserver address"
-msgstr ""
-
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/connection.cpp:221
-#, qt-format
-msgid "%1 is an invalid homeserver URL"
-msgstr ""
-
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1457
-#, qt-format
-msgid "%1 and %2"
-msgstr ""
-
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1463
-#, qt-format
-msgid "%1 and %L2 others"
-msgstr ""
-
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1493
-#, qt-format
-msgid "Empty room (was: %1)"
-msgstr ""
-
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/libqmatrixclient/room.cpp:1496
-#, qt-format
-msgid "Empty room (%1)"
-msgstr ""
-
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:201
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:391
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:201
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:400
 msgid "Redacted"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:203
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:393
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:203
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:402
 #, qt-format
 msgid "Redacted: %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:220
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:220
 msgid "a file"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:235
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:235
 #, qt-format
 msgid "reinvited %1 to the room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:240
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:240
 msgid "joined the room (repeated)"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:245
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:245
 #, qt-format
 msgid "invited %1 to the room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:246
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:246
 #, fuzzy
 msgid "joined the room"
 msgstr "Entra a una sala"
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:252
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:252
 msgid "cleared the display name"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:254
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:254
 #, qt-format
 msgid "changed the display name to %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:262
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:262
 msgid "cleared the avatar"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:264
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:264
 msgid "updated the avatar"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:273
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:273
 #, qt-format
 msgid "unbanned %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:275
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:275
 msgid "self-unbanned"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:278
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:278
 #, qt-format
 msgid "has put %1 out of the room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:280
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:280
 msgid "left the room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:283
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:283
 #, qt-format
 msgid "banned %1 from the room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:285
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:285
 msgid "self-banned from the room"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:287
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:287
 #, qt-format
 msgid "%1 (%2) knocked"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:293
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:293
 #, qt-format
 msgid "set aliases to: %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:298
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:299
+msgid "cleared the room main alias"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:301
 #, qt-format
 msgid "set the room main alias to: %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:303
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:307
+#, fuzzy
+msgid "cleared the room name"
+msgstr "Entra a una sala"
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:309
 #, qt-format
 msgid "set the room name to: %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:308
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:315
+msgid "cleared the topic"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:317
 #, qt-format
 msgid "set the topic to: %1"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:312
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:321
 msgid "changed the room avatar"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:316
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:325
 msgid "activated End-to-End Encryption"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/uMatriks/lib/Matrix/models/messageeventmodel.cpp:318
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/messageeventmodel.cpp:327
 msgid "Unknown Event"
 msgstr ""
 
-#: /home/larreamikel/Code/Touch/build-uMatriks-Meizu_Pro5_GCC_armhf_ubuntu_sdk_15_04_builder_armhf-Release/uMatriks/uMatriks.desktop.h:1
-msgid "uMatriks"
-msgstr "uMatriks"
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/models/roomlistmodel.cpp:196
+#, qt-format
+msgid "%1 (as %2)"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/connection.cpp:139
+#, qt-format
+msgid "%1 is not a valid homeserver address"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/connection.cpp:247
+#, qt-format
+msgid "%1 is an invalid homeserver URL"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/room.cpp:1667
+#, qt-format
+msgid "Invitation from %1"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/room.cpp:1676
+#, qt-format
+msgid "%1 and %2"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/room.cpp:1682
+#, qt-format
+msgid "%1 and %L2 others"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/room.cpp:1712
+#, qt-format
+msgid "Empty room (was: %1)"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/room.cpp:1715
+#, qt-format
+msgid "Empty room (%1)"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:298
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:544
+msgid "Too many requests"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:301
+#, qt-format
+msgid ", next retry advised after %1 ms"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:522
+msgid "Success"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:524
+msgid "Request still pending response"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:526
+msgid "Warning: Unexpected response type"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:528
+msgid "Request was abandoned"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:530
+msgid "Network problems"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:532
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:542
+msgid "Response could not be parsed"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:534
+msgid "Request timed out"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:536
+msgid "Access error"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:538
+msgid "Not found"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:540
+msgid "Invalid request"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:546
+msgid "Function not implemented by the server"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:548
+msgid "Network authentication required"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:550
+msgid "User consent required"
+msgstr ""
+
+#: /opt/develop/privat/mobile/ubports/uMatriks/lib/Matrix/libqmatrixclient/lib/jobs/basejob.cpp:552
+msgid "Request failed"
+msgstr ""
+
+#~ msgid "uMatriks"
+#~ msgstr "uMatriks"
 
 #~ msgid ""
 #~ "This will activate a test function, which lets you see the amount of "
