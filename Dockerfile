@@ -1,35 +1,17 @@
-FROM ubuntu:16.04
+FROM clickable/ubuntu-sdk:16.04-amd64
 
 RUN apt-get update && \
     apt-get -y --no-install-recommends install \
     pyotherside \
-    apt-utils \
-    build-essential \
-    cmake \
-    dpkg-cross \
-    fakeroot \
-    libc-dev \
-    isc-dhcp-client \
-    net-tools \
-    ifupdown \
-    g++-arm-linux-gnueabihf \
-    pkg-config-arm-linux-gnueabihf \
-    ubuntu-sdk-libs \
-    ubuntu-sdk-libs-dev \
-    ubuntu-sdk-libs-tools \
-    qtbase5-private-dev \
-    oxideqt-codecs-extra \
-    qt5-doc \
-    language-pack-en \
-    click \
-    libapparmor-dev \
     # testing QT with python
     xvfb \
     python3-autopilot \
-    ubuntu-ui-toolkit-autopilot \
+    # DEACTIVATED as or oxide error 
+    # ubuntu-ui-toolkit-autopilot \
     python-xlib \
     # apps
-    webbrowser-app \
+    # # DEACTIVATED as or oxide error 
+    # webbrowser-app \
     gallery-app
 RUN apt-get clean
 
