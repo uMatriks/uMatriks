@@ -66,10 +66,13 @@ Item {
     Rectangle {
         id: avatarIcon
         height: units.gu(6)
-        anchors.top: chatBubble.top
+        anchors {
+          top: chatBubble.top
+          leftMargin: units.gu(0.5)
+          rightMargin: units.gu(0.5)
+        }
         width: height
         radius: height/2
-        anchors.margins: units.gu(0.5)
         clip: true
         border.color: uMatriks.theme.palette.normal.overlayText
         color: uMatriks.theme.palette.normal.background
@@ -111,11 +114,11 @@ Item {
 
     Rectangle {
         id: rect
-        anchors.top: chatBubble.top
         height: height
-        anchors.margins: {
-            right: units.gu(1)
-            left: units.gu(1)
+        anchors {
+          top: chatBubble.top
+          leftMargin: units.gu(1)
+          rightMargin: units.gu(1)
         }
         border.color: uMatriks.theme.palette.normal.raisedSecondaryText
         border.width: 1
@@ -300,4 +303,3 @@ Item {
         }
     }
 }
-
