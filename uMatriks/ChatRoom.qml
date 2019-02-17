@@ -69,7 +69,7 @@ Rectangle {
         spacing: units.gu(2)
         model: MessageEventModel { id: messageModel }
 
-        delegate: ChatBubble {
+        delegate: ChatItem {
             id: chatBubble
             width: parent.width
             room: currentRoom
