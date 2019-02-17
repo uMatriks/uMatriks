@@ -21,7 +21,7 @@ import Ubuntu.Components.Themes 1.3
 import Matrix 1.0
 import 'utils.js' as Utils
 import Ubuntu.Components.Popups 1.3
-
+import "components"
 
 BasePage {
     id: roomList
@@ -113,12 +113,11 @@ BasePage {
                         width: height
                         color: uMatriks.theme.palette.normal.background
 
-                        Image {
+                        Avatar {
                             id: roomAvatar
                             anchors.fill: parent
                             source: roomImg
-                            sourceSize.width: 16
-                            sourceSize.height: 16
+                            user: display
                         }
                     }
 

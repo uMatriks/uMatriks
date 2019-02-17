@@ -74,12 +74,11 @@ Item {
         border.color: uMatriks.theme.palette.normal.overlayText
         color: uMatriks.theme.palette.normal.background
 
-        Image {
+        Avatar {
             id: avatarImg
             anchors.fill: parent
             visible: false
-            sourceSize.width: 16
-            sourceSize.height: 16
+            user: avatarText.text
         }
 
         OpacityMask {
