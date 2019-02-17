@@ -26,8 +26,9 @@
 
 #include "libqmatrixclient/lib/connection.h"
 #include "libqmatrixclient/lib/room.h"
-
-const int RoomEventStateRole = Qt::UserRole + 1;
+#include "libqmatrixclient/lib/user.h"
+#include "libqmatrixclient/lib/events/roomevent.h"
+#include "utils.h"
 
 RoomListModel::RoomListModel(QObject* parent)
     : QAbstractListModel(parent)
@@ -181,42 +182,18 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
     auto room = m_rooms.at(index.row());
     switch (role)
     {
-        case Qt::DisplayRole:
-        {
-            const auto unreadCount = room->unreadCount();
-            const auto postfix = unreadCount == -1 ? QString() :
-                room->readMarker() != room->timelineEdge()
-                    ? QStringLiteral(" [%1]").arg(unreadCount)
-                    : QStringLiteral(" [%1+]").arg(unreadCount);
-            for (auto c: m_connections)
-            {
-                if (c == room->connection())
-                    continue;
-                if (c->room(room->id(), room->joinState()))
-                    return tr("%1 (as %2)").arg(room->displayName(),
-                                                room->connection()->userId())
-                           + postfix;
-            }
-            return room->displayName() + postfix;
-        }
-        case Qt::DecorationRole:
+        case Name:
+            return room->displayName();
+        case Avatar:
         {
             auto mediaid = room->avatarMediaId();
             if (!mediaid.isEmpty()) {
                 auto url = QUrl("image://mtx/" + mediaid);
                 return url;
             }
-            switch( room->joinState() )
-            {
-                case QMatrixClient::JoinState::Join:
-                    return "./resources/icons/breeze/irc-channel-joined.svg";
-                case QMatrixClient::JoinState::Invite:
-                    return "./resources/icons/irc-channel-invited.svg";
-                case QMatrixClient::JoinState::Leave:
-                    return "./resources/icons/breeze/irc-channel-parted.svg";
-            }
+        return QVariant();
         }
-        case RoomEventStateRole:
+        case RoomEventState:
         {
             if (room->highlightCount() > 0) {
                 return "highlight";
@@ -226,6 +203,13 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
                 return "normal";
             }
         }
+        case UnreadCount:
+            return room->unreadCount();
+        case LastEvent:
+          if (room->timelineSize() == 0) return "";
+          const QMatrixClient::RoomEvent* lastEvent = room->messageEvents().rbegin()->get();
+          return room->user(lastEvent->senderId())->displayname() + ": " +
+                 utils::removeReply(utils::eventToString(*lastEvent, room));
         return QVariant();
     }
     return QVariant();
@@ -233,9 +217,11 @@ QVariant RoomListModel::data(const QModelIndex& index, int role) const
 
 QHash<int, QByteArray> RoomListModel::roleNames() const {
     return QHash<int, QByteArray>({
-                      std::make_pair(Qt::DisplayRole, QByteArray("display")),
-                      std::make_pair(Qt::DecorationRole, QByteArray("roomImg")),
-                      std::make_pair(RoomEventStateRole, QByteArray("roomEventState"))
+                      std::make_pair(Name, QByteArray("display")),
+                      std::make_pair(Avatar, QByteArray("roomImg")),
+                      std::make_pair(RoomEventState, QByteArray("roomEventState")),
+                      std::make_pair(UnreadCount, QByteArray("unreadCount")),
+                      std::make_pair(LastEvent, QByteArray("lastEvent")),
           });
 }
 

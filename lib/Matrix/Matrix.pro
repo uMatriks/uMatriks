@@ -12,13 +12,15 @@ SOURCES += matrix.cpp \
     models/roomlistmodel.cpp \
     models/messageeventmodel.cpp \
     models/imageprovider.cpp \
-    matrixhelper.cpp
+    matrixhelper.cpp \
+    models/utils.cpp
 
 HEADERS += matrix.h \
     models/roomlistmodel.h \
     models/messageeventmodel.h \
     models/imageprovider.h \
-    matrixhelper.h
+    matrixhelper.h \
+    models/utils.h
 
 OTHER_FILES = qmldir
 

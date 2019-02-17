@@ -33,6 +33,13 @@ class RoomListModel: public QAbstractListModel
         // using breaks with Q_INVOKABLE
         // anyway explicit is better than implicit
     public:
+        enum EventRoles {
+          Name = Qt::UserRole + 1,
+          Avatar,
+          RoomEventState,
+          UnreadCount,
+          LastEvent
+        };
         explicit RoomListModel(QObject* parent = nullptr);
 
         Q_INVOKABLE void addConnection(QMatrixClient::Connection* connection);
