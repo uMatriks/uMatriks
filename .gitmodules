@@ -1,3 +1,4 @@
-[submodule "lib/Matrix/libqmatrixclient"]
-	path = lib/Matrix/libqmatrixclient
-	url = https://github.com/QMatrixClient/libqmatrixclient.git
+[submodule "lib/Matrix/libQuotient"]
+	path = lib/Matrix/libQuotient
+	url = https://github.com/quotient-im/libQuotient.git
+	branch = master
