@@ -1,7 +1,7 @@
 # uMatriks
 uMatriks is a Matrix protocol client for Ubuntu Touch.
 
-![](uMatriks/logo.png)
+![](https://raw.githubusercontent.com/uMatriks/uMatriks/master/uMatriks/resources/logo.png)
 
 To have more information or to talk about this app, join the room:
 `#uMatriks:matrix.org`
