@@ -1,4 +1,4 @@
-# uMatriks
+# uMatriks (unmaintained)
 uMatriks is a Matrix protocol client for Ubuntu Touch.
 
 ![](https://raw.githubusercontent.com/uMatriks/uMatriks/master/uMatriks/resources/logo.png)
